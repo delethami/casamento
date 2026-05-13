@@ -143,4 +143,305 @@
     </h1>
     <div class="hero-divider"></div>
     <p class="hero-date">10 · 10 · 2027</p>
-    <p class="hero-location">Fleming Recepções &nbsp;·&nbsp; Belo Horizont
+    <p class="hero-location">Fleming Recepções &nbsp;·&nbsp; Belo Horizonte</p>
+    <div class="countdown" id="countdown">
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-dias">—</span>
+        <span class="countdown-label">dias</span>
+      </div>
+      <span class="countdown-sep">·</span>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-horas">—</span>
+        <span class="countdown-label">horas</span>
+      </div>
+      <span class="countdown-sep">·</span>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-min">—</span>
+        <span class="countdown-label">minutos</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="historia" style="background: var(--ivory);">
+  <span class="section-label">Dois corações, uma história</span>
+  <h2 class="section-title">Nossa história</h2>
+  <div class="section-divider"></div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <p class="timeline-year">O primeiro encontro</p>
+      <p class="timeline-text">Aqui vai a história de como Del e Thami se conheceram — esse espaço é todo de vocês para contar com as próprias palavras o começo de tudo.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-year">Quando tudo mudou</p>
+      <p class="timeline-text">Um momento especial que marcou a relação de vocês — uma viagem, uma conversa, uma descoberta. Algo que as aproximou de verdade.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-year">O pedido</p>
+      <p class="timeline-text">A história do pedido de casamento — com todos os detalhes que vocês quiserem compartilhar. Foi aqui que o "sim" mudou tudo.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-year">10 · 10 · 2027</p>
+      <p class="timeline-text">E agora, celebramos. Com as pessoas que amamos, na data mais especial das nossas vidas.</p>
+    </div>
+  </div>
+</section>
+
+<section id="presentes" style="background: var(--cream);">
+  <span class="section-label">Se quiser nos presentear</span>
+  <h2 class="section-title">Lista de presentes</h2>
+  <div class="section-divider"></div>
+  <p class="gifts-intro">A melhor parte do casamento é celebrar com vocês. Mas se quiserem nos presentear, aqui estão algumas sugestões de coisas que adoramos e que farão parte do nosso novo lar juntas.</p>
+  <div class="gifts-grid" id="gifts-grid"></div>
+</section>
+
+<section id="confirmacao" style="background: var(--ivory);">
+  <span class="section-label">Nos diga que vai estar lá</span>
+  <h2 class="section-title">Confirme sua presença</h2>
+  <div class="section-divider"></div>
+  <div class="rsvp-form" id="rsvp-form">
+    <div class="form-group">
+      <label class="form-label">Seu nome completo (pelo menos nome e sobrenome)</label>
+      <input type="text" class="form-input" id="nome" placeholder="Ex: Maria Silva">
+      <p class="error-msg" id="erro-nome"></p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Você vai comparecer?</label>
+      <div class="radio-group">
+        <div class="radio-option" id="opt-sim" onclick="selectPresenca('sim')">Com certeza! 🎉</div>
+        <div class="radio-option" id="opt-nao" onclick="selectPresenca('nao')">Infelizmente não poderei</div>
+      </div>
+    </div>
+    <div class="form-group" id="acomp-group" style="display:none;">
+      <label class="form-label">Número de acompanhantes (além de você)</label>
+      <select class="form-select" id="acomp">
+        <option value="0">Apenas eu</option>
+        <option value="1">+ 1 pessoa</option>
+        <option value="2">+ 2 pessoas</option>
+        <option value="3">+ 3 pessoas</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Alguma mensagem para as noivas? (opcional)</label>
+      <textarea class="form-textarea" id="msg" placeholder="Escreva o que quiser ♡"></textarea>
+    </div>
+    <button class="btn-submit" onclick="submitRSVP()">Confirmar presença</button>
+  </div>
+  <div class="success-msg" id="success-msg">
+    <p id="success-text">Que alegria!</p>
+    <span id="success-sub">Recebemos sua confirmação. Mal podemos esperar!</span>
+  </div>
+</section>
+
+<section id="evento" style="background: var(--cream);">
+  <span class="section-label">Detalhes do grande dia</span>
+  <h2 class="section-title">O evento</h2>
+  <div class="section-divider"></div>
+  <div class="event-grid">
+    <div class="event-card">
+      <span class="event-icon">📅</span>
+      <span class="event-card-label">Data</span>
+      <span class="event-card-value">10 de outubro de 2027</span>
+    </div>
+    <div class="event-card">
+      <span class="event-icon">🕓</span>
+      <span class="event-card-label">Cerimônia</span>
+      <span class="event-card-value">16h00</span>
+    </div>
+    <div class="event-card">
+      <span class="event-icon">📍</span>
+      <span class="event-card-label">Local</span>
+      <span class="event-card-value">Fleming Recepções<br><small style="font-size:0.85rem;color:#4a3c36">Av. Fleming, 1.481 · Pampulha<br>Belo Horizonte, MG</small></span>
+    </div>
+    <div class="event-card">
+      <span class="event-icon">💐</span>
+      <span class="event-card-label">Dress code</span>
+      <span class="event-card-value">Livre — venha como se sentir bem!</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-names">Del & Thami</div>
+  <p class="footer-date">10 · 10 · 2027 &nbsp;·&nbsp; Belo Horizonte</p>
+</footer>
+
+<button class="painel-btn" onclick="abrirPainel()" title="Painel das noivas">🔒</button>
+
+<div class="painel-overlay" id="painel-overlay">
+  <div class="painel-box">
+    <button class="painel-fechar" onclick="fecharPainel()">✕</button>
+    <h2 class="painel-titulo">Painel das noivas</h2>
+    <div class="painel-senha">
+      <input type="password" id="painel-senha-input" placeholder="Digite a senha" onkeydown="if(event.key==='Enter')verificarSenha()">
+      <button onclick="verificarSenha()">Entrar</button>
+    </div>
+    <p id="painel-erro" style="color:#a32d2d;font-size:0.85rem;display:none;margin-bottom:1rem;">Senha incorreta.</p>
+    <div class="painel-content" id="painel-content">
+      <div class="painel-stats">
+        <div class="stat-card">
+          <span class="stat-num" id="stat-sim">0</span>
+          <span class="stat-label">Confirmados ✔️</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-nao">0</span>
+          <span class="stat-label">Ausentes ❌</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-pendente">0</span>
+          <span class="stat-label">Pendentes ⏳</span>
+        </div>
+      </div>
+      <div class="convidado-lista" id="convidado-lista"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateCountdown() {
+  const target = new Date('2027-10-10T16:00:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:2rem;color:#7a1e2e">Hoje é o grande dia!</p>';
+    return;
+  }
+  const dias = Math.floor(diff / 86400000);
+  const horas = Math.floor((diff % 86400000) / 3600000);
+  const min = Math.floor((diff % 3600000) / 60000);
+  document.getElementById('cd-dias').textContent = dias;
+  document.getElementById('cd-horas').textContent = String(horas).padStart(2,'0');
+  document.getElementById('cd-min').textContent = String(min).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+const gifts = [
+  { name: 'Jogo de panelas', note: 'Conjunto completo para a cozinha' },
+  { name: 'Liquidificador', note: 'Para os smoothies da manhã' },
+  { name: 'Jogo de cama casal', note: 'King size, 400 fios' },
+  { name: 'Toalhas de banho', note: 'Jogo com 4 peças' },
+  { name: 'Cafeteira', note: 'Elas amam um bom café' },
+  { name: 'Jogo de jantar', note: '12 peças, cerâmica' },
+  { name: 'Tapete sala', note: 'Para o novo lar' },
+  { name: 'Contribuição para lua de mel', note: 'O presente dos sonhos ✈️' },
+];
+const grid = document.getElementById('gifts-grid');
+gifts.forEach((g, i) => {
+  const card = document.createElement('div');
+  card.className = 'gift-card';
+  card.id = 'gift-' + i;
+  card.innerHTML = `<input type="checkbox" class="gift-check" id="chk-${i}" onchange="toggleGift(${i})"><div class="gift-info"><div class="gift-name" id="gname-${i}">${g.name}</div><div class="gift-note">${g.note}</div></div>`;
+  grid.appendChild(card);
+});
+function toggleGift(i) {
+  const card = document.getElementById('gift-' + i);
+  const chk = document.getElementById('chk-' + i);
+  if (chk.checked) { card.classList.add('gift-chosen'); } else { card.classList.remove('gift-chosen'); }
+}
+
+const convidados = [
+  'Ana Silva', 'Carlos Souza', 'Mariana Oliveira', 'Pedro Santos',
+  'Juliana Costa', 'Roberto Ferreira', 'Fernanda Lima', 'Lucas Pereira'
+];
+let statusConvidados = {};
+convidados.forEach(nome => { statusConvidados[nome] = null; });
+
+let presenca = null;
+function selectPresenca(v) {
+  presenca = v;
+  document.getElementById('opt-sim').classList.toggle('selected', v === 'sim');
+  document.getElementById('opt-nao').classList.toggle('selected', v === 'nao');
+  document.getElementById('acomp-group').style.display = v === 'sim' ? 'block' : 'none';
+}
+
+function normalizarNome(nome) {
+  return nome.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function submitRSVP() {
+  const nomeDigitado = document.getElementById('nome').value.trim();
+  const erroEl = document.getElementById('erro-nome');
+  erroEl.style.display = 'none';
+
+  if (!nomeDigitado) {
+    erroEl.textContent = 'Por favor, informe seu nome.';
+    erroEl.style.display = 'block';
+    return;
+  }
+  const partes = nomeDigitado.trim().split(/\s+/);
+  if (partes.length < 2) {
+    erroEl.textContent = 'Por favor, informe pelo menos o nome e um sobrenome.';
+    erroEl.style.display = 'block';
+    return;
+  }
+  if (!presenca) {
+    erroEl.textContent = 'Por favor, selecione sua confirmação.';
+    erroEl.style.display = 'block';
+    return;
+  }
+  const nomeNormalizado = normalizarNome(nomeDigitado);
+  const convidadoEncontrado = convidados.find(c => normalizarNome(c) === nomeNormalizado);
+  if (!convidadoEncontrado) {
+    erroEl.textContent = 'Seu nome não foi encontrado na lista. Verifique a grafia ou entre em contato com as noivas.';
+    erroEl.style.display = 'block';
+    return;
+  }
+  statusConvidados[convidadoEncontrado] = presenca;
+  document.getElementById('rsvp-form').style.display = 'none';
+  const suc = document.getElementById('success-msg');
+  suc.style.display = 'block';
+  if (presenca === 'sim') {
+    document.getElementById('success-text').textContent = `Que alegria, ${convidadoEncontrado.split(' ')[0]}!`;
+    document.getElementById('success-sub').textContent = 'Sua presença está confirmada. Mal podemos esperar para celebrar com você!';
+  } else {
+    document.getElementById('success-text').textContent = `Sentiremos sua falta, ${convidadoEncontrado.split(' ')[0]}.`;
+    document.getElementById('success-sub').textContent = 'Recebemos sua mensagem. Obrigada por nos avisar com carinho.';
+  }
+}
+
+const SENHA = 'delethami2027';
+function abrirPainel() {
+  document.getElementById('painel-overlay').classList.add('aberto');
+  document.getElementById('painel-senha-input').focus();
+}
+function fecharPainel() {
+  document.getElementById('painel-overlay').classList.remove('aberto');
+  document.getElementById('painel-senha-input').value = '';
+  document.getElementById('painel-erro').style.display = 'none';
+  document.getElementById('painel-content').classList.remove('visivel');
+}
+function verificarSenha() {
+  const senha = document.getElementById('painel-senha-input').value;
+  if (senha === SENHA) {
+    document.getElementById('painel-erro').style.display = 'none';
+    document.getElementById('painel-content').classList.add('visivel');
+    renderizarPainel();
+  } else {
+    document.getElementById('painel-erro').style.display = 'block';
+  }
+}
+function renderizarPainel() {
+  let sim = 0, nao = 0, pendente = 0;
+  convidados.forEach(c => {
+    if (statusConvidados[c] === 'sim') sim++;
+    else if (statusConvidados[c] === 'nao') nao++;
+    else pendente++;
+  });
+  document.getElementById('stat-sim').textContent = sim;
+  document.getElementById('stat-nao').textContent = nao;
+  document.getElementById('stat-pendente').textContent = pendente;
+  const lista = document.getElementById('convidado-lista');
+  lista.innerHTML = '';
+  convidados.forEach(c => {
+    const item = document.createElement('div');
+    item.className = 'convidado-item';
+    const status = statusConvidados[c];
+    const icone = status === 'sim' ? '✔️' : status === 'nao' ? '❌' : '<span class="convidado-pendente">pendente</span>';
+    item.innerHTML = `<span class="convidado-nome">${c}</span><span class="convidado-status">${icone}</span>`;
+    lista.appendChild(item);
+  });
+}
+</script>
+</body>
+</html>
