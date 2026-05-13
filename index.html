@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Del & Thami — 10.10.2027</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -50,7 +51,6 @@
   .hero-divider { width: 60px; height: 1px; background: var(--wine-light); margin: 2rem auto; }
   .hero-date { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 0.15em; color: var(--text-mid); margin-bottom: 0.5rem; }
   .hero-location { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.5rem; }
-
   .countdown { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2.5rem; align-items: center; }
   .countdown-unit { text-align: center; border: 1.5px solid var(--wine); border-radius: 3px; padding: 0.6rem 1rem; }
   .countdown-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--wine); display: block; line-height: 1; }
@@ -71,10 +71,9 @@
 
   .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
   .event-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 4px; padding: 1.5rem; text-align: center; }
-  .event-icon { font-size: 1.5rem; margin-bottom: 0.8rem; display: block; }
+  .event-icon { font-size: 1.1rem; color: var(--wine-light); margin-bottom: 0.6rem; display: block; }
   .event-card-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.6rem; display: block; font-weight: 400; }
-  .event-card-value { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--wine); line-height: 1.2; }
-  .event-card-value-sm { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); line-height: 1.2; }
+  .event-card-value { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); line-height: 1.2; }
   .event-card-note { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); line-height: 1.6; margin-top: 0.6rem; font-weight: 400; }
 
   .gifts-intro { font-size: 1rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 560px; }
@@ -281,20 +280,20 @@
   <div class="section-divider"></div>
   <div class="event-grid">
     <div class="event-card">
-      <span class="event-icon">📅</span>
+      <span class="event-icon"><i class="ti ti-calendar" aria-hidden="true"></i></span>
       <span class="event-card-label">Data</span>
       <span class="event-card-value">10 de outubro de 2027</span>
     </div>
     <div class="event-card">
-      <span class="event-icon">🕓</span>
+      <span class="event-icon"><i class="ti ti-clock" aria-hidden="true"></i></span>
       <span class="event-card-label">Cerimônia</span>
       <span class="event-card-value">16h00</span>
       <p class="event-card-note">Nossa cerimônia será rápida e pontual. Por gentileza, não se atrase.</p>
     </div>
     <div class="event-card">
-      <span class="event-icon">📍</span>
+      <span class="event-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></span>
       <span class="event-card-label">Local</span>
-      <span class="event-card-value-sm">Fleming Recepções</span>
+      <span class="event-card-value">Fleming Recepções</span>
       <p class="event-card-note">Av. Fleming, 1.481 · Pampulha<br>Belo Horizonte, MG</p>
     </div>
   </div>
@@ -358,23 +357,14 @@ const convidados = [
   'Juliana Costa', 'Roberto Ferreira', 'Fernanda Lima', 'Lucas Pereira'
 ];
 
-window.toggleMenu = function() {
-  document.getElementById('hamburger').classList.toggle('aberto');
-  document.getElementById('nav-mobile').classList.toggle('aberto');
-};
-window.fecharMenu = function() {
-  document.getElementById('hamburger').classList.remove('aberto');
-  document.getElementById('nav-mobile').classList.remove('aberto');
-};
+window.toggleMenu = function() { document.getElementById('hamburger').classList.toggle('aberto'); document.getElementById('nav-mobile').classList.toggle('aberto'); };
+window.fecharMenu = function() { document.getElementById('hamburger').classList.remove('aberto'); document.getElementById('nav-mobile').classList.remove('aberto'); };
 
 function updateCountdown() {
   const target = new Date('2027-10-10T16:00:00');
   const now = new Date();
   const diff = target - now;
-  if (diff <= 0) {
-    document.getElementById('countdown').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:2rem;color:#7a1e2e">Hoje é o grande dia!</p>';
-    return;
-  }
+  if (diff <= 0) { document.getElementById('countdown').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:2rem;color:#7a1e2e">Hoje é o grande dia!</p>'; return; }
   const dias = Math.floor(diff / 86400000);
   const horas = Math.floor((diff % 86400000) / 3600000);
   const min = Math.floor((diff % 3600000) / 60000);
@@ -435,9 +425,7 @@ window.submitRSVP = async function() {
   if (!convidadoEncontrado) { erroEl.textContent = 'Seu nome não foi encontrado na lista. Verifique a grafia ou entre em contato com as noivas.'; erroEl.style.display = 'block'; return; }
   const chave = normalizarNome(convidadoEncontrado).replace(/\s+/g, '_');
   await set(ref(db, 'confirmacoes/' + chave), {
-    nome: convidadoEncontrado,
-    status: presenca,
-    whatsapp: whatsapp || '—',
+    nome: convidadoEncontrado, status: presenca, whatsapp: whatsapp || '—',
     acompanhantes: document.getElementById('acomp').value || '0',
     mensagem: document.getElementById('msg').value || ''
   });
