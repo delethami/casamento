@@ -28,7 +28,6 @@
   .nav-links a:hover { color: var(--wine); }
   .nav-links a.destaque { font-weight: 600; color: var(--wine); border: 1.5px solid var(--wine); border-radius: 3px; padding: 0.3rem 0.7rem; transition: all 0.2s; }
   .nav-links a.destaque:hover { background: var(--wine); color: white; }
-
   .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-direction: column; gap: 5px; }
   .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--wine); transition: all 0.3s; }
   .nav-hamburger.aberto span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -39,11 +38,7 @@
   .nav-mobile a { font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; font-weight: 400; }
   .nav-mobile a:hover { color: var(--wine); }
   .nav-mobile a.destaque { font-weight: 600; color: var(--wine); border: 1.5px solid var(--wine); border-radius: 3px; padding: 0.4rem 0.8rem; display: inline-block; }
-
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .nav-hamburger { display: flex; }
-  }
+  @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
 
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 2rem 4rem; position: relative; background: var(--cream); overflow: hidden; }
   .hero::before { content: ''; position: absolute; top: -40px; left: -40px; width: 320px; height: 320px; border-radius: 50%; background: var(--wine-pale); opacity: 0.6; }
@@ -55,12 +50,12 @@
   .hero-divider { width: 60px; height: 1px; background: var(--wine-light); margin: 2rem auto; }
   .hero-date { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 0.15em; color: var(--text-mid); margin-bottom: 0.5rem; }
   .hero-location { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.5rem; }
-
   .countdown { display: flex; gap: 2rem; justify-content: center; margin-top: 2.5rem; align-items: baseline; }
   .countdown-unit { text-align: center; }
   .countdown-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--wine); display: block; line-height: 1; }
   .countdown-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-top: 0.3rem; display: block; }
   .countdown-sep { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--wine-light); }
+  @media (max-width: 600px) { .hero-date { font-size: 1.8rem; } .countdown-num { font-size: 1.8rem; } .countdown { gap: 1rem; } }
 
   section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
   .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--wine); margin-bottom: 1rem; display: block; font-weight: 400; }
@@ -140,12 +135,6 @@
   footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--stone); background: var(--cream); }
   .footer-names { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
   .footer-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
-
-  @media (max-width: 600px) {
-    .hero-date { font-size: 1.8rem; }
-    .countdown-num { font-size: 1.8rem; }
-    .countdown { gap: 1rem; }
-  }
 </style>
 </head>
 <body>
@@ -346,7 +335,28 @@
   </div>
 </div>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD5ttVxUex1he0_Y5pVQ8NLmt776pJwzp0",
+  authDomain: "casamento-del-e-thami.firebaseapp.com",
+  databaseURL: "https://casamento-del-e-thami-default-rtdb.firebaseio.com",
+  projectId: "casamento-del-e-thami",
+  storageBucket: "casamento-del-e-thami.firebasestorage.app",
+  messagingSenderId: "1047642059250",
+  appId: "1:1047642059250:web:6e4e8cd5008b81f22c7b6b"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const convidados = [
+  'Ana Silva', 'Carlos Souza', 'Mariana Oliveira', 'Pedro Santos',
+  'Juliana Costa', 'Roberto Ferreira', 'Fernanda Lima', 'Lucas Pereira'
+];
+
 function toggleMenu() {
   document.getElementById('hamburger').classList.toggle('aberto');
   document.getElementById('nav-mobile').classList.toggle('aberto');
@@ -355,6 +365,8 @@ function fecharMenu() {
   document.getElementById('hamburger').classList.remove('aberto');
   document.getElementById('nav-mobile').classList.remove('aberto');
 }
+window.toggleMenu = toggleMenu;
+window.fecharMenu = fecharMenu;
 
 function updateCountdown() {
   const target = new Date('2027-10-10T16:00:00');
@@ -389,39 +401,33 @@ gifts.forEach((g, i) => {
   const card = document.createElement('div');
   card.className = 'gift-card';
   card.id = 'gift-' + i;
-  card.innerHTML = `<input type="checkbox" class="gift-check" id="chk-${i}" onchange="toggleGift(${i})"><div class="gift-info"><div class="gift-name" id="gname-${i}">${g.name}</div><div class="gift-note">${g.note}</div></div>`;
+  card.innerHTML = `<input type="checkbox" class="gift-check" id="chk-${i}" onchange="toggleGift(${i})"><div class="gift-info"><div class="gift-name">${g.name}</div><div class="gift-note">${g.note}</div></div>`;
   grid.appendChild(card);
 });
-function toggleGift(i) {
+window.toggleGift = function(i) {
   const card = document.getElementById('gift-' + i);
   const chk = document.getElementById('chk-' + i);
   if (chk.checked) { card.classList.add('gift-chosen'); } else { card.classList.remove('gift-chosen'); }
-}
-
-const convidados = [
-  'Ana Silva', 'Carlos Souza', 'Mariana Oliveira', 'Pedro Santos',
-  'Juliana Costa', 'Roberto Ferreira', 'Fernanda Lima', 'Lucas Pereira'
-];
-let statusConvidados = {};
-convidados.forEach(nome => { statusConvidados[nome] = { status: null, whatsapp: '' }; });
+};
 
 let presenca = null;
-function selectPresenca(v) {
+window.selectPresenca = function(v) {
   presenca = v;
   document.getElementById('opt-sim').classList.toggle('selected', v === 'sim');
   document.getElementById('opt-nao').classList.toggle('selected', v === 'nao');
   document.getElementById('acomp-group').style.display = v === 'sim' ? 'block' : 'none';
-}
+};
 
 function normalizarNome(nome) {
   return nome.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
-function submitRSVP() {
+window.submitRSVP = async function() {
   const nomeDigitado = document.getElementById('nome').value.trim();
   const whatsapp = document.getElementById('whatsapp').value.trim();
   const erroEl = document.getElementById('erro-nome');
   erroEl.style.display = 'none';
+
   if (!nomeDigitado) {
     erroEl.textContent = 'Por favor, informe seu nome.';
     erroEl.style.display = 'block';
@@ -445,7 +451,16 @@ function submitRSVP() {
     erroEl.style.display = 'block';
     return;
   }
-  statusConvidados[convidadoEncontrado] = { status: presenca, whatsapp: whatsapp };
+
+  const chave = normalizarNome(convidadoEncontrado).replace(/\s+/g, '_');
+  await set(ref(db, 'confirmacoes/' + chave), {
+    nome: convidadoEncontrado,
+    status: presenca,
+    whatsapp: whatsapp || '—',
+    acompanhantes: document.getElementById('acomp').value || '0',
+    mensagem: document.getElementById('msg').value || ''
+  });
+
   document.getElementById('rsvp-form').style.display = 'none';
   const suc = document.getElementById('success-msg');
   suc.style.display = 'block';
@@ -456,49 +471,55 @@ function submitRSVP() {
     document.getElementById('success-text').textContent = `Sentiremos sua falta, ${convidadoEncontrado.split(' ')[0]}.`;
     document.getElementById('success-sub').textContent = 'Recebemos sua mensagem. Obrigada por nos avisar com carinho.';
   }
-}
+};
 
 const SENHA = 'delethami2027';
-function abrirPainel() {
+window.abrirPainel = function() {
   document.getElementById('painel-overlay').classList.add('aberto');
   document.getElementById('painel-senha-input').focus();
-}
-function fecharPainel() {
+};
+window.fecharPainel = function() {
   document.getElementById('painel-overlay').classList.remove('aberto');
   document.getElementById('painel-senha-input').value = '';
   document.getElementById('painel-erro').style.display = 'none';
   document.getElementById('painel-content').classList.remove('visivel');
-}
-function verificarSenha() {
+};
+window.verificarSenha = function() {
   const senha = document.getElementById('painel-senha-input').value;
   if (senha === SENHA) {
     document.getElementById('painel-erro').style.display = 'none';
     document.getElementById('painel-content').classList.add('visivel');
-    renderizarPainel();
+    carregarPainel();
   } else {
     document.getElementById('painel-erro').style.display = 'block';
   }
-}
-function renderizarPainel() {
-  let sim = 0, nao = 0, pendente = 0;
-  convidados.forEach(c => {
-    if (statusConvidados[c].status === 'sim') sim++;
-    else if (statusConvidados[c].status === 'nao') nao++;
-    else pendente++;
-  });
-  document.getElementById('stat-sim').textContent = sim;
-  document.getElementById('stat-nao').textContent = nao;
-  document.getElementById('stat-pendente').textContent = pendente;
-  const lista = document.getElementById('convidado-lista');
-  lista.innerHTML = '';
-  convidados.forEach(c => {
-    const item = document.createElement('div');
-    item.className = 'convidado-item';
-    const s = statusConvidados[c];
-    const icone = s.status === 'sim' ? '✔️' : s.status === 'nao' ? '❌' : '<span class="convidado-pendente">pendente</span>';
-    const tel = s.whatsapp ? `<span class="convidado-whats">${s.whatsapp}</span>` : `<span class="convidado-whats">—</span>`;
-    item.innerHTML = `<span class="convidado-nome">${c}</span>${tel}<span class="convidado-status">${icone}</span>`;
-    lista.appendChild(item);
+};
+
+function carregarPainel() {
+  onValue(ref(db, 'confirmacoes'), (snapshot) => {
+    const dados = snapshot.val() || {};
+    let sim = 0, nao = 0, pendente = 0;
+    const lista = document.getElementById('convidado-lista');
+    lista.innerHTML = '';
+
+    convidados.forEach(c => {
+      const chave = normalizarNome(c).replace(/\s+/g, '_');
+      const d = dados[chave];
+      if (d && d.status === 'sim') sim++;
+      else if (d && d.status === 'nao') nao++;
+      else pendente++;
+
+      const item = document.createElement('div');
+      item.className = 'convidado-item';
+      const icone = d ? (d.status === 'sim' ? '✔️' : '❌') : '<span class="convidado-pendente">pendente</span>';
+      const tel = d && d.whatsapp && d.whatsapp !== '—' ? `<span class="convidado-whats">${d.whatsapp}</span>` : `<span class="convidado-whats">—</span>`;
+      item.innerHTML = `<span class="convidado-nome">${c}</span>${tel}<span class="convidado-status">${icone}</span>`;
+      lista.appendChild(item);
+    });
+
+    document.getElementById('stat-sim').textContent = sim;
+    document.getElementById('stat-nao').textContent = nao;
+    document.getElementById('stat-pendente').textContent = pendente;
   });
 }
 </script>
