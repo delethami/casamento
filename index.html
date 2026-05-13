@@ -13,15 +13,14 @@
     --wine-pale: #f0e8e4;
     --cream: #f5f3e8;
     --stone: #e0d9cc;
-    --text-dark: #2c2420;
-    --text-mid: #3d3330;
-    --text-light: #6b5e58;
+    --text-dark: #1a1210;
+    --text-mid: #2e2420;
+    --text-light: #4a3c36;
     --ivory: #faf8f2;
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'Jost', sans-serif; background: var(--ivory); color: var(--text-dark); font-weight: 300; overflow-x: hidden; }
 
-  /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,248,242,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--stone); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; }
   .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; color: var(--wine); letter-spacing: 0.05em; }
   .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
@@ -30,7 +29,6 @@
   .nav-links a.destaque { font-weight: 600; color: var(--wine); border: 1.5px solid var(--wine); border-radius: 3px; padding: 0.3rem 0.7rem; transition: all 0.2s; }
   .nav-links a.destaque:hover { background: var(--wine); color: white; }
 
-  /* HERO */
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 2rem 4rem; position: relative; background: var(--cream); overflow: hidden; }
   .hero::before { content: ''; position: absolute; top: -40px; left: -40px; width: 320px; height: 320px; border-radius: 50%; background: var(--wine-pale); opacity: 0.6; }
   .hero::after { content: ''; position: absolute; bottom: -60px; right: -60px; width: 400px; height: 400px; border-radius: 50%; background: var(--wine-pale); opacity: 0.4; }
@@ -47,27 +45,23 @@
   .countdown-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-top: 0.3rem; display: block; }
   .countdown-sep { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--wine-light); align-self: flex-start; margin-top: 0.4rem; }
 
-  /* SECTIONS */
   section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
   .section-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--wine); margin-bottom: 1rem; display: block; }
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; color: var(--wine); margin-bottom: 2.5rem; line-height: 1.2; }
   .section-divider { width: 40px; height: 1px; background: var(--wine-light); margin: 0 0 2.5rem; }
 
-  /* TIMELINE */
   .timeline { position: relative; padding-left: 2rem; border-left: 1px solid var(--wine-light); }
   .timeline-item { margin-bottom: 2.5rem; position: relative; }
   .timeline-item::before { content: ''; position: absolute; left: -2.37rem; top: 0.35rem; width: 8px; height: 8px; border-radius: 50%; background: var(--wine); border: 2px solid var(--ivory); outline: 1px solid var(--wine-light); }
   .timeline-year { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.4rem; }
   .timeline-text { font-size: 0.95rem; line-height: 1.8; color: var(--text-mid); }
 
-  /* EVENTO */
   .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
   .event-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 4px; padding: 1.5rem; text-align: center; }
-  .event-icon { font-size: 1.5rem; color: var(--wine); margin-bottom: 0.8rem; display: block; }
+  .event-icon { font-size: 1.5rem; margin-bottom: 0.8rem; display: block; }
   .event-card-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.5rem; display: block; }
   .event-card-value { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--text-dark); line-height: 1.4; }
 
-  /* PRESENTES */
   .gifts-intro { font-size: 0.95rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 560px; }
   .gifts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
   .gift-card { background: var(--cream); border: 1px solid var(--stone); border-radius: 4px; padding: 1.2rem 1.4rem; display: flex; align-items: flex-start; gap: 1rem; transition: border-color 0.2s; }
@@ -78,10 +72,9 @@
   .gift-info { flex: 1; }
   .gift-name { font-size: 0.9rem; font-weight: 400; color: var(--text-dark); margin-bottom: 0.2rem; }
   .gift-note { font-size: 0.75rem; color: var(--text-light); line-height: 1.4; }
-  .gift-chosen { opacity: 0.4; }
+  .gift-chosen { opacity: 0.5; }
   .gift-chosen .gift-name { text-decoration: line-through; }
 
-  /* RSVP */
   .rsvp-form { max-width: 520px; }
   .form-group { margin-bottom: 1.5rem; }
   .form-label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 0.5rem; }
@@ -98,7 +91,6 @@
   .success-msg span { font-size: 0.8rem; color: var(--text-mid); letter-spacing: 0.05em; }
   .error-msg { color: #a32d2d; font-size: 0.85rem; margin-top: 0.5rem; display: none; }
 
-  /* PAINEL OCULTO */
   .painel-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--wine); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 200; opacity: 0.4; transition: opacity 0.2s; }
   .painel-btn:hover { opacity: 1; }
   .painel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; align-items: center; justify-content: center; }
@@ -107,7 +99,7 @@
   .painel-titulo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); margin-bottom: 1.5rem; }
   .painel-fechar { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
   .painel-senha { display: flex; gap: 0.8rem; margin-bottom: 1.5rem; }
-  .painel-senha input { flex: 1; padding: 0.6rem 1rem; border: 1px solid var(--stone); border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 0.9rem; outline: none; }
+  .painel-senha input { flex: 1; padding: 0.6rem 1rem; border: 1px solid var(--stone); border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 0.9rem; outline: none; color: var(--text-dark); }
   .painel-senha input:focus { border-color: var(--wine); }
   .painel-senha button { background: var(--wine); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 2px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
   .painel-content { display: none; }
@@ -124,7 +116,6 @@
   .convidado-status { font-size: 1rem; margin-left: 1rem; }
   .convidado-pendente { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.1em; }
 
-  /* FOOTER */
   footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--stone); background: var(--cream); }
   .footer-names { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
   .footer-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
@@ -137,7 +128,7 @@
   <ul class="nav-links">
     <li><a href="#historia">Nossa história</a></li>
     <li><a href="#presentes" class="destaque">Presentes</a></li>
-    <li><a href="#rsvp" class="destaque">Confirmação</a></li>
+    <li><a href="#confirmacao" class="destaque">Confirmação</a></li>
     <li><a href="#evento">O evento</a></li>
   </ul>
 </nav>
@@ -152,52 +143,4 @@
     </h1>
     <div class="hero-divider"></div>
     <p class="hero-date">10 · 10 · 2027</p>
-    <p class="hero-location">Fleming Recepções &nbsp;·&nbsp; Belo Horizonte</p>
-    <div class="countdown" id="countdown">
-      <div class="countdown-unit">
-        <span class="countdown-num" id="cd-dias">—</span>
-        <span class="countdown-label">dias</span>
-      </div>
-      <span class="countdown-sep">·</span>
-      <div class="countdown-unit">
-        <span class="countdown-num" id="cd-horas">—</span>
-        <span class="countdown-label">horas</span>
-      </div>
-      <span class="countdown-sep">·</span>
-      <div class="countdown-unit">
-        <span class="countdown-num" id="cd-min">—</span>
-        <span class="countdown-label">minutos</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<section id="historia" style="background: var(--ivory);">
-  <span class="section-label">Dois corações, uma história</span>
-  <h2 class="section-title">Nossa história</h2>
-  <div class="section-divider"></div>
-  <div class="timeline">
-    <div class="timeline-item">
-      <p class="timeline-year">O primeiro encontro</p>
-      <p class="timeline-text">Aqui vai a história de como Del e Thami se conheceram — esse espaço é todo de vocês para contar com as próprias palavras o começo de tudo.</p>
-    </div>
-    <div class="timeline-item">
-      <p class="timeline-year">Quando tudo mudou</p>
-      <p class="timeline-text">Um momento especial que marcou a relação de vocês — uma viagem, uma conversa, uma descoberta. Algo que as aproximou de verdade.</p>
-    </div>
-    <div class="timeline-item">
-      <p class="timeline-year">O pedido</p>
-      <p class="timeline-text">A história do pedido de casamento — com todos os detalhes que vocês quiserem compartilhar. Foi aqui que o "sim" mudou tudo.</p>
-    </div>
-    <div class="timeline-item">
-      <p class="timeline-year">10 · 10 · 2027</p>
-      <p class="timeline-text">E agora, celebramos. Com as pessoas que amamos, na data mais especial das nossas vidas.</p>
-    </div>
-  </div>
-</section>
-
-<section id="presentes" style="background: var(--cream);">
-  <span class="section-label">Se quiser nos presentear</span>
-  <h2 class="section-title">Lista de presentes</h2>
-  <div class="section-divider"></div>
-  <p class="gifts-intro">A melhor parte do casamento é celebrar com vocês. Mas se quiserem nos presentear, aqui estão algumas sugestões de coisas que adoramos e que farão parte do nosso novo lar ju
+    <p class="hero-location">Fleming Recepções &nbsp;·&nbsp; Belo Horizont
