@@ -25,10 +25,8 @@
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,248,242,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--stone); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; }
   .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; color: var(--wine); letter-spacing: 0.05em; white-space: nowrap; }
   .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-  .nav-links a { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; transition: color 0.2s; font-weight: 400; white-space: nowrap; }
-  .nav-links a:hover { color: var(--wine); }
-  .nav-links a.destaque { font-weight: 600; color: var(--wine); border: 1.5px solid var(--wine); border-radius: 3px; padding: 0.3rem 0.7rem; transition: all 0.2s; }
-  .nav-links a.destaque:hover { background: var(--wine); color: white; }
+  .nav-links a { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wine); text-decoration: none; transition: all 0.2s; font-weight: 600; white-space: nowrap; border: 1.5px solid var(--wine); border-radius: 3px; padding: 0.3rem 0.7rem; }
+  .nav-links a:hover { background: var(--wine); color: white; }
   .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-direction: column; gap: 5px; }
   .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--wine); transition: all 0.3s; }
   .nav-hamburger.aberto span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -36,9 +34,8 @@
   .nav-hamburger.aberto span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
   .nav-mobile { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(250,248,242,0.98); border-bottom: 1px solid var(--stone); z-index: 99; padding: 1.5rem 2rem; flex-direction: column; gap: 1.2rem; }
   .nav-mobile.aberto { display: flex; }
-  .nav-mobile a { font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; font-weight: 400; }
-  .nav-mobile a:hover { color: var(--wine); }
-  .nav-mobile a.destaque { font-weight: 600; color: var(--wine); border: 1.5px solid var(--wine); border-radius: 3px; padding: 0.4rem 0.8rem; display: inline-block; }
+  .nav-mobile a { font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wine); text-decoration: none; font-weight: 600; border: 1.5px solid var(--wine); border-radius: 3px; padding: 0.4rem 0.8rem; display: inline-block; }
+  .nav-mobile a:hover { background: var(--wine); color: white; }
   @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
 
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 2rem 4rem; position: relative; background: var(--cream); overflow: hidden; }
@@ -98,6 +95,8 @@
   .radio-group { display: flex; gap: 1rem; }
   .radio-option { flex: 1; border: 1px solid var(--stone); border-radius: 2px; padding: 0.75rem 1rem; cursor: pointer; text-align: center; font-size: 0.85rem; color: var(--text-mid); transition: all 0.2s; background: var(--ivory); }
   .radio-option.selected { background: var(--wine-pale); border-color: var(--wine); color: var(--wine); }
+  .acomp-block { background: var(--cream); border: 1px solid var(--stone); border-radius: 4px; padding: 1rem 1.2rem; margin-bottom: 1rem; }
+  .acomp-titulo { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.8rem; font-weight: 400; }
   .btn-submit { background: var(--wine); color: white; border: none; padding: 0.9rem 2.5rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; width: 100%; margin-top: 0.5rem; }
   .btn-submit:hover { background: #6a1828; }
   .success-msg { display: none; text-align: center; padding: 2.5rem; border: 1px solid var(--wine-light); border-radius: 4px; background: var(--wine-pale); }
@@ -129,6 +128,7 @@
   .convidado-item:last-child { border-bottom: none; }
   .convidado-item:nth-child(even) { background: var(--cream); }
   .convidado-nome { color: var(--text-dark); font-weight: 400; }
+  .convidado-acomp { font-size: 0.75rem; color: var(--text-light); padding-left: 1rem; font-style: italic; }
   .convidado-whats { font-size: 0.8rem; color: var(--text-light); }
   .convidado-status { font-size: 1rem; }
   .convidado-pendente { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.1em; }
@@ -144,9 +144,9 @@
   <div class="nav-logo">Del & Thami</div>
   <ul class="nav-links">
     <li><a href="#historia">Nossa história</a></li>
-    <li><a href="#presentes" class="destaque">Presentes</a></li>
-    <li><a href="#confirmacao" class="destaque">Confirmação</a></li>
-    <li><a href="#manual" class="destaque">Manual do convidado</a></li>
+    <li><a href="#presentes">Presentes</a></li>
+    <li><a href="#confirmacao">Confirmação</a></li>
+    <li><a href="#manual">Manual do convidado</a></li>
     <li><a href="#evento">O evento</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
@@ -156,9 +156,9 @@
 
 <div class="nav-mobile" id="nav-mobile">
   <a href="#historia" onclick="fecharMenu()">Nossa história</a>
-  <a href="#presentes" class="destaque" onclick="fecharMenu()">Presentes</a>
-  <a href="#confirmacao" class="destaque" onclick="fecharMenu()">Confirmação</a>
-  <a href="#manual" class="destaque" onclick="fecharMenu()">Manual do convidado</a>
+  <a href="#presentes" onclick="fecharMenu()">Presentes</a>
+  <a href="#confirmacao" onclick="fecharMenu()">Confirmação</a>
+  <a href="#manual" onclick="fecharMenu()">Manual do convidado</a>
   <a href="#evento" onclick="fecharMenu()">O evento</a>
 </div>
 
@@ -166,9 +166,9 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">Chegou a nossa vez</p>
     <h1 class="hero-names">
-      Delcimara
+      Del
       <em class="hero-amp">&</em>
-      Thamiris
+      Thami
     </h1>
     <div class="hero-divider"></div>
     <p class="hero-date">10 · 10 · 2027</p>
@@ -246,13 +246,14 @@
     </div>
     <div class="form-group" id="acomp-group" style="display:none;">
       <label class="form-label">Número de acompanhantes (além de você)</label>
-      <select class="form-select" id="acomp">
+      <select class="form-select" id="acomp" onchange="gerarCamposAcomp()">
         <option value="0">Apenas eu</option>
         <option value="1">+ 1 pessoa</option>
         <option value="2">+ 2 pessoas</option>
         <option value="3">+ 3 pessoas</option>
       </select>
     </div>
+    <div id="acomp-campos"></div>
     <div class="form-group">
       <label class="form-label">Alguma mensagem para as noivas? (opcional)</label>
       <textarea class="form-textarea" id="msg" placeholder="Escreva o que quiser ♡"></textarea>
@@ -405,6 +406,26 @@ window.selectPresenca = function(v) {
   document.getElementById('opt-sim').classList.toggle('selected', v === 'sim');
   document.getElementById('opt-nao').classList.toggle('selected', v === 'nao');
   document.getElementById('acomp-group').style.display = v === 'sim' ? 'block' : 'none';
+  if (v === 'sim') gerarCamposAcomp();
+  else document.getElementById('acomp-campos').innerHTML = '';
+};
+
+window.gerarCamposAcomp = function() {
+  const n = parseInt(document.getElementById('acomp').value);
+  const container = document.getElementById('acomp-campos');
+  container.innerHTML = '';
+  for (let i = 1; i <= n; i++) {
+    const bloco = document.createElement('div');
+    bloco.className = 'acomp-block';
+    bloco.innerHTML = `
+      <p class="acomp-titulo">Acompanhante ${i}</p>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label">Nome completo</label>
+        <input type="text" class="form-input" id="acomp-nome-${i}" placeholder="Ex: João Silva">
+        <p class="error-msg" id="erro-acomp-${i}"></p>
+      </div>`;
+    container.appendChild(bloco);
+  }
 };
 
 function normalizarNome(nome) {
@@ -416,19 +437,39 @@ window.submitRSVP = async function() {
   const whatsapp = document.getElementById('whatsapp').value.trim();
   const erroEl = document.getElementById('erro-nome');
   erroEl.style.display = 'none';
+
   if (!nomeDigitado) { erroEl.textContent = 'Por favor, informe seu nome.'; erroEl.style.display = 'block'; return; }
   const partes = nomeDigitado.trim().split(/\s+/);
   if (partes.length < 2) { erroEl.textContent = 'Por favor, informe pelo menos o nome e um sobrenome.'; erroEl.style.display = 'block'; return; }
   if (!presenca) { erroEl.textContent = 'Por favor, selecione sua confirmação.'; erroEl.style.display = 'block'; return; }
+
   const nomeNormalizado = normalizarNome(nomeDigitado);
   const convidadoEncontrado = convidados.find(c => normalizarNome(c) === nomeNormalizado);
   if (!convidadoEncontrado) { erroEl.textContent = 'Seu nome não foi encontrado na lista. Verifique a grafia ou entre em contato com as noivas.'; erroEl.style.display = 'block'; return; }
+
+  const n = parseInt(document.getElementById('acomp').value) || 0;
+  const acompanhantes = [];
+  for (let i = 1; i <= n; i++) {
+    const nomeAcomp = document.getElementById(`acomp-nome-${i}`)?.value.trim() || '';
+    const erroAcomp = document.getElementById(`erro-acomp-${i}`);
+    erroAcomp.style.display = 'none';
+    if (!nomeAcomp) { erroAcomp.textContent = 'Por favor, informe o nome do acompanhante.'; erroAcomp.style.display = 'block'; return; }
+    const partesAcomp = nomeAcomp.split(/\s+/);
+    if (partesAcomp.length < 2) { erroAcomp.textContent = 'Informe pelo menos nome e sobrenome.'; erroAcomp.style.display = 'block'; return; }
+    const acompEncontrado = convidados.find(c => normalizarNome(c) === normalizarNome(nomeAcomp));
+    if (!acompEncontrado) { erroAcomp.textContent = 'Este nome não foi encontrado na lista. Verifique a grafia ou entre em contato com as noivas.'; erroAcomp.style.display = 'block'; return; }
+    acompanhantes.push(acompEncontrado);
+  }
+
   const chave = normalizarNome(convidadoEncontrado).replace(/\s+/g, '_');
   await set(ref(db, 'confirmacoes/' + chave), {
-    nome: convidadoEncontrado, status: presenca, whatsapp: whatsapp || '—',
-    acompanhantes: document.getElementById('acomp').value || '0',
+    nome: convidadoEncontrado,
+    status: presenca,
+    whatsapp: whatsapp || '—',
+    acompanhantes: acompanhantes,
     mensagem: document.getElementById('msg').value || ''
   });
+
   document.getElementById('rsvp-form').style.display = 'none';
   const suc = document.getElementById('success-msg');
   suc.style.display = 'block';
@@ -467,7 +508,8 @@ function carregarPainel() {
       item.className = 'convidado-item';
       const icone = d ? (d.status === 'sim' ? '✔️' : '❌') : '<span class="convidado-pendente">pendente</span>';
       const tel = d && d.whatsapp && d.whatsapp !== '—' ? `<span class="convidado-whats">${d.whatsapp}</span>` : `<span class="convidado-whats">—</span>`;
-      item.innerHTML = `<span class="convidado-nome">${c}</span>${tel}<span class="convidado-status">${icone}</span>`;
+      const acomps = d && d.acompanhantes && d.acompanhantes.length > 0 ? `<div class="convidado-acomp">com: ${d.acompanhantes.join(', ')}</div>` : '';
+      item.innerHTML = `<div><span class="convidado-nome">${c}</span>${acomps}</div>${tel}<span class="convidado-status">${icone}</span>`;
       lista.appendChild(item);
     });
     document.getElementById('stat-sim').textContent = sim;
