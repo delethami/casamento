@@ -261,7 +261,7 @@
   </div>
   <div class="success-msg" id="success-msg">
     <p id="success-text">Que alegria!</p>
-    <span id="success-sub">Recebemos sua confirmação. Mal podemos esperar!</span>
+    <span id="success-sub"></span>
   </div>
 </section>
 
@@ -432,12 +432,13 @@ window.submitRSVP = async function() {
   document.getElementById('rsvp-form').style.display = 'none';
   const suc = document.getElementById('success-msg');
   suc.style.display = 'block';
+  const primeiro = convidadoEncontrado.split(' ')[0];
   if (presenca === 'sim') {
-    document.getElementById('success-text').textContent = `Que alegria, ${convidadoEncontrado.split(' ')[0]}!`;
-    document.getElementById('success-sub').textContent = 'Sua presença está confirmada. Mal podemos esperar para celebrar com você!';
+    document.getElementById('success-text').textContent = `Que alegria, ${primeiro}!`;
+    document.getElementById('success-sub').textContent = 'Sua presença está confirmada. Estamos muito felizes de saber que você estará lá neste dia!';
   } else {
-    document.getElementById('success-text').textContent = `Sentiremos sua falta, ${convidadoEncontrado.split(' ')[0]}.`;
-    document.getElementById('success-sub').textContent = 'Recebemos sua mensagem. Obrigada por nos avisar com carinho.';
+    document.getElementById('success-text').textContent = `Sentiremos sua falta, ${primeiro}.`;
+    document.getElementById('success-sub').textContent = 'Recebemos sua mensagem. Obrigada por nos avisar.';
   }
 };
 
