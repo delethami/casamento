@@ -128,7 +128,7 @@
   .convidado-item:last-child { border-bottom: none; }
   .convidado-item:nth-child(even) { background: var(--cream); }
   .convidado-nome { color: var(--text-dark); font-weight: 400; }
-  .convidado-acomp { font-size: 0.75rem; color: var(--text-light); padding-left: 1rem; font-style: italic; }
+  .convidado-acomp { font-size: 0.75rem; color: var(--text-light); font-style: italic; margin-top: 0.2rem; }
   .convidado-whats { font-size: 0.8rem; color: var(--text-light); }
   .convidado-status { font-size: 1rem; }
   .convidado-pendente { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.1em; }
@@ -354,8 +354,19 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const convidados = [
-  'Ana Silva', 'Carlos Souza', 'Mariana Oliveira', 'Pedro Santos',
-  'Juliana Costa', 'Roberto Ferreira', 'Fernanda Lima', 'Lucas Pereira'
+  'Thalita Procópio', 'Tulio Marques', 'Matheus Procópio', 'Sophia Marinho',
+  'Aurora Procópio', 'Suely Rejane Procópio', 'Lauro Torres', 'Nayara Procópio',
+  'Marcus Paulo Saúde', 'Rayssa Procópio', 'Cassio Schneider', 'Celina Torres',
+  'Gustavo Torres', 'Maria Carolina Torres', 'Carolina Arantes', 'Guilherme Moretti',
+  'Gal Arantes', 'Joaquim Arantes', 'Fernanda Daniele Procópio', 'Walmir Magalhães',
+  'Marina Procópio', 'Roberta Gomes', 'Elton Greve', 'Daniel Duarte',
+  'Ana Carolina Paiva', 'Vera Silva', 'Sidney Procópio', 'Thays Procópio',
+  'Sophia Procópio', 'Eloá Santos', 'Pietro Procópio', 'Thiago Procópio',
+  'Davi Duarte', 'Maria Marinho', 'Victor Cruz', 'Lais Lopes',
+  'Maria Elisa Vasconcelos', 'Polyana Oliveira', 'Douglas de Paula', 'Igor Anaxagoras',
+  'Gustavo Giacchero', 'Paula Barroca', 'João Giacchero', 'Tulio Santerio',
+  'Raphael Ottoni', 'Letícia Cabral', 'Bruna Sobreira', 'Clarice Sarcinelli',
+  'Rafael Freiria', 'João Trindade'
 ];
 
 window.toggleMenu = function() { document.getElementById('hamburger').classList.toggle('aberto'); document.getElementById('nav-mobile').classList.toggle('aberto'); };
