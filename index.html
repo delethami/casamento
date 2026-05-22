@@ -98,4 +98,167 @@
   .radio-option.selected { background: var(--wine-pale); border-color: var(--wine); color: var(--wine); }
   .acomp-block { background: var(--cream); border: 1px solid var(--stone); border-radius: 4px; padding: 1rem 1.2rem; margin-bottom: 1rem; }
   .acomp-titulo { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.8rem; font-weight: 400; }
-  .btn-submit { background: var(--wine); color: white; border: none;
+  .btn-submit { background: var(--wine); color: white; border: none; padding: 0.9rem 2.5rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; width: 100%; margin-top: 0.5rem; }
+  .btn-submit:hover { background: #6a1828; }
+  .success-msg { display: none; text-align: center; padding: 2.5rem; border: 1px solid var(--wine-light); border-radius: 4px; background: var(--wine-pale); }
+  .success-msg p { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
+  .success-msg span { font-size: 0.85rem; color: var(--text-mid); letter-spacing: 0.05em; }
+  .error-msg { color: #a32d2d; font-size: 0.85rem; margin-top: 0.5rem; display: none; }
+  .manual-placeholder { border: 1.5px dashed var(--wine-light); border-radius: 4px; padding: 4rem 2rem; text-align: center; color: var(--text-light); font-size: 0.9rem; letter-spacing: 0.05em; }
+  .painel-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--wine); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 200; opacity: 0.4; transition: opacity 0.2s; }
+  .painel-btn:hover { opacity: 1; }
+  .painel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; align-items: center; justify-content: center; }
+  .painel-overlay.aberto { display: flex; }
+  .painel-box { background: var(--ivory); border-radius: 8px; padding: 2rem; width: 90%; max-width: 700px; max-height: 85vh; overflow-y: auto; position: relative; }
+  .painel-titulo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); margin-bottom: 1.5rem; }
+  .painel-fechar { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
+  .painel-senha { display: flex; gap: 0.8rem; margin-bottom: 1.5rem; }
+  .painel-senha input { flex: 1; padding: 0.6rem 1rem; border: 1px solid var(--stone); border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 0.9rem; outline: none; color: var(--text-dark); }
+  .painel-senha input:focus { border-color: var(--wine); }
+  .painel-senha button { background: var(--wine); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 2px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .painel-content { display: none; }
+  .painel-content.visivel { display: block; }
+  .painel-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+  .stat-card { background: var(--cream); border: 1px solid var(--stone); border-radius: 4px; padding: 1rem; text-align: center; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--wine); display: block; }
+  .stat-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); margin-top: 0.3rem; display: block; }
+  .convidado-lista { border: 1px solid var(--stone); border-radius: 4px; overflow: hidden; }
+  .convidado-item { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 1rem; padding: 0.8rem 1rem; border-bottom: 1px solid var(--stone); font-size: 0.9rem; }
+  .convidado-item:last-child { border-bottom: none; }
+  .convidado-item:nth-child(even) { background: var(--cream); }
+  .convidado-nome { color: var(--text-dark); font-weight: 400; }
+  .convidado-acomp { font-size: 0.75rem; color: var(--text-light); font-style: italic; margin-top: 0.2rem; }
+  .convidado-whats { font-size: 0.8rem; color: var(--text-light); }
+  .convidado-status { font-size: 1rem; }
+  .convidado-pendente { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.1em; }
+  footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--stone); background: var(--cream); }
+  .footer-names { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
+  .footer-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Del & Thami</div>
+  <ul class="nav-links">
+    <li><a href="#historia">Nossa história</a></li>
+    <li><a href="#presentes">Presentes</a></li>
+    <li><a href="#confirmacao">Confirmação</a></li>
+    <li><a href="#manual">Manual do convidado</a></li>
+    <li><a href="#evento">O evento</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <a href="#historia" onclick="fecharMenu()">Nossa história</a>
+  <a href="#presentes" onclick="fecharMenu()">Presentes</a>
+  <a href="#confirmacao" onclick="fecharMenu()">Confirmação</a>
+  <a href="#manual" onclick="fecharMenu()">Manual do convidado</a>
+  <a href="#evento" onclick="fecharMenu()">O evento</a>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Chegou a nossa vez</p>
+    <h1 class="hero-names">
+      Del
+      <em class="hero-amp">&</em>
+      Thami
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-date">10 · 10 · 2027</p>
+    <p class="hero-location">Fleming Recepções &nbsp;·&nbsp; Belo Horizonte</p>
+    <div class="countdown" id="countdown">
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-dias">—</span>
+        <span class="countdown-label">dias</span>
+      </div>
+      <span class="countdown-sep">·</span>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-horas">—</span>
+        <span class="countdown-label">horas</span>
+      </div>
+      <span class="countdown-sep">·</span>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-min">—</span>
+        <span class="countdown-label">minutos</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="historia" style="background: var(--ivory);">
+  <h2 class="section-title">Nossa história</h2>
+  <div class="section-divider"></div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <p class="timeline-year">O primeiro encontro</p>
+      <p class="timeline-text">Aqui vai a história de como Del e Thami se conheceram — esse espaço é todo de vocês para contar com as próprias palavras o começo de tudo.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-year">Quando tudo mudou</p>
+      <p class="timeline-text">Um momento especial que marcou a relação de vocês — uma viagem, uma conversa, uma descoberta. Algo que as aproximou de verdade.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-year">O pedido</p>
+      <p class="timeline-text">A história do pedido de casamento — com todos os detalhes que vocês quiserem compartilhar. Foi aqui que o "sim" mudou tudo.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-year">10 · 10 · 2027</p>
+      <p class="timeline-text">E agora, celebramos. Com as pessoas que amamos, na data mais especial das nossas vidas.</p>
+    </div>
+  </div>
+</section>
+
+<section id="presentes" style="background: var(--cream);">
+  <span class="section-label">Para nos presentear</span>
+  <h2 class="section-title">Lista de presentes</h2>
+  <div class="section-divider"></div>
+  <p class="gifts-intro">A melhor parte do casamento é celebrar com vocês. Mas se quiserem nos presentear, aqui estão algumas sugestões de coisas que adoramos e que farão parte do nosso novo lar juntas.</p>
+  <div class="gifts-grid" id="gifts-grid"></div>
+</section>
+
+<section id="confirmacao" style="background: var(--ivory);">
+  <span class="section-label">Nos diga que vai estar lá</span>
+  <h2 class="section-title">Confirme sua presença</h2>
+  <div class="section-divider"></div>
+  <div class="rsvp-form" id="rsvp-form">
+    <div class="form-group">
+      <label class="form-label">Seu nome completo (pelo menos nome e sobrenome)</label>
+      <input type="text" class="form-input" id="nome" placeholder="Ex: Maria Silva">
+      <p class="error-msg" id="erro-nome"></p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Contato (WhatsApp)</label>
+      <input type="tel" class="form-input" id="whatsapp" placeholder="Ex: (31) 99999-9999">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Você vai comparecer?</label>
+      <div class="radio-group">
+        <div class="radio-option" id="opt-sim" onclick="selectPresenca('sim')">Com certeza! 🎉</div>
+        <div class="radio-option" id="opt-nao" onclick="selectPresenca('nao')">Infelizmente não poderei</div>
+      </div>
+    </div>
+    <div class="form-group" id="acomp-group" style="display:none;">
+      <label class="form-label">Número de acompanhantes (além de você)</label>
+      <select class="form-select" id="acomp" onchange="gerarCamposAcomp()">
+        <option value="0">Apenas eu</option>
+        <option value="1">+ 1 pessoa</option>
+        <option value="2">+ 2 pessoas</option>
+        <option value="3">+ 3 pessoas</option>
+      </select>
+    </div>
+    <div id="acomp-campos"></div>
+    <div class="form-group">
+      <label class="form-label">Alguma mensagem para as noivas? (opcional)</label>
+      <textarea class="form-textarea" id="msg" placeholder="Escreva o que quiser ♡"></textarea>
+    </div>
+    <button class="btn-submit" onclick="submitRSVP()">Confirmar presença</button>
+  </div>
+  <div class="success-msg" id="success-msg">
+    <p id="success-text">Que alegria!</p>
+    <span id="success-sub"></span>
+  </div>
