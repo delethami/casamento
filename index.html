@@ -262,3 +262,300 @@
     <p id="success-text">Que alegria!</p>
     <span id="success-sub"></span>
   </div>
+</section>
+
+<section id="manual" style="background: var(--cream);">
+  <span class="section-label">Tudo o que você precisa saber</span>
+  <h2 class="section-title">Manual do convidado</h2>
+  <div class="section-divider"></div>
+  <div class="manual-placeholder">
+    Em breve — nossa equipe está preparando algo especial para você ♡
+  </div>
+</section>
+
+<section id="evento" style="background: var(--ivory);">
+  <span class="section-label">Detalhes do grande dia</span>
+  <h2 class="section-title">O evento</h2>
+  <div class="section-divider"></div>
+  <div class="event-grid">
+    <div class="event-card">
+      <span class="event-icon"><i class="ti ti-calendar" aria-hidden="true"></i></span>
+      <span class="event-card-label">Data</span>
+      <span class="event-card-value">10 de outubro de 2027</span>
+    </div>
+    <div class="event-card">
+      <span class="event-icon"><i class="ti ti-clock" aria-hidden="true"></i></span>
+      <span class="event-card-label">Cerimônia</span>
+      <span class="event-card-value">16h00</span>
+      <p class="event-card-note">Nossa cerimônia será rápida e pontual. Por gentileza, não se atrase.</p>
+    </div>
+    <div class="event-card">
+      <span class="event-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></span>
+      <span class="event-card-label">Local</span>
+      <span class="event-card-value">Fleming Recepções</span>
+      <p class="event-card-note">Av. Fleming, 1.481 · Pampulha<br>Belo Horizonte, MG</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-names">Del & Thami</div>
+  <p class="footer-date">10 · 10 · 2027 &nbsp;·&nbsp; Belo Horizonte</p>
+</footer>
+
+<button class="painel-btn" onclick="abrirPainel()" title="Painel das noivas">🔒</button>
+
+<div class="painel-overlay" id="painel-overlay">
+  <div class="painel-box">
+    <button class="painel-fechar" onclick="fecharPainel()">✕</button>
+    <h2 class="painel-titulo">Painel das noivas</h2>
+    <div class="painel-senha">
+      <input type="password" id="painel-senha-input" placeholder="Digite a senha" onkeydown="if(event.key==='Enter')verificarSenha()">
+      <button onclick="verificarSenha()">Entrar</button>
+    </div>
+    <p id="painel-erro" style="color:#a32d2d;font-size:0.85rem;display:none;margin-bottom:1rem;">Senha incorreta.</p>
+    <div class="painel-content" id="painel-content">
+      <div class="painel-stats">
+        <div class="stat-card">
+          <span class="stat-num" id="stat-sim">0</span>
+          <span class="stat-label">Confirmados ✔️</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-nao">0</span>
+          <span class="stat-label">Ausentes ❌</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-pendente">0</span>
+          <span class="stat-label">Pendentes ⏳</span>
+        </div>
+      </div>
+      <div class="convidado-lista" id="convidado-lista"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD5ttVxUex1he0_Y5pVQ8NLmt776pJwzp0",
+  authDomain: "casamento-del-e-thami.firebaseapp.com",
+  databaseURL: "https://casamento-del-e-thami-default-rtdb.firebaseio.com",
+  projectId: "casamento-del-e-thami",
+  storageBucket: "casamento-del-e-thami.firebasestorage.app",
+  messagingSenderId: "1047642059250",
+  appId: "1:1047642059250:web:6e4e8cd5008b81f22c7b6b"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const convidados = [
+  'Thalita Procópio', 'Tulio Marques', 'Matheus Procópio', 'Sophia Marinho',
+  'Aurora Procópio', 'Suely Rejane Procópio', 'Lauro Torres', 'Nayara Procópio',
+  'Marcus Paulo Saúde', 'Rayssa Procópio', 'Cassio Schneider', 'Celina Torres',
+  'Gustavo Torres', 'Maria Carolina Torres', 'Carolina Arantes', 'Guilherme Moretti',
+  'Gal Arantes', 'Joaquim Arantes', 'Fernanda Daniele Procópio', 'Walmir Magalhães',
+  'Marina Procópio', 'Roberta Gomes', 'Elton Greve', 'Daniel Duarte',
+  'Ana Carolina Paiva', 'Vera Silva', 'Sidney Procópio', 'Thays Procópio',
+  'Sophia Procópio', 'Eloá Santos', 'Pietro Procópio', 'Thiago Procópio',
+  'Davi Duarte', 'Maria Marinho', 'Victor Cruz', 'Lais Lopes',
+  'Maria Elisa Vasconcelos', 'Polyana Oliveira', 'Douglas de Paula', 'Igor Anaxagoras',
+  'Gustavo Giacchero', 'Paula Barroca', 'João Giacchero', 'Tulio Santerio',
+  'Raphael Ottoni', 'Letícia Cabral', 'Bruna Sobreira', 'Clarice Sarcinelli',
+  'Rafael Freiria', 'João Trindade'
+];
+
+const presentes = [
+  { id: 'robo-aspirador', nome: 'Robô aspirador', preco: 3998, img: 'robo aspirador.webp' },
+  { id: 'air-fryer', nome: 'Air fryer', preco: 900, img: 'air friyer.webp' },
+  { id: 'jogo-cama-queen', nome: 'Jogo de cama queen size', preco: 800, img: 'jogo de cama.webp' },
+  { id: 'jogo-banho', nome: 'Jogo de Banho Buddemeyer', preco: 500, img: 'jogo de toalha.webp' },
+  { id: 'maquina-waffle', nome: 'Máquina elétrica de waffle', preco: 200, img: 'máquina de waffle.webp' },
+  { id: 'cafeteira-hario', nome: 'Kit Cafeteira Hario V60', preco: 170, img: 'v60.jpeg' },
+  { id: 'abajur-chao', nome: 'Abajur de chão', preco: 200, img: null },
+  { id: 'alexa', nome: 'Alexa', preco: 700, img: 'alexa.jpg' },
+  { id: 'potes-vidro', nome: 'Conjunto de potes de vidro', preco: 150, img: 'potes.jpg' },
+  { id: 'tabua-passar', nome: 'Tábua de passar roupa', preco: 200, img: 'tábua.webp' },
+  { id: 'abajur-cabeceira', nome: 'Abajur de cabeceira', preco: 170, img: null },
+  { id: 'maquina-seladora', nome: 'Máquina seladora', preco: 300, img: 'seladora.jpg' },
+];
+
+function formatarPreco(v) {
+  return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+async function renderPresentes() {
+  const grid = document.getElementById('gifts-grid');
+  grid.innerHTML = '';
+  const snap = await get(ref(db, 'presentes'));
+  const dados = snap.val() || {};
+  presentes.forEach(p => {
+    const comprado = dados[p.id] === true;
+    const card = document.createElement('div');
+    card.className = 'gift-card' + (comprado ? ' gift-chosen' : '');
+    card.id = 'gcard-' + p.id;
+    const imgHtml = p.img
+      ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">`
+      : `<i class="ti ti-gift gift-img-placeholder" aria-hidden="true"></i>`;
+    card.innerHTML = `
+      <div class="gift-img-wrap">
+        ${imgHtml}
+        <div class="gift-overlay"><span class="gift-overlay-text">Presente escolhido</span></div>
+      </div>
+      <div class="gift-body">
+        <div class="gift-name">${p.nome}</div>
+        <div class="gift-price">${formatarPreco(p.preco)}</div>
+        <div class="gift-btn">
+          ${!comprado ? `<button class="btn-comprar" onclick="comprarPresente('${p.id}')">Presentear</button>` : ''}
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+window.comprarPresente = async function(id) {
+  await set(ref(db, 'presentes/' + id), true);
+  const card = document.getElementById('gcard-' + id);
+  if (card) {
+    card.classList.add('gift-chosen');
+    const btn = card.querySelector('.gift-btn');
+    if (btn) btn.innerHTML = '';
+    const overlay = card.querySelector('.gift-overlay');
+    if (overlay) overlay.style.display = 'flex';
+  }
+};
+
+renderPresentes();
+
+window.toggleMenu = function() { document.getElementById('hamburger').classList.toggle('aberto'); document.getElementById('nav-mobile').classList.toggle('aberto'); };
+window.fecharMenu = function() { document.getElementById('hamburger').classList.remove('aberto'); document.getElementById('nav-mobile').classList.remove('aberto'); };
+
+function updateCountdown() {
+  const target = new Date('2027-10-10T16:00:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) { document.getElementById('countdown').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:2rem;color:#7a1e2e">Hoje é o grande dia!</p>'; return; }
+  const dias = Math.floor(diff / 86400000);
+  const horas = Math.floor((diff % 86400000) / 3600000);
+  const min = Math.floor((diff % 3600000) / 60000);
+  document.getElementById('cd-dias').textContent = dias;
+  document.getElementById('cd-horas').textContent = String(horas).padStart(2,'0');
+  document.getElementById('cd-min').textContent = String(min).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+let presenca = null;
+window.selectPresenca = function(v) {
+  presenca = v;
+  document.getElementById('opt-sim').classList.toggle('selected', v === 'sim');
+  document.getElementById('opt-nao').classList.toggle('selected', v === 'nao');
+  document.getElementById('acomp-group').style.display = v === 'sim' ? 'block' : 'none';
+  if (v === 'sim') gerarCamposAcomp();
+  else document.getElementById('acomp-campos').innerHTML = '';
+};
+
+window.gerarCamposAcomp = function() {
+  const n = parseInt(document.getElementById('acomp').value);
+  const container = document.getElementById('acomp-campos');
+  container.innerHTML = '';
+  for (let i = 1; i <= n; i++) {
+    const bloco = document.createElement('div');
+    bloco.className = 'acomp-block';
+    bloco.innerHTML = `
+      <p class="acomp-titulo">Acompanhante ${i}</p>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label">Nome completo</label>
+        <input type="text" class="form-input" id="acomp-nome-${i}" placeholder="Ex: João Silva">
+        <p class="error-msg" id="erro-acomp-${i}"></p>
+      </div>`;
+    container.appendChild(bloco);
+  }
+};
+
+function normalizarNome(nome) {
+  return nome.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+window.submitRSVP = async function() {
+  const nomeDigitado = document.getElementById('nome').value.trim();
+  const whatsapp = document.getElementById('whatsapp').value.trim();
+  const erroEl = document.getElementById('erro-nome');
+  erroEl.style.display = 'none';
+  if (!nomeDigitado) { erroEl.textContent = 'Por favor, informe seu nome.'; erroEl.style.display = 'block'; return; }
+  const partes = nomeDigitado.trim().split(/\s+/);
+  if (partes.length < 2) { erroEl.textContent = 'Por favor, informe pelo menos o nome e um sobrenome.'; erroEl.style.display = 'block'; return; }
+  if (!presenca) { erroEl.textContent = 'Por favor, selecione sua confirmação.'; erroEl.style.display = 'block'; return; }
+  const nomeNormalizado = normalizarNome(nomeDigitado);
+  const convidadoEncontrado = convidados.find(c => normalizarNome(c) === nomeNormalizado);
+  if (!convidadoEncontrado) { erroEl.textContent = 'Seu nome não foi encontrado na lista. Verifique a grafia ou entre em contato com as noivas.'; erroEl.style.display = 'block'; return; }
+  const n = parseInt(document.getElementById('acomp').value) || 0;
+  const acompanhantes = [];
+  for (let i = 1; i <= n; i++) {
+    const nomeAcomp = document.getElementById(`acomp-nome-${i}`)?.value.trim() || '';
+    const erroAcomp = document.getElementById(`erro-acomp-${i}`);
+    erroAcomp.style.display = 'none';
+    if (!nomeAcomp) { erroAcomp.textContent = 'Por favor, informe o nome do acompanhante.'; erroAcomp.style.display = 'block'; return; }
+    const partesAcomp = nomeAcomp.split(/\s+/);
+    if (partesAcomp.length < 2) { erroAcomp.textContent = 'Informe pelo menos nome e sobrenome.'; erroAcomp.style.display = 'block'; return; }
+    const acompEncontrado = convidados.find(c => normalizarNome(c) === normalizarNome(nomeAcomp));
+    if (!acompEncontrado) { erroAcomp.textContent = 'Este nome não foi encontrado na lista. Verifique a grafia ou entre em contato com as noivas.'; erroAcomp.style.display = 'block'; return; }
+    acompanhantes.push(acompEncontrado);
+  }
+  const chave = normalizarNome(convidadoEncontrado).replace(/\s+/g, '_');
+  await set(ref(db, 'confirmacoes/' + chave), {
+    nome: convidadoEncontrado, status: presenca, whatsapp: whatsapp || '—',
+    acompanhantes: acompanhantes, mensagem: document.getElementById('msg').value || ''
+  });
+  document.getElementById('rsvp-form').style.display = 'none';
+  const suc = document.getElementById('success-msg');
+  suc.style.display = 'block';
+  const primeiro = convidadoEncontrado.split(' ')[0];
+  if (presenca === 'sim') {
+    document.getElementById('success-text').textContent = `Que alegria, ${primeiro}!`;
+    document.getElementById('success-sub').textContent = 'Sua presença está confirmada. Estamos muito felizes de saber que você estará lá neste dia!';
+  } else {
+    document.getElementById('success-text').textContent = `Sentiremos sua falta, ${primeiro}.`;
+    document.getElementById('success-sub').textContent = 'Recebemos sua mensagem. Obrigada por nos avisar.';
+  }
+};
+
+const SENHA = 'delethami2027';
+window.abrirPainel = function() { document.getElementById('painel-overlay').classList.add('aberto'); document.getElementById('painel-senha-input').focus(); };
+window.fecharPainel = function() { document.getElementById('painel-overlay').classList.remove('aberto'); document.getElementById('painel-senha-input').value = ''; document.getElementById('painel-erro').style.display = 'none'; document.getElementById('painel-content').classList.remove('visivel'); };
+window.verificarSenha = function() {
+  const senha = document.getElementById('painel-senha-input').value;
+  if (senha === SENHA) { document.getElementById('painel-erro').style.display = 'none'; document.getElementById('painel-content').classList.add('visivel'); carregarPainel(); }
+  else { document.getElementById('painel-erro').style.display = 'block'; }
+};
+
+function carregarPainel() {
+  onValue(ref(db, 'confirmacoes'), (snapshot) => {
+    const dados = snapshot.val() || {};
+    let sim = 0, nao = 0, pendente = 0;
+    const lista = document.getElementById('convidado-lista');
+    lista.innerHTML = '';
+    convidados.forEach(c => {
+      const chave = normalizarNome(c).replace(/\s+/g, '_');
+      const d = dados[chave];
+      if (d && d.status === 'sim') sim++;
+      else if (d && d.status === 'nao') nao++;
+      else pendente++;
+      const item = document.createElement('div');
+      item.className = 'convidado-item';
+      const icone = d ? (d.status === 'sim' ? '✔️' : '❌') : '<span class="convidado-pendente">pendente</span>';
+      const tel = d && d.whatsapp && d.whatsapp !== '—' ? `<span class="convidado-whats">${d.whatsapp}</span>` : `<span class="convidado-whats">—</span>`;
+      const acomps = d && d.acompanhantes && d.acompanhantes.length > 0 ? `<div class="convidado-acomp">com: ${d.acompanhantes.join(', ')}</div>` : '';
+      item.innerHTML = `<div><span class="convidado-nome">${c}</span>${acomps}</div>${tel}<span class="convidado-status">${icone}</span>`;
+      lista.appendChild(item);
+    });
+    document.getElementById('stat-sim').textContent = sim;
+    document.getElementById('stat-nao').textContent = nao;
+    document.getElementById('stat-pendente').textContent = pendente;
+  });
+}
+</script>
+</body>
+</html>
