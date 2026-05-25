@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Del & Thami — 10.10.2027</title>
+<link rel="icon" type="image/jpeg" href="WhatsApp Image 2026-05-25 at 17.17.30.jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
@@ -72,7 +73,7 @@
   .gift-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s; }
   .gift-card:hover { border-color: var(--wine-light); }
   .gift-img-wrap { width: 100%; height: 120px; background: var(--cream); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-  .gift-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .gift-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 0.3rem; }
   .gift-img-placeholder { font-size: 2rem; color: var(--wine-light); }
   .gift-overlay { position: absolute; inset: 0; background: rgba(44,20,16,0.55); display: none; align-items: center; justify-content: center; }
   .gift-overlay-text { color: white; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
@@ -380,6 +381,7 @@ const presentes = [
   { id: 'tabua-passar', nome: 'Tábua de passar roupa', preco: 200, img: 'tábua.webp' },
   { id: 'abajur-cabeceira', nome: 'Abajur de cabeceira', preco: 170, img: null },
   { id: 'maquina-seladora', nome: 'Máquina seladora', preco: 300, img: 'seladora.jpg' },
+  { id: 'dolce-gusto', nome: 'Dolce Gusto', preco: 800, img: 'dolce_gusto.webp' },
 ];
 
 function formatarPreco(v) {
