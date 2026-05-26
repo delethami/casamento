@@ -86,8 +86,6 @@
   .gift-img-wrap { width: 100%; height: 120px; background: var(--cream); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
   .gift-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 0.3rem; transition: opacity 0.3s; }
   .gift-card:hover .gift-img-wrap img { opacity: 0.85; }
-  .gift-hover-hint { position: absolute; bottom: 0.4rem; left: 0; right: 0; text-align: center; color: var(--wine); font-family: 'Jost', sans-serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; opacity: 0; transition: opacity 0.3s; }
-  .gift-card:hover .gift-hover-hint { opacity: 1; }
   .gift-img-placeholder { font-size: 2rem; color: var(--wine-light); }
   .gift-overlay { position: absolute; inset: 0; background: rgba(44,20,16,0.55); display: none; align-items: center; justify-content: center; }
   .gift-overlay-text { color: white; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
@@ -432,19 +430,44 @@ const convidados = [
 ];
 
 const presentes = [
-  { id: 'robo-aspirador', nome: 'Robô aspirador', preco: 3998, img: 'robo aspirador.webp' },
-  { id: 'air-fryer', nome: 'Air fryer', preco: 900, img: 'air friyer.webp' },
-  { id: 'jogo-cama-queen', nome: 'Jogo de cama queen size', preco: 800, img: 'jogo de cama.webp' },
-  { id: 'dolce-gusto', nome: 'Dolce Gusto', preco: 800, img: 'dolce gusto.webp' },
-  { id: 'alexa', nome: 'Alexa', preco: 700, img: 'alexa.jpg' },
-  { id: 'jogo-banho', nome: 'Jogo de Banho Buddemeyer', preco: 500, img: 'jogo de toalha.webp' },
-  { id: 'maquina-seladora', nome: 'Máquina seladora', preco: 300, img: 'seladora.jpg' },
-  { id: 'maquina-waffle', nome: 'Máquina elétrica de waffle', preco: 200, img: 'máquina de waffle.webp' },
-  { id: 'abajur-chao', nome: 'Abajur de chão', preco: 200, img: null },
-  { id: 'tabua-passar', nome: 'Tábua de passar roupa', preco: 200, img: 'tábua.webp' },
-  { id: 'cafeteira-hario', nome: 'Kit Cafeteira Hario V60', preco: 170, img: 'v60.jpeg' },
-  { id: 'abajur-cabeceira', nome: 'Abajur de cabeceira', preco: 170, img: null },
-  { id: 'potes-vidro', nome: 'Conjunto de potes de vidro', preco: 150, img: 'potes.jpg' },
+  { id: 'robo-aspirador', nome: 'Robô aspirador', preco: 3998, img: 'robo aspirador.webp', vaquinha: false },
+  { id: 'vaquinha-grace', nome: 'Vaquinha Grace', preco: 1000, img: 'Grace_cow.webp', vaquinha: true },
+  { id: 'jogo-panelas', nome: 'Jogo de panelas', preco: 900, img: 'jogo de panelas.jpg', vaquinha: false },
+  { id: 'air-fryer', nome: 'Air fryer', preco: 900, img: 'air friyer.webp', vaquinha: false },
+  { id: 'jogo-cama-queen', nome: 'Jogo de cama queen size', preco: 800, img: 'jogo de cama.webp', vaquinha: false },
+  { id: 'dolce-gusto', nome: 'Dolce Gusto', preco: 800, img: 'dolce gusto.webp', vaquinha: false },
+  { id: 'escrivaninha', nome: 'Escrivaninha', preco: 700, img: 'escrivaninha.webp', vaquinha: false },
+  { id: 'alexa', nome: 'Alexa', preco: 700, img: 'alexa.jpg', vaquinha: false },
+  { id: 'cadeira-escritorio', nome: 'Cadeira de escritório', preco: 600, img: 'cadeira escritorio.jpg', vaquinha: false },
+  { id: 'batedeira', nome: 'Batedeira planetária', preco: 500, img: 'batedeira.webp', vaquinha: false },
+  { id: 'jogo-banho', nome: 'Jogo de Banho Buddemeyer', preco: 500, img: 'jogo de toalha.webp', vaquinha: false },
+  { id: 'faqueiro', nome: 'Faqueiro', preco: 400, img: 'faqueiro.webp', vaquinha: false },
+  { id: 'vaquinha-ferdinando', nome: 'Vaquinha Ferdinando', preco: 400, img: 'Ferdinando.webp', vaquinha: true },
+  { id: 'moedor-cafe', nome: 'Moedor de café', preco: 380, img: 'moedor de café.jpg', vaquinha: false },
+  { id: 'conjunto-tacas-vinho', nome: 'Conjunto de taças de vinho', preco: 300, img: 'taças de vinho.webp', vaquinha: false },
+  { id: 'conjunto-tacas-espumante', nome: 'Conjunto de taças de espumante', preco: 300, img: 'taça espumante.webp', vaquinha: false },
+  { id: 'maquina-seladora', nome: 'Máquina seladora', preco: 300, img: 'seladora.jpg', vaquinha: false },
+  { id: 'escada', nome: 'Escada', preco: 260, img: 'escada.webp', vaquinha: false },
+  { id: 'maquina-waffle', nome: 'Máquina elétrica de waffle', preco: 200, img: 'máquina de waffle.webp', vaquinha: false },
+  { id: 'abajur-chao', nome: 'Abajur de chão', preco: 200, img: 'abajur de chao.jpg', vaquinha: false },
+  { id: 'espremedor', nome: 'Espremedor de frutas elétrico', preco: 200, img: 'espremedor.webp', vaquinha: false },
+  { id: 'tabua-passar', nome: 'Tábua de passar roupa', preco: 200, img: 'tábua.webp', vaquinha: false },
+  { id: 'almofadas', nome: 'Conjunto de almofadas', preco: 180, img: 'almofadas.jpg', vaquinha: false },
+  { id: 'ventilador', nome: 'Ventilador', preco: 180, img: 'ventilador.webp', vaquinha: false },
+  { id: 'cafeteira-hario', nome: 'Kit Cafeteira Hario V60', preco: 170, img: 'v60.jpeg', vaquinha: false },
+  { id: 'abajur-cabeceira', nome: 'Abajur de cabeceira', preco: 170, img: 'abajur de mesa.webp', vaquinha: false },
+  { id: 'processador', nome: 'Processador de alimentos', preco: 170, img: 'processador de alimentos.jpg', vaquinha: false },
+  { id: 'kit-bar', nome: 'Kit bar', preco: 150, img: 'kit bar.webp', vaquinha: false },
+  { id: 'vaquinha-vaca', nome: 'Vaquinha Vaca', preco: 150, img: 'vaca.jpg', vaquinha: true },
+  { id: 'roupao', nome: 'Roupão', preco: 150, img: 'roupão.jpg', vaquinha: false },
+  { id: 'umedificador', nome: 'Umidificador', preco: 150, img: 'umedificador.webp', vaquinha: false },
+  { id: 'potes-vidro', nome: 'Conjunto de potes de vidro', preco: 150, img: 'potes.jpg', vaquinha: false },
+  { id: 'kit-jardinagem', nome: 'Kit jardinagem', preco: 100, img: 'kit jardinagem.jpg', vaquinha: false },
+  { id: 'mop', nome: 'Mop', preco: 100, img: 'mop.jpg', vaquinha: false },
+  { id: 'bowls', nome: 'Conjunto de bowls', preco: 90, img: 'bowls.jpg', vaquinha: false },
+  { id: 'pano-prato', nome: 'Panos de prato', preco: 70, img: 'pano de prato.webp', vaquinha: false },
+  { id: 'descanso-panela', nome: 'Descanso de panela', preco: 80, img: 'descanso de panela.webp', vaquinha: false },
+  { id: 'bandeja-cafe', nome: 'Bandeja de café da manhã', preco: 50, img: 'bandeja de cafe.jpg', vaquinha: false },
 ];
 
 const LIMITE = 15;
@@ -459,7 +482,7 @@ async function renderPresentes() {
   const snap = await get(ref(db, 'presentes'));
   const dados = snap.val() || {};
   presentes.forEach((p, index) => {
-    const comprado = dados[p.id] === true;
+    const comprado = dados[p.id] === true && !p.vaquinha;
     const card = document.createElement('div');
     card.className = 'gift-card' + (comprado ? ' gift-chosen' : '');
     if (index >= LIMITE) card.classList.add('gift-extra');
@@ -470,14 +493,13 @@ async function renderPresentes() {
     card.innerHTML = `
       <div class="gift-img-wrap">
         ${imgHtml}
-        <div class="gift-hover-hint">Presentear</div>
         <div class="gift-overlay"><span class="gift-overlay-text">Presente escolhido</span></div>
       </div>
       <div class="gift-body">
         <div class="gift-name">${p.nome}</div>
         <div class="gift-price">${formatarPreco(p.preco)}</div>
         <div class="gift-btn">
-          ${!comprado ? `<button class="btn-comprar" onclick="comprarPresente('${p.id}')">Presentear</button>` : ''}
+          ${!comprado ? `<button class="btn-comprar" onclick="comprarPresente('${p.id}', ${p.vaquinha})">Presentear</button>` : ''}
         </div>
       </div>`;
     grid.appendChild(card);
@@ -495,15 +517,17 @@ window.verMais = function() {
   document.getElementById('btn-ver-mais').style.display = 'none';
 };
 
-window.comprarPresente = async function(id) {
-  await set(ref(db, 'presentes/' + id), true);
-  const card = document.getElementById('gcard-' + id);
-  if (card) {
-    card.classList.add('gift-chosen');
-    const btn = card.querySelector('.gift-btn');
-    if (btn) btn.innerHTML = '';
-    const overlay = card.querySelector('.gift-overlay');
-    if (overlay) overlay.style.display = 'flex';
+window.comprarPresente = async function(id, vaquinha) {
+  if (!vaquinha) {
+    await set(ref(db, 'presentes/' + id), true);
+    const card = document.getElementById('gcard-' + id);
+    if (card) {
+      card.classList.add('gift-chosen');
+      const btn = card.querySelector('.gift-btn');
+      if (btn) btn.innerHTML = '';
+      const overlay = card.querySelector('.gift-overlay');
+      if (overlay) overlay.style.display = 'flex';
+    }
   }
 };
 
