@@ -37,7 +37,6 @@
   .nav-mobile a { font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wine); text-decoration: none; font-weight: 600; border: 1.5px solid var(--wine); border-radius: 3px; padding: 0.4rem 0.8rem; display: inline-block; }
   .nav-mobile a:hover { background: var(--wine); color: white; }
   @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
-
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 2rem 4rem; position: relative; background: var(--cream); overflow: hidden; }
   .hero::before { content: ''; position: absolute; top: -40px; left: -40px; width: 320px; height: 320px; border-radius: 50%; background: var(--wine-pale); opacity: 0.6; }
   .hero::after { content: ''; position: absolute; bottom: -60px; right: -60px; width: 400px; height: 400px; border-radius: 50%; background: var(--wine-pale); opacity: 0.4; }
@@ -54,26 +53,21 @@
   .countdown-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wine); margin-top: 0.3rem; display: block; }
   .countdown-sep { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--wine-light); }
   @media (max-width: 600px) { .hero-date { font-size: 1.8rem; } .countdown-num { font-size: 1.8rem; } .countdown { gap: 0.8rem; } }
-
   section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
   .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--wine); margin-bottom: 1rem; display: block; font-weight: 400; }
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; color: var(--wine); margin-bottom: 2.5rem; line-height: 1.2; }
   .section-divider { width: 40px; height: 1px; background: var(--wine-light); margin: 0 0 2.5rem; }
-
   .timeline { position: relative; padding-left: 2rem; border-left: 1px solid var(--wine-light); }
   .timeline-item { margin-bottom: 2.5rem; position: relative; }
   .timeline-item::before { content: ''; position: absolute; left: -2.37rem; top: 0.35rem; width: 8px; height: 8px; border-radius: 50%; background: var(--wine); border: 2px solid var(--ivory); outline: 1px solid var(--wine-light); }
   .timeline-year { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.4rem; font-weight: 400; }
   .timeline-text { font-size: 1rem; line-height: 1.8; color: var(--text-mid); }
-
   .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
   .event-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 4px; padding: 1.5rem; text-align: center; }
   .event-icon { font-size: 1.1rem; color: var(--wine-light); margin-bottom: 0.6rem; display: block; }
   .event-card-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.6rem; display: block; font-weight: 400; }
   .event-card-value { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); line-height: 1.2; }
   .event-card-note { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); line-height: 1.6; margin-top: 0.6rem; font-weight: 400; }
-
-  /* PRESENTES */
   .gifts-intro { font-size: 1rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 560px; }
   .gifts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
   .gift-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s; }
@@ -94,19 +88,15 @@
   .gift-chosen .gift-overlay { display: flex; }
   .gift-chosen .btn-comprar { display: none; }
   .gift-chosen .gift-price { color: var(--text-light); }
-  .gifts-extras { display: none; }
-  .gifts-extras.visivel { display: contents; }
   .btn-ver-mais { background: none; border: 1.5px solid var(--wine); color: var(--wine); padding: 0.7rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; margin-top: 1.5rem; display: block; }
   .btn-ver-mais:hover { background: var(--wine); color: white; }
-
-  /* MANUAL */
   .manual-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   @media (max-width: 600px) { .manual-grid { grid-template-columns: 1fr; } }
   .manual-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 4px; padding: 1.5rem; text-align: center; }
+  .manual-card-icon { margin-bottom: 0.8rem; color: var(--wine-light); }
+  .manual-card-icon svg { width: 28px; height: 28px; stroke: var(--wine-light); }
   .manual-card-titulo { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.8rem; }
-  .manual-card-texto { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--text-mid); line-height: 1.6; }
-
-  /* RSVP */
+  .manual-card-texto { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--text-mid); line-height: 1.6; text-align: justify; }
   .rsvp-form { max-width: 520px; }
   .form-group { margin-bottom: 1.5rem; }
   .form-label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 0.5rem; font-weight: 400; }
@@ -124,7 +114,6 @@
   .success-msg p { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
   .success-msg span { font-size: 0.85rem; color: var(--text-mid); letter-spacing: 0.05em; }
   .error-msg { color: #a32d2d; font-size: 0.85rem; margin-top: 0.5rem; display: none; }
-
   .painel-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--wine); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 200; opacity: 0.4; transition: opacity 0.2s; }
   .painel-btn:hover { opacity: 1; }
   .painel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; align-items: center; justify-content: center; }
@@ -151,7 +140,6 @@
   .convidado-whats { font-size: 0.8rem; color: var(--text-light); }
   .convidado-status { font-size: 1rem; }
   .convidado-pendente { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.1em; }
-
   footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--stone); background: var(--cream); }
   .footer-names { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
   .footer-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
@@ -291,42 +279,79 @@
   <h2 class="section-title">Manual do convidado</h2>
   <div class="section-divider"></div>
   <div class="manual-grid">
+
     <div class="manual-card">
+      <div class="manual-card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"/><path d="M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2"/><path d="M9 14l2 2l4 -4"/></svg>
+      </div>
       <p class="manual-card-titulo">Presença</p>
-      <p class="manual-card-texto">Nós fizemos um planejamento para uma certa quantidade de convidados. Sua resposta é importante. Mesmo que seja para informar que não estará presente.</p>
+      <p class="manual-card-texto">Fizemos um planejamento para uma determinada quantidade de convidados. Por isso, sua resposta é importante! Mesmo que seja para informar que não estará presente.</p>
     </div>
+
     <div class="manual-card">
+      <div class="manual-card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 6a2 2 0 1 0 -4 0c0 1.667 .67 3 2 4h-.008l7.971 4.428a2 2 0 0 1 1.029 1.749v.823a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-.823a2 2 0 0 1 1.029 -1.749l7.971 -4.428"/></svg>
+      </div>
       <p class="manual-card-titulo">Traje</p>
       <p class="manual-card-texto">Para descobrir o estilo do casamento, basta uma olhadinha no convite e uma pesquisada sobre o local. Isso irá te dar uma ideia de como será o evento. Portanto, se prepare! Nesta ocasião, aquela sua calça jeans não é a pedida certa. Lembre-se: por mais descolado que seja, ainda é um casamento.</p>
     </div>
+
     <div class="manual-card">
+      <div class="manual-card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3"/></svg>
+      </div>
       <p class="manual-card-titulo">Evite</p>
-      <p class="manual-card-texto">É uma grande gafe usar branco ou cores muito claras. Esqueça também roupas na cor vermelho escuro (bordô, marsala, vinho e etc). Esta é a principal cor do nosso casamento. Imagine ser confundido com a decoração.</p>
+      <p class="manual-card-texto">É uma gafe usar branco ou cores muito claras. Esqueça também roupas na cor vermelho escuro (bordô, marsala, vinho e etc). Esta é a principal cor do nosso casamento. Imagine ser confundido com a decoração!</p>
     </div>
+
     <div class="manual-card">
+      <div class="manual-card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l2 -3l2 3m-2 -3v-1.5m2.627 -1.376l.373 -.124m-6 0l2.231 .744"/><path d="M20.042 16.045a9 9 0 0 0 -12.087 -12.087m-2.318 1.677a9 9 0 1 0 12.725 12.73"/><path d="M12 8a.5 .5 0 1 0 -.5 -.5"/><path d="M3 3l18 18"/></svg>
+      </div>
       <p class="manual-card-titulo">Penetras</p>
-      <p class="manual-card-texto">Convidado não convida. Por favor, não insista e também não peça convites! Isto é deselegante. No próprio convite tem o nome da pessoa convidada e ele é pessoal e intransferível.</p>
+      <p class="manual-card-texto">Convidado não convida. Por favor, não peça convites e não insista! Isto é deselegante. O convite indica o nome da pessoa convidada, é pessoal e intransferível.</p>
     </div>
+
     <div class="manual-card">
+      <div class="manual-card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.942 13.021a9 9 0 1 0 -9.407 7.967"/><path d="M12 7v5l3 3"/><path d="M15 19l2 2l4 -4"/></svg>
+      </div>
       <p class="manual-card-titulo">Pontualidade</p>
       <p class="manual-card-texto">A cerimônia é a parte mais importante do casamento. Seja pontual e se acomode com antecedência. Chegar após iniciada a cerimônia desvia a atenção de quem já está presente. Seja sensível e não apareça apenas para a festa.</p>
     </div>
+
     <div class="manual-card">
+      <div class="manual-card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8"/><path d="M22 22l-5 -5"/><path d="M17 22l5 -5"/><path d="M11 4h2"/><path d="M12 17v.01"/></svg>
+      </div>
       <p class="manual-card-titulo">Celular</p>
-      <p class="manual-card-texto">Durante a cerimônia, preferencialmente, desligue o seu celular. Convidado não é fotógrafo. Duas profissionais incríveis foram escolhidas por nós para realizar este serviço. Evite tentar "fazer o trabalho delas". Você pode acabar atrapalhando.</p>
+      <p class="manual-card-texto">Preferencialmente, durante a cerimônia, desligue o seu celular. Convidado não é fotógrafo. Escolhemos duas profissionais incríveis para realizar este serviço. Evite tentar fazer o trabalho delas. Você pode acabar atrapalhando.</p>
     </div>
+
     <div class="manual-card">
+      <div class="manual-card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.875 9.882a3 3 0 0 0 4.247 4.238m.581 -3.423a3.012 3.012 0 0 0 -1.418 -1.409"/><path d="M9 5a3 3 0 0 1 6 0c0 .562 -.259 1.442 -.776 2.64l-.724 1.36l1.76 -1.893c.499 -.6 .922 -1 1.27 -1.205a2.968 2.968 0 0 1 4.07 1.099a3.011 3.011 0 0 1 -1.09 4.098c-.374 .217 -.99 .396 -1.846 .535l-1.779 .244m.292 .282l1.223 .166c1 .145 1.698 .337 2.11 .576a3.011 3.011 0 0 1 1.226 3.832m-2.277 1.733a2.968 2.968 0 0 1 -1.929 -.369c-.348 -.202 -.771 -.604 -1.27 -1.205l-1.76 -1.893l.724 1.36c.516 1.199 .776 2.079 .776 2.64a3 3 0 0 1 -6 0c0 -.562 .259 -1.442 .776 -2.64l.724 -1.36l-1.76 1.893c-.499 .601 -.922 1 -1.27 1.205a2.968 2.968 0 0 1 -4.07 -1.098a3.011 3.011 0 0 1 1.09 -4.098c.374 -.218 .99 -.396 1.846 -.536l2.664 -.366l-2.4 -.325c-1 -.145 -1.698 -.337 -2.11 -.576a3.011 3.011 0 0 1 -1.09 -4.099a2.968 2.968 0 0 1 2.134 -1.467"/><path d="M3 3l18 18"/></svg>
+      </div>
       <p class="manual-card-titulo">Decoração</p>
       <p class="manual-card-texto">Não leve a decoração para casa. Existem itens que foram locados e precisam ser devolvidos. Na saída, você receberá o que pode levar de lembrança.</p>
     </div>
+
     <div class="manual-card">
+      <div class="manual-card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h2"/><path d="M5 4v2"/><path d="M11.5 4l-.5 2"/><path d="M18 5h2"/><path d="M19 4v2"/><path d="M15 9l-1 1"/><path d="M18 13l2 -.5"/><path d="M18 19h2"/><path d="M19 18v2"/><path d="M14 16.518l-6.518 -6.518l-4.39 9.58a1 1 0 0 0 1.329 1.329l9.579 -4.39"/></svg>
+      </div>
       <p class="manual-card-titulo">Noivas</p>
-      <p class="manual-card-texto">Se divirta muito e deixe a gente se divertir também. Esse momento passa muito rápido para só posar para fotos.</p>
+      <p class="manual-card-texto">Se divirta muito e deixe a gente se divertir também! Esse momento passa muito rápido para só posarmos para fotos.</p>
     </div>
+
     <div class="manual-card">
+      <div class="manual-card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.02 19.52c-2.34 .736 -5 .606 -7.32 -.52l-4.7 1l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c1.96 1.671 2.898 3.963 2.755 6.227"/><path d="M19 16v3"/><path d="M19 22v.01"/></svg>
+      </div>
       <p class="manual-card-titulo">Comentários</p>
       <p class="manual-card-texto">Guarde os comentários negativos para você. Antes de pontuar qualquer coisa que não gostou, lembre-se que nós colocamos 2 anos de muito esforço, trabalho e intenção para recebê-lo da melhor forma.</p>
     </div>
+
   </div>
 </section>
 
@@ -429,8 +454,8 @@ const presentes = [
   { id: 'air-fryer', nome: 'Air fryer', preco: 900, img: 'air friyer.webp' },
   { id: 'jogo-cama-queen', nome: 'Jogo de cama queen size', preco: 800, img: 'jogo de cama.webp' },
   { id: 'dolce-gusto', nome: 'Dolce Gusto', preco: 800, img: 'dolce_gusto.webp' },
-  { id: 'jogo-banho', nome: 'Jogo de Banho Buddemeyer', preco: 500, img: 'jogo de toalha.webp' },
   { id: 'alexa', nome: 'Alexa', preco: 700, img: 'alexa.jpg' },
+  { id: 'jogo-banho', nome: 'Jogo de Banho Buddemeyer', preco: 500, img: 'jogo de toalha.webp' },
   { id: 'maquina-seladora', nome: 'Máquina seladora', preco: 300, img: 'seladora.jpg' },
   { id: 'maquina-waffle', nome: 'Máquina elétrica de waffle', preco: 200, img: 'máquina de waffle.webp' },
   { id: 'abajur-chao', nome: 'Abajur de chão', preco: 200, img: null },
@@ -451,7 +476,6 @@ async function renderPresentes() {
   grid.innerHTML = '';
   const snap = await get(ref(db, 'presentes'));
   const dados = snap.val() || {};
-
   presentes.forEach((p, index) => {
     const comprado = dados[p.id] === true;
     const card = document.createElement('div');
@@ -475,7 +499,6 @@ async function renderPresentes() {
       </div>`;
     grid.appendChild(card);
   });
-
   const extras = document.querySelectorAll('.gift-extra');
   extras.forEach(el => el.style.display = 'none');
   if (presentes.length > LIMITE) {
