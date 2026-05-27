@@ -104,6 +104,9 @@
   .btn-ver-mais { background: none; border: 1.5px solid var(--wine); color: var(--wine); padding: 0.7rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; margin-top: 1.5rem; display: block; }
   .btn-ver-mais:hover { background: var(--wine); color: white; }
 
+  .manual-section-wrap { position: relative; overflow: hidden; }
+  .manual-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 90%; width: auto; opacity: 0.06; pointer-events: none; z-index: 0; }
+  .manual-inner { position: relative; z-index: 1; }
   .manual-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   @media (max-width: 600px) { .manual-grid { grid-template-columns: 1fr; } }
   .manual-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 4px; padding: 1.5rem; text-align: center; }
@@ -291,58 +294,63 @@
   </div>
 </section>
 
-<section id="manual" style="background: var(--cream);">
-  <span class="section-label">Tudo o que você precisa saber</span>
-  <h2 class="section-title">Manual do convidado</h2>
-  <div class="section-divider"></div>
-  <div class="manual-grid">
-    <div class="manual-card">
-      <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"/><path d="M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2"/><path d="M9 14l2 2l4 -4"/></svg></div>
-      <p class="manual-card-titulo">Presença</p>
-      <p class="manual-card-texto">Fizemos um planejamento para uma quantidade determinada de convidados. Por isso, sua resposta é importante! Mesmo que seja para informar que não estará presente.</p>
-    </div>
-    <div class="manual-card">
-      <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 6a2 2 0 1 0 -4 0c0 1.667 .67 3 2 4h-.008l7.971 4.428a2 2 0 0 1 1.029 1.749v.823a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-.823a2 2 0 0 1 1.029 -1.749l7.971 -4.428"/></svg></div>
-      <p class="manual-card-titulo">Traje</p>
-      <p class="manual-card-texto">Para descobrir o estilo do casamento, basta uma olhadinha no convite e uma pesquisada sobre o local. Isso irá te dar uma ideia de como será o evento. Portanto, se prepare! Nesta ocasião, aquela sua calça jeans não é a pedida certa. Lembre-se: por mais descolado que seja, ainda é um casamento.</p>
-    </div>
-    <div class="manual-card">
-      <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3"/></svg></div>
-      <p class="manual-card-titulo">Evite</p>
-      <p class="manual-card-texto">É uma gafe usar branco ou cores muito claras. Esqueça também roupas na cor vermelho escuro (bordô, marsala, vinho e etc). Esta é a principal cor do nosso casamento. Imagine ser confundido com a decoração!</p>
-    </div>
-    <div class="manual-card">
-      <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l2 -3l2 3m-2 -3v-1.5m2.627 -1.376l.373 -.124m-6 0l2.231 .744"/><path d="M20.042 16.045a9 9 0 0 0 -12.087 -12.087m-2.318 1.677a9 9 0 1 0 12.725 12.73"/><path d="M12 8a.5 .5 0 1 0 -.5 -.5"/><path d="M3 3l18 18"/></svg></div>
-      <p class="manual-card-titulo">Penetras</p>
-      <p class="manual-card-texto">Convidado não convida. Por favor, não peça convites e não insista! Isto é deselegante. O convite indica o nome da pessoa convidada, é pessoal e intransferível.</p>
-    </div>
-    <div class="manual-card">
-      <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.942 13.021a9 9 0 1 0 -9.407 7.967"/><path d="M12 7v5l3 3"/><path d="M15 19l2 2l4 -4"/></svg></div>
-      <p class="manual-card-titulo">Pontualidade</p>
-      <p class="manual-card-texto">A cerimônia é a parte mais importante do casamento. Seja pontual e se acomode com antecedência. Chegar após iniciada a cerimônia desvia a atenção de quem já está presente. Seja sensível e não apareça apenas para a festa.</p>
-    </div>
-    <div class="manual-card">
-      <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8"/><path d="M22 22l-5 -5"/><path d="M17 22l5 -5"/><path d="M11 4h2"/><path d="M12 17v.01"/></svg></div>
-      <p class="manual-card-titulo">Celular</p>
-      <p class="manual-card-texto">Preferencialmente, durante a cerimônia, desligue o seu celular. Convidado não é fotógrafo. Escolhemos duas profissionais incríveis para realizar este serviço. Evite tentar fazer o trabalho delas. Você pode acabar atrapalhando.</p>
-    </div>
-    <div class="manual-card">
-      <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.875 9.882a3 3 0 0 0 4.247 4.238m.581 -3.423a3.012 3.012 0 0 0 -1.418 -1.409"/><path d="M9 5a3 3 0 0 1 6 0c0 .562 -.259 1.442 -.776 2.64l-.724 1.36l1.76 -1.893c.499 -.6 .922 -1 1.27 -1.205a2.968 2.968 0 0 1 4.07 1.099a3.011 3.011 0 0 1 -1.09 4.098c-.374 .217 -.99 .396 -1.846 .535l-1.779 .244m.292 .282l1.223 .166c1 .145 1.698 .337 2.11 .576a3.011 3.011 0 0 1 1.226 3.832m-2.277 1.733a2.968 2.968 0 0 1 -1.929 -.369c-.348 -.202 -.771 -.604 -1.27 -1.205l-1.76 -1.893l.724 1.36c.516 1.199 .776 2.079 .776 2.64a3 3 0 0 1 -6 0c0 -.562 .259 -1.442 .776 -2.64l.724 -1.36l-1.76 1.893c-.499 .601 -.922 1 -1.27 1.205a2.968 2.968 0 0 1 -4.07 -1.098a3.011 3.011 0 0 1 1.09 -4.098c.374 -.218 .99 -.396 1.846 -.536l2.664 -.366l-2.4 -.325c-1 -.145 -1.698 -.337 -2.11 -.576a3.011 3.011 0 0 1 -1.09 -4.099a2.968 2.968 0 0 1 2.134 -1.467"/><path d="M3 3l18 18"/></svg></div>
-      <p class="manual-card-titulo">Decoração</p>
-      <p class="manual-card-texto">Não leve a decoração para casa. Existem itens que foram locados e precisam ser devolvidos. Na saída, você receberá o que pode levar de lembrança.</p>
-    </div>
-    <div class="manual-card">
-      <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h2"/><path d="M5 4v2"/><path d="M11.5 4l-.5 2"/><path d="M18 5h2"/><path d="M19 4v2"/><path d="M15 9l-1 1"/><path d="M18 13l2 -.5"/><path d="M18 19h2"/><path d="M19 18v2"/><path d="M14 16.518l-6.518 -6.518l-4.39 9.58a1 1 0 0 0 1.329 1.329l9.579 -4.39"/></svg></div>
-      <p class="manual-card-titulo">Noivas</p>
-      <p class="manual-card-texto">Se divirta muito e deixe a gente se divertir também! Esse momento passa muito rápido para só posarmos para fotos.</p>
-    </div>
-    <div class="manual-card">
-      <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.02 19.52c-2.34 .736 -5 .606 -7.32 -.52l-4.7 1l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c1.96 1.671 2.898 3.963 2.755 6.227"/><path d="M19 16v3"/><path d="M19 22v.01"/></svg></div>
-      <p class="manual-card-titulo">Comentários</p>
-      <p class="manual-card-texto">Guarde os comentários negativos para você. Antes de pontuar qualquer coisa que não gostou, lembre-se que nós colocamos 2 anos de muito esforço, trabalho e intenção para recebê-lo da melhor forma.</p>
-    </div>
+<div class="manual-section-wrap" id="manual" style="background: var(--cream);">
+  <img src="folhagens.jpeg" class="manual-bg" alt="">
+  <div class="manual-inner">
+    <section style="background: transparent;">
+      <span class="section-label">Tudo o que você precisa saber</span>
+      <h2 class="section-title">Manual do convidado</h2>
+      <div class="section-divider"></div>
+      <div class="manual-grid">
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"/><path d="M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2"/><path d="M9 14l2 2l4 -4"/></svg></div>
+          <p class="manual-card-titulo">Presença</p>
+          <p class="manual-card-texto">Fizemos um planejamento para uma quantidade determinada de convidados. Por isso, sua resposta é importante! Mesmo que seja para informar que não estará presente.</p>
+        </div>
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 6a2 2 0 1 0 -4 0c0 1.667 .67 3 2 4h-.008l7.971 4.428a2 2 0 0 1 1.029 1.749v.823a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-.823a2 2 0 0 1 1.029 -1.749l7.971 -4.428"/></svg></div>
+          <p class="manual-card-titulo">Traje</p>
+          <p class="manual-card-texto">Para descobrir o estilo do casamento, basta uma olhadinha no convite e uma pesquisada sobre o local. Isso irá te dar uma ideia de como será o evento. Portanto, se prepare! Nesta ocasião, aquela sua calça jeans não é a pedida certa. Lembre-se: por mais descolado que seja, ainda é um casamento.</p>
+        </div>
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3"/></svg></div>
+          <p class="manual-card-titulo">Evite</p>
+          <p class="manual-card-texto">É uma gafe usar branco ou cores muito claras. Esqueça também roupas na cor vermelho escuro (bordô, marsala, vinho e etc). Esta é a principal cor do nosso casamento. Imagine ser confundido com a decoração!</p>
+        </div>
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l2 -3l2 3m-2 -3v-1.5m2.627 -1.376l.373 -.124m-6 0l2.231 .744"/><path d="M20.042 16.045a9 9 0 0 0 -12.087 -12.087m-2.318 1.677a9 9 0 1 0 12.725 12.73"/><path d="M12 8a.5 .5 0 1 0 -.5 -.5"/><path d="M3 3l18 18"/></svg></div>
+          <p class="manual-card-titulo">Penetras</p>
+          <p class="manual-card-texto">Convidado não convida. Por favor, não peça convites e não insista! Isto é deselegante. O convite indica o nome da pessoa convidada, é pessoal e intransferível.</p>
+        </div>
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.942 13.021a9 9 0 1 0 -9.407 7.967"/><path d="M12 7v5l3 3"/><path d="M15 19l2 2l4 -4"/></svg></div>
+          <p class="manual-card-titulo">Pontualidade</p>
+          <p class="manual-card-texto">A cerimônia é a parte mais importante do casamento. Seja pontual e se acomode com antecedência. Chegar após iniciada a cerimônia desvia a atenção de quem já está presente. Seja sensível e não apareça apenas para a festa.</p>
+        </div>
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8"/><path d="M22 22l-5 -5"/><path d="M17 22l5 -5"/><path d="M11 4h2"/><path d="M12 17v.01"/></svg></div>
+          <p class="manual-card-titulo">Celular</p>
+          <p class="manual-card-texto">Preferencialmente, durante a cerimônia, desligue o seu celular. Convidado não é fotógrafo. Escolhemos duas profissionais incríveis para realizar este serviço. Evite tentar fazer o trabalho delas. Você pode acabar atrapalhando.</p>
+        </div>
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.875 9.882a3 3 0 0 0 4.247 4.238m.581 -3.423a3.012 3.012 0 0 0 -1.418 -1.409"/><path d="M9 5a3 3 0 0 1 6 0c0 .562 -.259 1.442 -.776 2.64l-.724 1.36l1.76 -1.893c.499 -.6 .922 -1 1.27 -1.205a2.968 2.968 0 0 1 4.07 1.099a3.011 3.011 0 0 1 -1.09 4.098c-.374 .217 -.99 .396 -1.846 .535l-1.779 .244m.292 .282l1.223 .166c1 .145 1.698 .337 2.11 .576a3.011 3.011 0 0 1 1.226 3.832m-2.277 1.733a2.968 2.968 0 0 1 -1.929 -.369c-.348 -.202 -.771 -.604 -1.27 -1.205l-1.76 -1.893l.724 1.36c.516 1.199 .776 2.079 .776 2.64a3 3 0 0 1 -6 0c0 -.562 .259 -1.442 .776 -2.64l.724 -1.36l-1.76 1.893c-.499 .601 -.922 1 -1.27 1.205a2.968 2.968 0 0 1 -4.07 -1.098a3.011 3.011 0 0 1 1.09 -4.098c.374 -.218 .99 -.396 1.846 -.536l2.664 -.366l-2.4 -.325c-1 -.145 -1.698 -.337 -2.11 -.576a3.011 3.011 0 0 1 -1.09 -4.099a2.968 2.968 0 0 1 2.134 -1.467"/><path d="M3 3l18 18"/></svg></div>
+          <p class="manual-card-titulo">Decoração</p>
+          <p class="manual-card-texto">Não leve a decoração para casa. Existem itens que foram locados e precisam ser devolvidos. Na saída, você receberá o que pode levar de lembrança.</p>
+        </div>
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h2"/><path d="M5 4v2"/><path d="M11.5 4l-.5 2"/><path d="M18 5h2"/><path d="M19 4v2"/><path d="M15 9l-1 1"/><path d="M18 13l2 -.5"/><path d="M18 19h2"/><path d="M19 18v2"/><path d="M14 16.518l-6.518 -6.518l-4.39 9.58a1 1 0 0 0 1.329 1.329l9.579 -4.39"/></svg></div>
+          <p class="manual-card-titulo">Noivas</p>
+          <p class="manual-card-texto">Se divirta muito e deixe a gente se divertir também! Esse momento passa muito rápido para só posarmos para fotos.</p>
+        </div>
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.02 19.52c-2.34 .736 -5 .606 -7.32 -.52l-4.7 1l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c1.96 1.671 2.898 3.963 2.755 6.227"/><path d="M19 16v3"/><path d="M19 22v.01"/></svg></div>
+          <p class="manual-card-titulo">Comentários</p>
+          <p class="manual-card-texto">Guarde os comentários negativos para você. Antes de pontuar qualquer coisa que não gostou, lembre-se que nós colocamos 2 anos de muito esforço, trabalho e intenção para recebê-lo da melhor forma.</p>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
+</div>
 
 <section id="evento" style="background: var(--ivory);">
   <span class="section-label">Detalhes do grande dia</span>
@@ -439,15 +447,18 @@ const presentes = [
   { id: 'escrivaninha', nome: 'Escrivaninha', preco: 700, img: 'escrivaninha.webp', vaquinha: false },
   { id: 'alexa', nome: 'Alexa', preco: 700, img: 'alexa.jpg', vaquinha: false },
   { id: 'cadeira-escritorio', nome: 'Cadeira de escritório', preco: 600, img: 'cadeira escritorio.jpg', vaquinha: false },
+  { id: 'estante-livros', nome: 'Estante de livros', preco: 550, img: 'estante de livros.jpg', vaquinha: false },
   { id: 'batedeira', nome: 'Batedeira planetária', preco: 500, img: 'batedeira.webp', vaquinha: false },
   { id: 'jogo-banho', nome: 'Jogo de Banho Buddemeyer', preco: 500, img: 'jogo de toalha.webp', vaquinha: false },
-  { id: 'faqueiro', nome: 'Faqueiro', preco: 400, img: 'faqueiro.webp', vaquinha: false },
+  { id: 'faqueiro', nome: 'Faqueiro', preco: 400, img: 'faqueiro certo.jpg', vaquinha: false },
   { id: 'vaquinha-ferdinando', nome: 'Vaquinha Ferdinando', preco: 400, img: 'Ferdinando.webp', vaquinha: true },
   { id: 'moedor-cafe', nome: 'Moedor de café', preco: 380, img: 'moedor de café.jpg', vaquinha: false },
+  { id: 'sapateira', nome: 'Sapateira', preco: 300, img: 'sapateira.webp', vaquinha: false },
   { id: 'conjunto-tacas-vinho', nome: 'Conjunto de taças de vinho', preco: 300, img: 'taças de vinho.webp', vaquinha: false },
   { id: 'conjunto-tacas-espumante', nome: 'Conjunto de taças de espumante', preco: 300, img: 'taça espumante.webp', vaquinha: false },
   { id: 'maquina-seladora', nome: 'Máquina seladora', preco: 300, img: 'seladora.jpg', vaquinha: false },
   { id: 'escada', nome: 'Escada', preco: 260, img: 'escada.webp', vaquinha: false },
+  { id: 'espelho', nome: 'Espelho', preco: 200, img: 'espelho.jpg', vaquinha: false },
   { id: 'maquina-waffle', nome: 'Máquina elétrica de waffle', preco: 200, img: 'máquina de waffle.webp', vaquinha: false },
   { id: 'abajur-chao', nome: 'Abajur de chão', preco: 200, img: 'abajur de chao.jpg', vaquinha: false },
   { id: 'espremedor', nome: 'Espremedor de frutas elétrico', preco: 200, img: 'espremedor.webp', vaquinha: false },
@@ -457,16 +468,22 @@ const presentes = [
   { id: 'cafeteira-hario', nome: 'Kit Cafeteira Hario V60', preco: 170, img: 'v60.jpeg', vaquinha: false },
   { id: 'abajur-cabeceira', nome: 'Abajur de cabeceira', preco: 170, img: 'abajur de mesa.webp', vaquinha: false },
   { id: 'processador', nome: 'Processador de alimentos', preco: 170, img: 'processador de alimentos.jpg', vaquinha: false },
+  { id: 'carrinho-organizador', nome: 'Carrinho organizador', preco: 150, img: 'carrinho organizador.webp', vaquinha: false },
+  { id: 'furadeira', nome: 'Furadeira', preco: 150, img: 'furadeira.jpg', vaquinha: false },
   { id: 'kit-bar', nome: 'Kit bar', preco: 150, img: 'kit bar.webp', vaquinha: false },
   { id: 'vaquinha-vaca', nome: 'Vaquinha Vaca', preco: 150, img: 'vaca.jpg', vaquinha: true },
   { id: 'roupao', nome: 'Roupão', preco: 150, img: 'roupão.jpg', vaquinha: false },
   { id: 'umedificador', nome: 'Umidificador', preco: 150, img: 'umedificador.webp', vaquinha: false },
   { id: 'potes-vidro', nome: 'Conjunto de potes de vidro', preco: 150, img: 'potes.jpg', vaquinha: false },
+  { id: 'mixer-multiuso', nome: 'Mixer multiuso', preco: 120, img: 'mixer multiuso.jpg', vaquinha: false },
+  { id: 'caixa-ferramentas', nome: 'Caixa de ferramentas', preco: 120, img: 'ferramentas.jpg', vaquinha: false },
   { id: 'kit-jardinagem', nome: 'Kit jardinagem', preco: 100, img: 'kit jardinagem.jpg', vaquinha: false },
   { id: 'mop', nome: 'Mop', preco: 100, img: 'mop.jpg', vaquinha: false },
+  { id: 'puff', nome: 'Puff', preco: 100, img: 'puff.jpg', vaquinha: false },
   { id: 'bowls', nome: 'Conjunto de bowls', preco: 90, img: 'bowls.jpg', vaquinha: false },
-  { id: 'pano-prato', nome: 'Panos de prato', preco: 70, img: 'pano de prato.webp', vaquinha: false },
   { id: 'descanso-panela', nome: 'Descanso de panela', preco: 80, img: 'descanso de panela.webp', vaquinha: false },
+  { id: 'pano-prato', nome: 'Panos de prato', preco: 70, img: 'pano de prato.webp', vaquinha: false },
+  { id: 'extensao', nome: 'Extensão', preco: 100, img: 'extensão.jpg', vaquinha: false },
   { id: 'bandeja-cafe', nome: 'Bandeja de café da manhã', preco: 50, img: 'bandeja de cafe.jpg', vaquinha: false },
 ];
 
