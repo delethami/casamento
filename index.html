@@ -49,7 +49,6 @@
   .hero-divider { width: 60px; height: 1px; background: var(--wine-light); margin: 2rem auto; }
   .hero-date { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 0.15em; color: var(--text-mid); margin-bottom: 0.5rem; }
   .hero-location { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.5rem; }
-
   @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
   .countdown { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2.5rem; align-items: center; }
   .countdown-unit { text-align: center; border: 1.5px solid var(--wine); border-radius: 3px; padding: 0.6rem 1rem; animation: pulse 2.5s ease-in-out infinite; }
@@ -79,16 +78,17 @@
   .event-card-value { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); line-height: 1.2; }
   .event-card-note { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); line-height: 1.6; margin-top: 0.6rem; font-weight: 400; }
 
+  /* PRESENTES */
   .gifts-intro { font-size: 1rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 560px; }
   .gifts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
-  .gift-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; cursor: pointer; }
-  .gift-card:hover { border-color: var(--wine-light); transform: translateY(-4px); }
+  .gift-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; cursor: pointer; position: relative; }
+  .gift-card:hover:not(.gift-chosen) { border-color: var(--wine-light); transform: translateY(-4px); }
   .gift-img-wrap { width: 100%; height: 120px; background: var(--cream); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
   .gift-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 0.3rem; transition: opacity 0.3s; }
-  .gift-card:hover .gift-img-wrap img { opacity: 0.85; }
+  .gift-card:hover:not(.gift-chosen) .gift-img-wrap img { opacity: 0.85; }
   .gift-img-placeholder { font-size: 2rem; color: var(--wine-light); }
   .gift-overlay { position: absolute; inset: 0; background: rgba(44,20,16,0.55); display: none; align-items: center; justify-content: center; }
-  .gift-overlay-text { color: white; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
+  .gift-overlay-text { color: white; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; text-align: center; padding: 0.5rem; }
   .gift-body { padding: 0.7rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
   .gift-name { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 400; color: var(--text-dark); line-height: 1.3; }
   .gift-price { font-size: 0.8rem; color: var(--wine); font-weight: 500; }
@@ -100,16 +100,41 @@
   .gift-chosen .gift-overlay { display: flex; }
   .gift-chosen .btn-comprar { display: none; }
   .gift-chosen .gift-price { color: var(--text-light); }
-  .gift-chosen:hover { transform: none; border-color: var(--stone); cursor: default; }
+  .gift-chosen:hover { transform: none !important; border-color: var(--stone) !important; cursor: default; }
+
+  /* FLIP CARD */
+  .gift-card-flip { perspective: 1000px; }
+  .gift-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
+  .gift-card-flip.virado .gift-card-inner { transform: rotateY(180deg); }
+  .gift-card-front, .gift-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+  .gift-card-back { background: var(--wine); transform: rotateY(180deg); align-items: center; justify-content: center; padding: 1rem; text-align: center; }
+  .gift-card-back-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: white; margin-bottom: 0.5rem; }
+  .gift-card-back-nome { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; color: var(--wine-pale); letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+  .gift-card-back-msg { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 300; color: var(--wine-light); line-height: 1.5; font-style: italic; }
+  .gift-card-back-heart { font-size: 1.5rem; margin-top: 0.8rem; color: var(--wine-light); }
+
   .btn-ver-mais { background: none; border: 1.5px solid var(--wine); color: var(--wine); padding: 0.7rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; margin-top: 1.5rem; display: block; }
   .btn-ver-mais:hover { background: var(--wine); color: white; }
 
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 400; align-items: center; justify-content: center; }
+  .modal-overlay.aberto { display: flex; }
+  .modal-box { background: var(--ivory); border-radius: 8px; padding: 2rem; width: 90%; max-width: 420px; position: relative; }
+  .modal-titulo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
+  .modal-subtitulo { font-size: 0.85rem; color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.6; }
+  .modal-presente { font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--wine-light); margin-bottom: 1.5rem; }
+  .modal-input { width: 100%; background: var(--ivory); border: 1px solid var(--stone); border-radius: 2px; padding: 0.75rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text-dark); outline: none; transition: border-color 0.2s; margin-bottom: 1rem; }
+  .modal-input:focus { border-color: var(--wine); }
+  .modal-btn { width: 100%; background: var(--wine); color: white; border: none; padding: 0.9rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
+  .modal-btn:hover { background: #6a1828; }
+  .modal-btn:disabled { background: var(--stone); cursor: not-allowed; }
+  .modal-fechar { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
+  .modal-erro { color: #a32d2d; font-size: 0.8rem; margin-bottom: 0.8rem; display: none; }
+
+  /* MANUAL */
   .manual-section-wrap { position: relative; overflow: hidden; background: var(--cream); }
-  .manual-folha { position: absolute; width: 220px; height: auto; opacity: 0.13; pointer-events: none; }
-  .manual-folha-tl { top: -30px; left: -30px; transform: rotate(20deg); }
-  .manual-folha-tr { top: -30px; right: -30px; transform: rotate(-160deg) scaleX(-1); }
-  .manual-folha-bl { bottom: -30px; left: -30px; transform: rotate(-20deg) scaleY(-1); }
-  .manual-folha-br { bottom: -30px; right: -30px; transform: rotate(160deg); }
+  .manual-folha-esq { position: absolute; left: 0; top: 0; bottom: 0; width: 120px; background-image: url('folhagens.jpeg'); background-size: cover; background-position: center; opacity: 0.12; pointer-events: none; mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); }
+  .manual-folha-dir { position: absolute; right: 0; top: 0; bottom: 0; width: 120px; background-image: url('folhagens.jpeg'); background-size: cover; background-position: center; opacity: 0.12; pointer-events: none; transform: scaleX(-1); mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); }
   .manual-inner { position: relative; z-index: 1; }
   .manual-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   @media (max-width: 600px) { .manual-grid { grid-template-columns: 1fr; } }
@@ -119,6 +144,7 @@
   .manual-card-titulo { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.8rem; }
   .manual-card-texto { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--text-mid); line-height: 1.6; text-align: justify; }
 
+  /* RSVP */
   .rsvp-form { max-width: 520px; }
   .form-group { margin-bottom: 1.5rem; }
   .form-label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 0.5rem; font-weight: 400; }
@@ -299,10 +325,8 @@
 </section>
 
 <div class="manual-section-wrap" id="manual">
-  <img src="folhagens.jpeg" class="manual-folha manual-folha-tl" alt="">
-  <img src="folhagens.jpeg" class="manual-folha manual-folha-tr" alt="">
-  <img src="folhagens.jpeg" class="manual-folha manual-folha-bl" alt="">
-  <img src="folhagens.jpeg" class="manual-folha manual-folha-br" alt="">
+  <div class="manual-folha-esq"></div>
+  <div class="manual-folha-dir"></div>
   <div class="manual-inner">
     <section style="background: transparent;">
       <span class="section-label">Tudo o que você precisa saber</span>
@@ -388,6 +412,19 @@
   <div class="footer-names">Del & Thami</div>
   <p class="footer-date">10 · 10 · 2027 &nbsp;·&nbsp; Belo Horizonte</p>
 </footer>
+
+<!-- Modal nome -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-fechar" onclick="fecharModal()">✕</button>
+    <h2 class="modal-titulo">Que presente lindo!</h2>
+    <p class="modal-subtitulo">Para personalizarmos seu agradecimento, informe seu nome antes de prosseguir para o pagamento.</p>
+    <p class="modal-presente" id="modal-presente-nome"></p>
+    <p class="modal-erro" id="modal-erro">Por favor, informe seu nome.</p>
+    <input type="text" class="modal-input" id="modal-nome-input" placeholder="Seu nome completo">
+    <button class="modal-btn" id="modal-btn-pagar" onclick="confirmarPagamento()">Ir para o pagamento</button>
+  </div>
+</div>
 
 <button class="painel-btn" onclick="abrirPainel()" title="Painel das noivas">🔒</button>
 
@@ -498,6 +535,7 @@ const presentes = [
 ];
 
 const LIMITE = 15;
+let presenteAtual = null;
 
 function formatarPreco(v) {
   return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -508,54 +546,156 @@ async function renderPresentes() {
   grid.innerHTML = '';
   const snap = await get(ref(db, 'presentes'));
   const dados = snap.val() || {};
+
   presentes.forEach((p, index) => {
-    const comprado = dados[p.id] === true && !p.vaquinha;
-    const card = document.createElement('div');
-    card.className = 'gift-card' + (comprado ? ' gift-chosen' : '');
-    if (index >= LIMITE) card.classList.add('gift-extra');
-    card.id = 'gcard-' + p.id;
-    const imgHtml = p.img
-      ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">`
-      : `<i class="ti ti-gift gift-img-placeholder" aria-hidden="true"></i>`;
-    card.innerHTML = `
-      <div class="gift-img-wrap">
-        ${imgHtml}
-        <div class="gift-overlay"><span class="gift-overlay-text">Presente escolhido</span></div>
-      </div>
-      <div class="gift-body">
-        <div class="gift-name">${p.nome}</div>
-        <div class="gift-price">${formatarPreco(p.preco)}</div>
-        <div class="gift-btn">
-          ${!comprado ? `<button class="btn-comprar" onclick="comprarPresente('${p.id}', ${p.vaquinha})">Presentear</button>` : ''}
-        </div>
-      </div>`;
-    grid.appendChild(card);
+    const comprado = dados[p.id] && !p.vaquinha;
+    const nomeComprador = dados[p.id]?.nome || '';
+
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'position: relative; height: 220px;';
+    if (index >= LIMITE) wrapper.classList.add('gift-extra');
+
+    if (comprado) {
+      wrapper.innerHTML = `
+        <div class="gift-card gift-card-flip virado" id="gcard-${p.id}" style="height:100%;">
+          <div class="gift-card-inner" style="height:100%;">
+            <div class="gift-card-front" style="height:100%;">
+              <div class="gift-img-wrap" style="height:120px;">
+                ${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : `<i class="ti ti-gift gift-img-placeholder" aria-hidden="true"></i>`}
+                <div class="gift-overlay" style="display:flex;"><span class="gift-overlay-text">Presente escolhido</span></div>
+              </div>
+              <div class="gift-body">
+                <div class="gift-name" style="text-decoration:line-through;color:var(--text-light);">${p.nome}</div>
+                <div class="gift-price" style="color:var(--text-light);">${formatarPreco(p.preco)}</div>
+              </div>
+            </div>
+            <div class="gift-card-back">
+              <div class="gift-card-back-title">Muito obrigada!</div>
+              <div class="gift-card-back-nome">${nomeComprador}</div>
+              <div class="gift-card-back-msg">Sua generosidade nos enche de alegria. Que presente lindo!</div>
+              <div class="gift-card-back-heart">♡</div>
+            </div>
+          </div>
+        </div>`;
+    } else {
+      wrapper.innerHTML = `
+        <div class="gift-card gift-card-flip" id="gcard-${p.id}" style="height:100%;">
+          <div class="gift-card-inner" style="height:100%;">
+            <div class="gift-card-front" style="height:100%;">
+              <div class="gift-img-wrap" style="height:120px;">
+                ${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : `<i class="ti ti-gift gift-img-placeholder" aria-hidden="true"></i>`}
+                <div class="gift-overlay"><span class="gift-overlay-text">Presente escolhido</span></div>
+              </div>
+              <div class="gift-body">
+                <div class="gift-name">${p.nome}</div>
+                <div class="gift-price">${formatarPreco(p.preco)}</div>
+                <div class="gift-btn">
+                  <button class="btn-comprar" onclick="abrirModal('${p.id}')">Presentear</button>
+                </div>
+              </div>
+            </div>
+            <div class="gift-card-back">
+              <div class="gift-card-back-title">Muito obrigada!</div>
+              <div class="gift-card-back-nome"></div>
+              <div class="gift-card-back-msg">Sua generosidade nos enche de alegria. Que presente lindo!</div>
+              <div class="gift-card-back-heart">♡</div>
+            </div>
+          </div>
+        </div>`;
+    }
+    grid.appendChild(wrapper);
   });
-  const extras = document.querySelectorAll('.gift-extra');
-  extras.forEach(el => el.style.display = 'none');
-  if (presentes.length > LIMITE) {
-    document.getElementById('btn-ver-mais').style.display = 'block';
+
+  document.querySelectorAll('.gift-extra').forEach(el => el.style.display = 'none');
+  if (presentes.length > LIMITE) document.getElementById('btn-ver-mais').style.display = 'block';
+
+  verificarPagamentoRetorno();
+}
+
+function verificarPagamentoRetorno() {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get('pagamento');
+  const presenteId = params.get('presente');
+  const nomeComprador = params.get('nome');
+
+  if (status === 'sucesso' && presenteId && nomeComprador) {
+    const presente = presentes.find(p => p.id === presenteId);
+    if (presente && !presente.vaquinha) {
+      set(ref(db, `presentes/${presenteId}`), { pago: true, nome: decodeURIComponent(nomeComprador) });
+      setTimeout(() => virarCard(presenteId, decodeURIComponent(nomeComprador)), 800);
+    }
+    window.history.replaceState({}, document.title, window.location.pathname);
   }
 }
 
-window.verMais = function() {
-  const extras = document.querySelectorAll('.gift-extra');
-  extras.forEach(el => el.style.display = '');
-  document.getElementById('btn-ver-mais').style.display = 'none';
-};
-
-window.comprarPresente = async function(id, vaquinha) {
-  if (!vaquinha) {
-    await set(ref(db, 'presentes/' + id), true);
-    const card = document.getElementById('gcard-' + id);
-    if (card) {
-      card.classList.add('gift-chosen');
-      const btn = card.querySelector('.gift-btn');
-      if (btn) btn.innerHTML = '';
-      const overlay = card.querySelector('.gift-overlay');
+function virarCard(id, nome) {
+  const card = document.getElementById(`gcard-${id}`);
+  if (card) {
+    const backNome = card.querySelector('.gift-card-back-nome');
+    if (backNome) backNome.textContent = nome;
+    card.classList.add('virado');
+    const front = card.querySelector('.gift-card-front');
+    if (front) {
+      const overlay = front.querySelector('.gift-overlay');
       if (overlay) overlay.style.display = 'flex';
     }
   }
+}
+
+window.abrirModal = function(id) {
+  presenteAtual = presentes.find(p => p.id === id);
+  if (!presenteAtual) return;
+  document.getElementById('modal-presente-nome').textContent = `${presenteAtual.nome} · ${formatarPreco(presenteAtual.preco)}`;
+  document.getElementById('modal-nome-input').value = '';
+  document.getElementById('modal-erro').style.display = 'none';
+  document.getElementById('modal-overlay').classList.add('aberto');
+  setTimeout(() => document.getElementById('modal-nome-input').focus(), 100);
+};
+
+window.fecharModal = function() {
+  document.getElementById('modal-overlay').classList.remove('aberto');
+  presenteAtual = null;
+};
+
+window.confirmarPagamento = async function() {
+  const nome = document.getElementById('modal-nome-input').value.trim();
+  if (!nome) {
+    document.getElementById('modal-erro').style.display = 'block';
+    return;
+  }
+  const btn = document.getElementById('modal-btn-pagar');
+  btn.disabled = true;
+  btn.textContent = 'Aguarde...';
+
+  try {
+    const resp = await fetch('/.netlify/functions/criar-pagamento', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        presenteId: presenteAtual.id,
+        presenteNome: presenteAtual.nome,
+        preco: presenteAtual.preco,
+        nomeComprador: nome
+      })
+    });
+    const data = await resp.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Ir para o pagamento';
+      alert('Erro ao processar pagamento. Tente novamente.');
+    }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'Ir para o pagamento';
+    alert('Erro de conexão. Tente novamente.');
+  }
+};
+
+window.verMais = function() {
+  document.querySelectorAll('.gift-extra').forEach(el => el.style.display = '');
+  document.getElementById('btn-ver-mais').style.display = 'none';
 };
 
 renderPresentes();
