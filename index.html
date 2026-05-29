@@ -78,8 +78,7 @@
   .event-card-value { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); line-height: 1.2; }
   .event-card-note { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); line-height: 1.6; margin-top: 0.6rem; font-weight: 400; }
 
-  /* PRESENTES */
-  .gifts-intro { font-size: 1rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 560px; }
+  .gifts-intro { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 1.9; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 560px; font-style: italic; }
   .gifts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
   .gift-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; cursor: pointer; position: relative; }
   .gift-card:hover:not(.gift-chosen) { border-color: var(--wine-light); transform: translateY(-4px); }
@@ -101,8 +100,6 @@
   .gift-chosen .btn-comprar { display: none; }
   .gift-chosen .gift-price { color: var(--text-light); }
   .gift-chosen:hover { transform: none !important; border-color: var(--stone) !important; cursor: default; }
-
-  /* FLIP CARD */
   .gift-card-flip { perspective: 1000px; }
   .gift-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
   .gift-card-flip.virado .gift-card-inner { transform: rotateY(180deg); }
@@ -112,29 +109,25 @@
   .gift-card-back-nome { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; color: var(--wine-pale); letter-spacing: 0.1em; margin-bottom: 0.8rem; }
   .gift-card-back-msg { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 300; color: var(--wine-light); line-height: 1.5; font-style: italic; }
   .gift-card-back-heart { font-size: 1.5rem; margin-top: 0.8rem; color: var(--wine-light); }
-
   .btn-ver-mais { background: none; border: 1.5px solid var(--wine); color: var(--wine); padding: 0.7rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; margin-top: 1.5rem; display: block; }
   .btn-ver-mais:hover { background: var(--wine); color: white; }
 
-  /* MODAL */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 400; align-items: center; justify-content: center; }
   .modal-overlay.aberto { display: flex; }
   .modal-box { background: var(--ivory); border-radius: 8px; padding: 2rem; width: 90%; max-width: 420px; position: relative; }
-  .modal-titulo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
-  .modal-subtitulo { font-size: 0.85rem; color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.6; }
+  .modal-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--wine); margin-bottom: 0.8rem; }
+  .modal-subtitulo { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 1.5rem; line-height: 1.7; font-family: 'Cormorant Garamond', serif; }
   .modal-presente { font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--wine-light); margin-bottom: 1.5rem; }
+  .modal-erro { color: #a32d2d; font-size: 0.8rem; margin-bottom: 0.8rem; display: none; }
   .modal-input { width: 100%; background: var(--ivory); border: 1px solid var(--stone); border-radius: 2px; padding: 0.75rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text-dark); outline: none; transition: border-color 0.2s; margin-bottom: 1rem; }
   .modal-input:focus { border-color: var(--wine); }
   .modal-btn { width: 100%; background: var(--wine); color: white; border: none; padding: 0.9rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
   .modal-btn:hover { background: #6a1828; }
   .modal-btn:disabled { background: var(--stone); cursor: not-allowed; }
   .modal-fechar { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
-  .modal-erro { color: #a32d2d; font-size: 0.8rem; margin-bottom: 0.8rem; display: none; }
 
-  /* MANUAL */
   .manual-section-wrap { position: relative; overflow: hidden; background: var(--cream); }
-  .manual-folha-esq { position: absolute; left: 0; top: 0; bottom: 0; width: 120px; background-image: url('folhagens.jpeg'); background-size: cover; background-position: center; opacity: 0.12; pointer-events: none; mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); }
-  .manual-folha-dir { position: absolute; right: 0; top: 0; bottom: 0; width: 120px; background-image: url('folhagens.jpeg'); background-size: cover; background-position: center; opacity: 0.12; pointer-events: none; transform: scaleX(-1); mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0)); }
+  .manual-folha { position: absolute; opacity: 0.1; pointer-events: none; }
   .manual-inner { position: relative; z-index: 1; }
   .manual-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   @media (max-width: 600px) { .manual-grid { grid-template-columns: 1fr; } }
@@ -144,7 +137,6 @@
   .manual-card-titulo { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.8rem; }
   .manual-card-texto { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--text-mid); line-height: 1.6; text-align: justify; }
 
-  /* RSVP */
   .rsvp-form { max-width: 520px; }
   .form-group { margin-bottom: 1.5rem; }
   .form-label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 0.5rem; font-weight: 400; }
@@ -154,6 +146,9 @@
   .radio-group { display: flex; gap: 1rem; }
   .radio-option { flex: 1; border: 1px solid var(--stone); border-radius: 2px; padding: 0.75rem 1rem; cursor: pointer; text-align: center; font-size: 0.85rem; color: var(--text-mid); transition: all 0.2s; background: var(--ivory); }
   .radio-option.selected { background: var(--wine-pale); border-color: var(--wine); color: var(--wine); }
+  .bebida-group { display: flex; gap: 1rem; margin-top: 0.5rem; }
+  .bebida-option { flex: 1; border: 1px solid var(--stone); border-radius: 2px; padding: 0.6rem 1rem; cursor: pointer; text-align: center; font-size: 0.85rem; color: var(--text-mid); transition: all 0.2s; background: var(--ivory); }
+  .bebida-option.selected { background: var(--wine-pale); border-color: var(--wine); color: var(--wine); }
   .acomp-block { background: var(--cream); border: 1px solid var(--stone); border-radius: 4px; padding: 1rem 1.2rem; margin-bottom: 1rem; }
   .acomp-titulo { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.8rem; font-weight: 400; }
   .btn-submit { background: var(--wine); color: white; border: none; padding: 0.9rem 2.5rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; width: 100%; margin-top: 0.5rem; }
@@ -181,11 +176,12 @@
   .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--wine); display: block; }
   .stat-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); margin-top: 0.3rem; display: block; }
   .convidado-lista { border: 1px solid var(--stone); border-radius: 4px; overflow: hidden; }
-  .convidado-item { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 1rem; padding: 0.8rem 1rem; border-bottom: 1px solid var(--stone); font-size: 0.9rem; }
+  .convidado-item { display: grid; grid-template-columns: 1fr auto auto; align-items: start; gap: 1rem; padding: 0.8rem 1rem; border-bottom: 1px solid var(--stone); font-size: 0.9rem; }
   .convidado-item:last-child { border-bottom: none; }
   .convidado-item:nth-child(even) { background: var(--cream); }
   .convidado-nome { color: var(--text-dark); font-weight: 400; }
   .convidado-acomp { font-size: 0.75rem; color: var(--text-light); font-style: italic; margin-top: 0.2rem; }
+  .convidado-bebida { font-size: 0.7rem; color: var(--text-light); margin-top: 0.2rem; }
   .convidado-whats { font-size: 0.8rem; color: var(--text-light); }
   .convidado-status { font-size: 1rem; }
   .convidado-pendente { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.1em; }
@@ -276,7 +272,7 @@
   <span class="section-label">Para nos presentear</span>
   <h2 class="section-title">Lista de presentes</h2>
   <div class="section-divider"></div>
-  <p class="gifts-intro">A melhor parte do casamento é celebrar com vocês. Mas se quiserem nos presentear, aqui estão algumas sugestões de coisas que adoramos e que farão parte do nosso novo lar juntas.</p>
+  <p class="gifts-intro">O mais especial deste dia vai ser comemorar com você, mas não podemos negar que adoraríamos receber algumas dessas lembranças. Caso queira nos presentear, escolha o que quiser, ou contribua com as nossas vaquinhas.</p>
   <div class="gifts-grid" id="gifts-grid"></div>
   <button class="btn-ver-mais" id="btn-ver-mais" onclick="verMais()" style="display:none;">Ver mais presentes</button>
 </section>
@@ -302,16 +298,25 @@
         <div class="radio-option" id="opt-nao" onclick="selectPresenca('nao')">Infelizmente não poderei</div>
       </div>
     </div>
-    <div class="form-group" id="acomp-group" style="display:none;">
-      <label class="form-label">Número de acompanhantes (além de você)</label>
-      <select class="form-select" id="acomp" onchange="gerarCamposAcomp()">
-        <option value="0">Apenas eu</option>
-        <option value="1">+ 1 pessoa</option>
-        <option value="2">+ 2 pessoas</option>
-        <option value="3">+ 3 pessoas</option>
-      </select>
+    <div id="campos-presenca" style="display:none;">
+      <div class="form-group">
+        <label class="form-label">Consome bebida alcoólica?</label>
+        <div class="bebida-group">
+          <div class="bebida-option" id="bebida-sim" onclick="selectBebida('sim')">Sim</div>
+          <div class="bebida-option" id="bebida-nao" onclick="selectBebida('nao')">Não</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Número de acompanhantes (além de você)</label>
+        <select class="form-select" id="acomp" onchange="gerarCamposAcomp()">
+          <option value="0">Apenas eu</option>
+          <option value="1">+ 1 pessoa</option>
+          <option value="2">+ 2 pessoas</option>
+          <option value="3">+ 3 pessoas</option>
+        </select>
+      </div>
+      <div id="acomp-campos"></div>
     </div>
-    <div id="acomp-campos"></div>
     <div class="form-group">
       <label class="form-label">Alguma mensagem para as noivas? (opcional)</label>
       <textarea class="form-textarea" id="msg" placeholder="Escreva o que quiser ♡"></textarea>
@@ -325,8 +330,14 @@
 </section>
 
 <div class="manual-section-wrap" id="manual">
-  <div class="manual-folha-esq"></div>
-  <div class="manual-folha-dir"></div>
+  <img src="folhagens.jpeg" class="manual-folha" style="width:180px; top:5%; left:-40px; transform:rotate(15deg);" alt="">
+  <img src="folhagens.jpeg" class="manual-folha" style="width:120px; top:25%; left:-20px; transform:rotate(-30deg) scaleX(-1);" alt="">
+  <img src="folhagens.jpeg" class="manual-folha" style="width:150px; top:55%; left:-35px; transform:rotate(20deg);" alt="">
+  <img src="folhagens.jpeg" class="manual-folha" style="width:130px; top:78%; left:-25px; transform:rotate(-10deg) scaleY(-1);" alt="">
+  <img src="folhagens.jpeg" class="manual-folha" style="width:170px; top:8%; right:-40px; transform:rotate(-20deg) scaleX(-1);" alt="">
+  <img src="folhagens.jpeg" class="manual-folha" style="width:125px; top:35%; right:-25px; transform:rotate(25deg);" alt="">
+  <img src="folhagens.jpeg" class="manual-folha" style="width:155px; top:62%; right:-38px; transform:rotate(-15deg) scaleX(-1);" alt="">
+  <img src="folhagens.jpeg" class="manual-folha" style="width:140px; top:85%; right:-30px; transform:rotate(10deg) scaleY(-1);" alt="">
   <div class="manual-inner">
     <section style="background: transparent;">
       <span class="section-label">Tudo o que você precisa saber</span>
@@ -413,15 +424,14 @@
   <p class="footer-date">10 · 10 · 2027 &nbsp;·&nbsp; Belo Horizonte</p>
 </footer>
 
-<!-- Modal nome -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box">
     <button class="modal-fechar" onclick="fecharModal()">✕</button>
-    <h2 class="modal-titulo">Que presente lindo!</h2>
-    <p class="modal-subtitulo">Para personalizarmos seu agradecimento, informe seu nome antes de prosseguir para o pagamento.</p>
+    <h2 class="modal-titulo">Uhull!!</h2>
+    <p class="modal-subtitulo">Conta para a gente seu nome. As meninas vão adorar saber quem escolheu este presente para elas.</p>
     <p class="modal-presente" id="modal-presente-nome"></p>
     <p class="modal-erro" id="modal-erro">Por favor, informe seu nome.</p>
-    <input type="text" class="modal-input" id="modal-nome-input" placeholder="Seu nome completo">
+    <input type="text" class="modal-input" id="modal-nome-input" placeholder="Nome" onkeydown="if(event.key==='Enter')confirmarPagamento()">
     <button class="modal-btn" id="modal-btn-pagar" onclick="confirmarPagamento()">Ir para o pagamento</button>
   </div>
 </div>
@@ -536,6 +546,7 @@ const presentes = [
 
 const LIMITE = 15;
 let presenteAtual = null;
+let bebidaTitular = null;
 
 function formatarPreco(v) {
   return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -550,7 +561,6 @@ async function renderPresentes() {
   presentes.forEach((p, index) => {
     const comprado = dados[p.id] && !p.vaquinha;
     const nomeComprador = dados[p.id]?.nome || '';
-
     const wrapper = document.createElement('div');
     wrapper.style.cssText = 'position: relative; height: 220px;';
     if (index >= LIMITE) wrapper.classList.add('gift-extra');
@@ -608,7 +618,6 @@ async function renderPresentes() {
 
   document.querySelectorAll('.gift-extra').forEach(el => el.style.display = 'none');
   if (presentes.length > LIMITE) document.getElementById('btn-ver-mais').style.display = 'block';
-
   verificarPagamentoRetorno();
 }
 
@@ -617,7 +626,6 @@ function verificarPagamentoRetorno() {
   const status = params.get('pagamento');
   const presenteId = params.get('presente');
   const nomeComprador = params.get('nome');
-
   if (status === 'sucesso' && presenteId && nomeComprador) {
     const presente = presentes.find(p => p.id === presenteId);
     if (presente && !presente.vaquinha) {
@@ -634,11 +642,6 @@ function virarCard(id, nome) {
     const backNome = card.querySelector('.gift-card-back-nome');
     if (backNome) backNome.textContent = nome;
     card.classList.add('virado');
-    const front = card.querySelector('.gift-card-front');
-    if (front) {
-      const overlay = front.querySelector('.gift-overlay');
-      if (overlay) overlay.style.display = 'flex';
-    }
   }
 }
 
@@ -659,38 +662,20 @@ window.fecharModal = function() {
 
 window.confirmarPagamento = async function() {
   const nome = document.getElementById('modal-nome-input').value.trim();
-  if (!nome) {
-    document.getElementById('modal-erro').style.display = 'block';
-    return;
-  }
+  if (!nome) { document.getElementById('modal-erro').style.display = 'block'; return; }
   const btn = document.getElementById('modal-btn-pagar');
   btn.disabled = true;
   btn.textContent = 'Aguarde...';
-
   try {
     const resp = await fetch('/.netlify/functions/criar-pagamento', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        presenteId: presenteAtual.id,
-        presenteNome: presenteAtual.nome,
-        preco: presenteAtual.preco,
-        nomeComprador: nome
-      })
+      body: JSON.stringify({ presenteId: presenteAtual.id, presenteNome: presenteAtual.nome, preco: presenteAtual.preco, nomeComprador: nome })
     });
     const data = await resp.json();
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      btn.disabled = false;
-      btn.textContent = 'Ir para o pagamento';
-      alert('Erro ao processar pagamento. Tente novamente.');
-    }
-  } catch {
-    btn.disabled = false;
-    btn.textContent = 'Ir para o pagamento';
-    alert('Erro de conexão. Tente novamente.');
-  }
+    if (data.url) { window.location.href = data.url; }
+    else { btn.disabled = false; btn.textContent = 'Ir para o pagamento'; alert('Erro ao processar. Tente novamente.'); }
+  } catch { btn.disabled = false; btn.textContent = 'Ir para o pagamento'; alert('Erro de conexão. Tente novamente.'); }
 };
 
 window.verMais = function() {
@@ -723,9 +708,15 @@ window.selectPresenca = function(v) {
   presenca = v;
   document.getElementById('opt-sim').classList.toggle('selected', v === 'sim');
   document.getElementById('opt-nao').classList.toggle('selected', v === 'nao');
-  document.getElementById('acomp-group').style.display = v === 'sim' ? 'block' : 'none';
+  document.getElementById('campos-presenca').style.display = v === 'sim' ? 'block' : 'none';
   if (v === 'sim') gerarCamposAcomp();
-  else document.getElementById('acomp-campos').innerHTML = '';
+  else { document.getElementById('acomp-campos').innerHTML = ''; bebidaTitular = null; }
+};
+
+window.selectBebida = function(v) {
+  bebidaTitular = v;
+  document.getElementById('bebida-sim').classList.toggle('selected', v === 'sim');
+  document.getElementById('bebida-nao').classList.toggle('selected', v === 'nao');
 };
 
 window.gerarCamposAcomp = function() {
@@ -737,13 +728,25 @@ window.gerarCamposAcomp = function() {
     bloco.className = 'acomp-block';
     bloco.innerHTML = `
       <p class="acomp-titulo">Acompanhante ${i}</p>
-      <div class="form-group" style="margin-bottom:0">
+      <div class="form-group">
         <label class="form-label">Nome completo</label>
         <input type="text" class="form-input" id="acomp-nome-${i}" placeholder="Ex: João Silva">
         <p class="error-msg" id="erro-acomp-${i}"></p>
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label">Consome bebida alcoólica?</label>
+        <div class="bebida-group">
+          <div class="bebida-option" id="acomp-bebida-sim-${i}" onclick="selectBebidaAcomp(${i}, 'sim')">Sim</div>
+          <div class="bebida-option" id="acomp-bebida-nao-${i}" onclick="selectBebidaAcomp(${i}, 'nao')">Não</div>
+        </div>
       </div>`;
     container.appendChild(bloco);
   }
+};
+
+window.selectBebidaAcomp = function(i, v) {
+  document.getElementById(`acomp-bebida-sim-${i}`).classList.toggle('selected', v === 'sim');
+  document.getElementById(`acomp-bebida-nao-${i}`).classList.toggle('selected', v === 'nao');
 };
 
 function normalizarNome(nome) {
@@ -762,7 +765,7 @@ window.submitRSVP = async function() {
   const nomeNormalizado = normalizarNome(nomeDigitado);
   const convidadoEncontrado = convidados.find(c => normalizarNome(c) === nomeNormalizado);
   if (!convidadoEncontrado) { erroEl.textContent = 'Seu nome não foi encontrado na lista. Verifique a grafia ou entre em contato com as noivas.'; erroEl.style.display = 'block'; return; }
-  const n = parseInt(document.getElementById('acomp').value) || 0;
+  const n = parseInt(document.getElementById('acomp')?.value) || 0;
   const acompanhantes = [];
   for (let i = 1; i <= n; i++) {
     const nomeAcomp = document.getElementById(`acomp-nome-${i}`)?.value.trim() || '';
@@ -773,11 +776,13 @@ window.submitRSVP = async function() {
     if (partesAcomp.length < 2) { erroAcomp.textContent = 'Informe pelo menos nome e sobrenome.'; erroAcomp.style.display = 'block'; return; }
     const acompEncontrado = convidados.find(c => normalizarNome(c) === normalizarNome(nomeAcomp));
     if (!acompEncontrado) { erroAcomp.textContent = 'Este nome não foi encontrado na lista. Verifique a grafia ou entre em contato com as noivas.'; erroAcomp.style.display = 'block'; return; }
-    acompanhantes.push(acompEncontrado);
+    const bebidaAcomp = document.getElementById(`acomp-bebida-sim-${i}`)?.classList.contains('selected') ? 'sim' : document.getElementById(`acomp-bebida-nao-${i}`)?.classList.contains('selected') ? 'nao' : '—';
+    acompanhantes.push({ nome: acompEncontrado, bebida: bebidaAcomp });
   }
   const chave = normalizarNome(convidadoEncontrado).replace(/\s+/g, '_');
   await set(ref(db, 'confirmacoes/' + chave), {
     nome: convidadoEncontrado, status: presenca, whatsapp: whatsapp || '—',
+    bebida: bebidaTitular || '—',
     acompanhantes: acompanhantes, mensagem: document.getElementById('msg').value || ''
   });
   document.getElementById('rsvp-form').style.display = 'none';
@@ -818,8 +823,11 @@ function carregarPainel() {
       item.className = 'convidado-item';
       const icone = d ? (d.status === 'sim' ? '✔️' : '❌') : '<span class="convidado-pendente">pendente</span>';
       const tel = d && d.whatsapp && d.whatsapp !== '—' ? `<span class="convidado-whats">${d.whatsapp}</span>` : `<span class="convidado-whats">—</span>`;
-      const acomps = d && d.acompanhantes && d.acompanhantes.length > 0 ? `<div class="convidado-acomp">com: ${d.acompanhantes.join(', ')}</div>` : '';
-      item.innerHTML = `<div><span class="convidado-nome">${c}</span>${acomps}</div>${tel}<span class="convidado-status">${icone}</span>`;
+      const bebida = d && d.bebida && d.bebida !== '—' ? `<div class="convidado-bebida">🍷 bebida: ${d.bebida}</div>` : '';
+      const acomps = d && d.acompanhantes && d.acompanhantes.length > 0
+        ? `<div class="convidado-acomp">${d.acompanhantes.map(a => typeof a === 'object' ? `${a.nome} (bebida: ${a.bebida || '—'})` : a).join(', ')}</div>`
+        : '';
+      item.innerHTML = `<div><span class="convidado-nome">${c}</span>${bebida}${acomps}</div>${tel}<span class="convidado-status">${icone}</span>`;
       lista.appendChild(item);
     });
     document.getElementById('stat-sim').textContent = sim;
