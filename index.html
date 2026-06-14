@@ -78,7 +78,7 @@
   .event-card-value { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); line-height: 1.2; }
   .event-card-note { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); line-height: 1.6; margin-top: 0.6rem; font-weight: 400; }
 
-  .gifts-intro { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 1.9; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 560px; font-style: italic; }
+  .gifts-intro { font-family: 'Jost', sans-serif; font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 560px; text-align: justify; }
   .gifts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
   .gift-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; cursor: pointer; position: relative; }
   .gift-card:hover:not(.gift-chosen) { border-color: var(--wine-light); transform: translateY(-4px); }
@@ -127,7 +127,6 @@
   .modal-fechar { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
 
   .manual-section-wrap { position: relative; overflow: hidden; background: var(--cream); }
-  .manual-folha { position: absolute; opacity: 0.1; pointer-events: none; }
   .manual-inner { position: relative; z-index: 1; }
   .manual-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   @media (max-width: 600px) { .manual-grid { grid-template-columns: 1fr; } }
@@ -158,6 +157,13 @@
   .success-msg span { font-size: 0.85rem; color: var(--text-mid); letter-spacing: 0.05em; }
   .error-msg { color: #a32d2d; font-size: 0.85rem; margin-top: 0.5rem; display: none; }
 
+  .prazo-encerrado-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 500; align-items: center; justify-content: center; }
+  .prazo-encerrado-overlay.aberto { display: flex; }
+  .prazo-encerrado-box { background: var(--ivory); border-radius: 8px; padding: 2.5rem; width: 90%; max-width: 420px; text-align: center; }
+  .prazo-encerrado-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--wine); margin-bottom: 1rem; }
+  .prazo-encerrado-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--text-mid); line-height: 1.7; }
+  .prazo-encerrado-texto strong { color: var(--wine); }
+
   .painel-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--wine); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 200; opacity: 0.4; transition: opacity 0.2s; }
   .painel-btn:hover { opacity: 1; }
   .painel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; align-items: center; justify-content: center; }
@@ -180,8 +186,7 @@
   .convidado-item:last-child { border-bottom: none; }
   .convidado-item:nth-child(even) { background: var(--cream); }
   .convidado-nome { color: var(--text-dark); font-weight: 400; }
-  .convidado-acomp { font-size: 0.75rem; color: var(--text-light); font-style: italic; margin-top: 0.2rem; }
-  .convidado-bebida { font-size: 0.7rem; color: var(--text-light); margin-top: 0.2rem; }
+  .convidado-info { font-size: 0.75rem; color: var(--text-light); margin-top: 0.2rem; }
   .convidado-whats { font-size: 0.8rem; color: var(--text-light); }
   .convidado-status { font-size: 1rem; }
   .convidado-pendente { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.1em; }
@@ -227,20 +232,11 @@
     <p class="hero-date">10 · 10 · 2027</p>
     <p class="hero-location">Fleming Recepções &nbsp;·&nbsp; Belo Horizonte</p>
     <div class="countdown" id="countdown">
-      <div class="countdown-unit">
-        <span class="countdown-num" id="cd-dias">—</span>
-        <span class="countdown-label">dias</span>
-      </div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-dias">—</span><span class="countdown-label">dias</span></div>
       <span class="countdown-sep">·</span>
-      <div class="countdown-unit">
-        <span class="countdown-num" id="cd-horas">—</span>
-        <span class="countdown-label">horas</span>
-      </div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-horas">—</span><span class="countdown-label">horas</span></div>
       <span class="countdown-sep">·</span>
-      <div class="countdown-unit">
-        <span class="countdown-num" id="cd-min">—</span>
-        <span class="countdown-label">minutos</span>
-      </div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-min">—</span><span class="countdown-label">minutos</span></div>
     </div>
   </div>
 </div>
@@ -330,65 +326,76 @@
 </section>
 
 <div class="manual-section-wrap" id="manual">
-  <img src="folhagens.jpeg" class="manual-folha" style="width:180px; top:5%; left:-40px; transform:rotate(15deg);" alt="">
-  <img src="folhagens.jpeg" class="manual-folha" style="width:120px; top:25%; left:-20px; transform:rotate(-30deg) scaleX(-1);" alt="">
-  <img src="folhagens.jpeg" class="manual-folha" style="width:150px; top:55%; left:-35px; transform:rotate(20deg);" alt="">
-  <img src="folhagens.jpeg" class="manual-folha" style="width:130px; top:78%; left:-25px; transform:rotate(-10deg) scaleY(-1);" alt="">
-  <img src="folhagens.jpeg" class="manual-folha" style="width:170px; top:8%; right:-40px; transform:rotate(-20deg) scaleX(-1);" alt="">
-  <img src="folhagens.jpeg" class="manual-folha" style="width:125px; top:35%; right:-25px; transform:rotate(25deg);" alt="">
-  <img src="folhagens.jpeg" class="manual-folha" style="width:155px; top:62%; right:-38px; transform:rotate(-15deg) scaleX(-1);" alt="">
-  <img src="folhagens.jpeg" class="manual-folha" style="width:140px; top:85%; right:-30px; transform:rotate(10deg) scaleY(-1);" alt="">
   <div class="manual-inner">
     <section style="background: transparent;">
       <span class="section-label">Tudo o que você precisa saber</span>
       <h2 class="section-title">Manual do convidado</h2>
       <div class="section-divider"></div>
       <div class="manual-grid">
+
+        <!-- 1º Presença -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"/><path d="M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2"/><path d="M9 14l2 2l4 -4"/></svg></div>
           <p class="manual-card-titulo">Presença</p>
           <p class="manual-card-texto">Fizemos um planejamento para uma quantidade determinada de convidados. Por isso, sua resposta é importante! Mesmo que seja para informar que não estará presente.</p>
         </div>
-        <div class="manual-card">
-          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 6a2 2 0 1 0 -4 0c0 1.667 .67 3 2 4h-.008l7.971 4.428a2 2 0 0 1 1.029 1.749v.823a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-.823a2 2 0 0 1 1.029 -1.749l7.971 -4.428"/></svg></div>
-          <p class="manual-card-titulo">Traje</p>
-          <p class="manual-card-texto">Para descobrir o estilo do casamento, basta uma olhadinha no convite e uma pesquisada sobre o local. Isso irá te dar uma ideia de como será o evento. Portanto, se prepare! Nesta ocasião, aquela sua calça jeans não é a pedida certa. Lembre-se: por mais descolado que seja, ainda é um casamento.</p>
-        </div>
-        <div class="manual-card">
-          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3"/></svg></div>
-          <p class="manual-card-titulo">Evite</p>
-          <p class="manual-card-texto">É uma gafe usar branco ou cores muito claras. Esqueça também roupas na cor vermelho escuro (bordô, marsala, vinho e etc). Esta é a principal cor do nosso casamento. Imagine ser confundido com a decoração!</p>
-        </div>
+
+        <!-- 2º Penetras -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l2 -3l2 3m-2 -3v-1.5m2.627 -1.376l.373 -.124m-6 0l2.231 .744"/><path d="M20.042 16.045a9 9 0 0 0 -12.087 -12.087m-2.318 1.677a9 9 0 1 0 12.725 12.73"/><path d="M12 8a.5 .5 0 1 0 -.5 -.5"/><path d="M3 3l18 18"/></svg></div>
           <p class="manual-card-titulo">Penetras</p>
           <p class="manual-card-texto">Convidado não convida. Por favor, não peça convites e não insista! Isto é deselegante. O convite indica o nome da pessoa convidada, é pessoal e intransferível.</p>
         </div>
+
+        <!-- 3º Evite -->
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3"/></svg></div>
+          <p class="manual-card-titulo">Evite</p>
+          <p class="manual-card-texto">É uma gafe usar branco ou cores muito claras. Esqueça também roupas na cor vermelho escuro (bordô, marsala, vinho e etc). Esta é a principal cor do nosso casamento. Imagine ser confundido com a decoração!</p>
+        </div>
+
+        <!-- 4º Traje -->
+        <div class="manual-card">
+          <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 6a2 2 0 1 0 -4 0c0 1.667 .67 3 2 4h-.008l7.971 4.428a2 2 0 0 1 1.029 1.749v.823a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-.823a2 2 0 0 1 1.029 -1.749l7.971 -4.428"/></svg></div>
+          <p class="manual-card-titulo">Traje</p>
+          <p class="manual-card-texto">Para descobrir o estilo do casamento, basta uma olhadinha no convite e uma pesquisada sobre o local. Isso irá te dar uma ideia de como será o evento. Portanto, se prepare! Nesta ocasião, aquela sua calça jeans não é a pedida certa. Lembre-se: por mais descolado que seja, ainda é um casamento.</p>
+        </div>
+
+        <!-- 5º Pontualidade -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.942 13.021a9 9 0 1 0 -9.407 7.967"/><path d="M12 7v5l3 3"/><path d="M15 19l2 2l4 -4"/></svg></div>
           <p class="manual-card-titulo">Pontualidade</p>
           <p class="manual-card-texto">A cerimônia é a parte mais importante do casamento. Seja pontual e se acomode com antecedência. Chegar após iniciada a cerimônia desvia a atenção de quem já está presente. Seja sensível e não apareça apenas para a festa.</p>
         </div>
+
+        <!-- 6º Celular -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8"/><path d="M22 22l-5 -5"/><path d="M17 22l5 -5"/><path d="M11 4h2"/><path d="M12 17v.01"/></svg></div>
           <p class="manual-card-titulo">Celular</p>
           <p class="manual-card-texto">Preferencialmente, durante a cerimônia, desligue o seu celular. Convidado não é fotógrafo. Escolhemos duas profissionais incríveis para realizar este serviço. Evite tentar fazer o trabalho delas. Você pode acabar atrapalhando.</p>
         </div>
+
+        <!-- 7º Decoração -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.875 9.882a3 3 0 0 0 4.247 4.238m.581 -3.423a3.012 3.012 0 0 0 -1.418 -1.409"/><path d="M9 5a3 3 0 0 1 6 0c0 .562 -.259 1.442 -.776 2.64l-.724 1.36l1.76 -1.893c.499 -.6 .922 -1 1.27 -1.205a2.968 2.968 0 0 1 4.07 1.099a3.011 3.011 0 0 1 -1.09 4.098c-.374 .217 -.99 .396 -1.846 .535l-1.779 .244m.292 .282l1.223 .166c1 .145 1.698 .337 2.11 .576a3.011 3.011 0 0 1 1.226 3.832m-2.277 1.733a2.968 2.968 0 0 1 -1.929 -.369c-.348 -.202 -.771 -.604 -1.27 -1.205l-1.76 -1.893l.724 1.36c.516 1.199 .776 2.079 .776 2.64a3 3 0 0 1 -6 0c0 -.562 .259 -1.442 .776 -2.64l.724 -1.36l-1.76 1.893c-.499 .601 -.922 1 -1.27 1.205a2.968 2.968 0 0 1 -4.07 -1.098a3.011 3.011 0 0 1 1.09 -4.098c.374 -.218 .99 -.396 1.846 -.536l2.664 -.366l-2.4 -.325c-1 -.145 -1.698 -.337 -2.11 -.576a3.011 3.011 0 0 1 -1.09 -4.099a2.968 2.968 0 0 1 2.134 -1.467"/><path d="M3 3l18 18"/></svg></div>
           <p class="manual-card-titulo">Decoração</p>
           <p class="manual-card-texto">Não leve a decoração para casa. Existem itens que foram locados e precisam ser devolvidos. Na saída, você receberá o que pode levar de lembrança.</p>
         </div>
+
+        <!-- 8º Noivas -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h2"/><path d="M5 4v2"/><path d="M11.5 4l-.5 2"/><path d="M18 5h2"/><path d="M19 4v2"/><path d="M15 9l-1 1"/><path d="M18 13l2 -.5"/><path d="M18 19h2"/><path d="M19 18v2"/><path d="M14 16.518l-6.518 -6.518l-4.39 9.58a1 1 0 0 0 1.329 1.329l9.579 -4.39"/></svg></div>
           <p class="manual-card-titulo">Noivas</p>
           <p class="manual-card-texto">Se divirta muito e deixe a gente se divertir também! Esse momento passa muito rápido para só posarmos para fotos.</p>
         </div>
+
+        <!-- 9º Comentários -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.02 19.52c-2.34 .736 -5 .606 -7.32 -.52l-4.7 1l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c1.96 1.671 2.898 3.963 2.755 6.227"/><path d="M19 16v3"/><path d="M19 22v.01"/></svg></div>
           <p class="manual-card-titulo">Comentários</p>
           <p class="manual-card-texto">Guarde os comentários negativos para você. Antes de pontuar qualquer coisa que não gostou, lembre-se que nós colocamos 2 anos de muito esforço, trabalho e intenção para recebê-lo da melhor forma.</p>
         </div>
+
       </div>
     </section>
   </div>
@@ -424,6 +431,7 @@
   <p class="footer-date">10 · 10 · 2027 &nbsp;·&nbsp; Belo Horizonte</p>
 </footer>
 
+<!-- Modal presentear -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box">
     <button class="modal-fechar" onclick="fecharModal()">✕</button>
@@ -433,6 +441,14 @@
     <p class="modal-erro" id="modal-erro">Por favor, informe seu nome.</p>
     <input type="text" class="modal-input" id="modal-nome-input" placeholder="Nome" onkeydown="if(event.key==='Enter')confirmarPagamento()">
     <button class="modal-btn" id="modal-btn-pagar" onclick="confirmarPagamento()">Ir para o pagamento</button>
+  </div>
+</div>
+
+<!-- Modal prazo encerrado -->
+<div class="prazo-encerrado-overlay" id="prazo-encerrado-overlay">
+  <div class="prazo-encerrado-box">
+    <h2 class="prazo-encerrado-titulo">Prazo encerrado</h2>
+    <p class="prazo-encerrado-texto">O prazo para confirmação de presença foi encerrado. Em caso de dúvidas, entre em contato via WhatsApp: <strong>XXXXX</strong></p>
   </div>
 </div>
 
@@ -474,6 +490,12 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+
+const PRAZO_LIMITE = new Date('2027-09-02T00:00:00');
+
+function prazоEncerrado() {
+  return new Date() >= PRAZO_LIMITE;
+}
 
 const convidados = [
   'Thalita Procópio', 'Tulio Marques', 'Matheus Procópio', 'Sophia Marinho',
@@ -552,6 +574,12 @@ function formatarPreco(v) {
   return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
+function formatarData(ts) {
+  if (!ts) return '—';
+  const d = new Date(ts);
+  return d.toLocaleDateString('pt-BR') + ' às ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+}
+
 async function renderPresentes() {
   const grid = document.getElementById('gifts-grid');
   grid.innerHTML = '';
@@ -571,7 +599,7 @@ async function renderPresentes() {
           <div class="gift-card-inner" style="height:100%;">
             <div class="gift-card-front" style="height:100%;">
               <div class="gift-img-wrap" style="height:120px;">
-                ${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : `<i class="ti ti-gift gift-img-placeholder" aria-hidden="true"></i>`}
+                ${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : `<i class="ti ti-gift gift-img-placeholder"></i>`}
                 <div class="gift-overlay" style="display:flex;"><span class="gift-overlay-text">Presente escolhido</span></div>
               </div>
               <div class="gift-body">
@@ -593,7 +621,7 @@ async function renderPresentes() {
           <div class="gift-card-inner" style="height:100%;">
             <div class="gift-card-front" style="height:100%;">
               <div class="gift-img-wrap" style="height:120px;">
-                ${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : `<i class="ti ti-gift gift-img-placeholder" aria-hidden="true"></i>`}
+                ${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : `<i class="ti ti-gift gift-img-placeholder"></i>`}
                 <div class="gift-overlay"><span class="gift-overlay-text">Presente escolhido</span></div>
               </div>
               <div class="gift-body">
@@ -705,6 +733,7 @@ setInterval(updateCountdown, 60000);
 
 let presenca = null;
 window.selectPresenca = function(v) {
+  if (prazоEncerrado()) { document.getElementById('prazo-encerrado-overlay').classList.add('aberto'); return; }
   presenca = v;
   document.getElementById('opt-sim').classList.toggle('selected', v === 'sim');
   document.getElementById('opt-nao').classList.toggle('selected', v === 'nao');
@@ -754,6 +783,7 @@ function normalizarNome(nome) {
 }
 
 window.submitRSVP = async function() {
+  if (prazоEncerrado()) { document.getElementById('prazo-encerrado-overlay').classList.add('aberto'); return; }
   const nomeDigitado = document.getElementById('nome').value.trim();
   const whatsapp = document.getElementById('whatsapp').value.trim();
   const erroEl = document.getElementById('erro-nome');
@@ -781,9 +811,13 @@ window.submitRSVP = async function() {
   }
   const chave = normalizarNome(convidadoEncontrado).replace(/\s+/g, '_');
   await set(ref(db, 'confirmacoes/' + chave), {
-    nome: convidadoEncontrado, status: presenca, whatsapp: whatsapp || '—',
+    nome: convidadoEncontrado,
+    status: presenca,
+    whatsapp: whatsapp || '—',
     bebida: bebidaTitular || '—',
-    acompanhantes: acompanhantes, mensagem: document.getElementById('msg').value || ''
+    acompanhantes: acompanhantes,
+    mensagem: document.getElementById('msg').value || '',
+    dataConfirmacao: new Date().toISOString()
   });
   document.getElementById('rsvp-form').style.display = 'none';
   const suc = document.getElementById('success-msg');
@@ -793,8 +827,8 @@ window.submitRSVP = async function() {
     document.getElementById('success-text').textContent = `Que alegria, ${primeiro}!`;
     document.getElementById('success-sub').textContent = 'Sua presença está confirmada. Estamos muito felizes de saber que você estará lá neste dia!';
   } else {
-    document.getElementById('success-text').textContent = `Sentiremos sua falta, ${primeiro}.`;
-    document.getElementById('success-sub').textContent = 'Recebemos sua mensagem. Obrigada por nos avisar.';
+    document.getElementById('success-text').textContent = `Sentiremos sua falta, ${primeiro}, mas entendemos.`;
+    document.getElementById('success-sub').textContent = 'Você fará falta nesse dia, mas ainda temos muitos brindes pela frente. Obrigada por nos avisar.';
   }
 };
 
@@ -823,11 +857,12 @@ function carregarPainel() {
       item.className = 'convidado-item';
       const icone = d ? (d.status === 'sim' ? '✔️' : '❌') : '<span class="convidado-pendente">pendente</span>';
       const tel = d && d.whatsapp && d.whatsapp !== '—' ? `<span class="convidado-whats">${d.whatsapp}</span>` : `<span class="convidado-whats">—</span>`;
-      const bebida = d && d.bebida && d.bebida !== '—' ? `<div class="convidado-bebida">🍷 bebida: ${d.bebida}</div>` : '';
+      const bebida = d && d.bebida && d.bebida !== '—' ? `<div class="convidado-info">🍷 bebida: ${d.bebida}</div>` : '';
+      const dataConf = d && d.dataConfirmacao ? `<div class="convidado-info">📅 ${formatarData(d.dataConfirmacao)}</div>` : '';
       const acomps = d && d.acompanhantes && d.acompanhantes.length > 0
-        ? `<div class="convidado-acomp">${d.acompanhantes.map(a => typeof a === 'object' ? `${a.nome} (bebida: ${a.bebida || '—'})` : a).join(', ')}</div>`
+        ? `<div class="convidado-info">${d.acompanhantes.map(a => typeof a === 'object' ? `${a.nome} (bebida: ${a.bebida || '—'})` : a).join(', ')}</div>`
         : '';
-      item.innerHTML = `<div><span class="convidado-nome">${c}</span>${bebida}${acomps}</div>${tel}<span class="convidado-status">${icone}</span>`;
+      item.innerHTML = `<div><span class="convidado-nome">${c}</span>${bebida}${dataConf}${acomps}</div>${tel}<span class="convidado-status">${icone}</span>`;
       lista.appendChild(item);
     });
     document.getElementById('stat-sim').textContent = sim;
