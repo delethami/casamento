@@ -425,3 +425,425 @@
 <div class="painel-overlay" id="painel-overlay">
   <div class="painel-box">
     <button class="painel-fechar" onclick="fecharPainel()">✕</button>
+    <h2 class="painel-titulo">Painel das noivas</h2>
+    <div class="painel-senha">
+      <input type="password" id="painel-senha-input" placeholder="Digite a senha" onkeydown="if(event.key==='Enter')verificarSenha()">
+      <button onclick="verificarSenha()">Entrar</button>
+    </div>
+    <p id="painel-erro" style="color:#a32d2d;font-size:0.85rem;display:none;margin-bottom:1rem;">Senha incorreta.</p>
+    <div class="painel-content" id="painel-content">
+      <div class="painel-stats">
+        <div class="stat-card"><span class="stat-num" id="stat-sim">0</span><span class="stat-label">Confirmados ✔️</span></div>
+        <div class="stat-card"><span class="stat-num" id="stat-nao">0</span><span class="stat-label">Ausentes ❌</span></div>
+        <div class="stat-card"><span class="stat-num" id="stat-pendente">0</span><span class="stat-label">Pendentes ⏳</span></div>
+      </div>
+      <div class="convidado-lista" id="convidado-lista"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD5ttVxUex1he0_Y5pVQ8NLmt776pJwzp0",
+  authDomain: "casamento-del-e-thami.firebaseapp.com",
+  databaseURL: "https://casamento-del-e-thami-default-rtdb.firebaseio.com",
+  projectId: "casamento-del-e-thami",
+  storageBucket: "casamento-del-e-thami.firebasestorage.app",
+  messagingSenderId: "1047642059250",
+  appId: "1:1047642059250:web:6e4e8cd5008b81f22c7b6b"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const PRAZO_LIMITE = new Date('2027-09-02T00:00:00');
+function prazoEncerrado() { return new Date() >= PRAZO_LIMITE; }
+
+// Núcleos familiares
+const familias = [
+  ['Thalita Procópio', 'Tulio Marques', 'Matheus Procópio', 'Sophia Marinho', 'Aurora Procópio'],
+  ['Suely Rejane Procópio'],
+  ['Lauro Torres'],
+  ['Nayara Procópio', 'Marcus Paulo Saúde'],
+  ['Rayssa Procópio', 'Cassio Schneider'],
+  ['Celina Torres', 'Gustavo Torres', 'Maria Carolina Torres'],
+  ['Carolina Arantes', 'Guilherme Moretti', 'Joaquim Arantes', 'Gal Arantes'],
+  ['Fernanda Daniele Procópio', 'Walmir Magalhães', 'Marina Procópio'],
+  ['Elton Greve', 'Roberta Gomes'],
+  ['Daniel Duarte', 'Ana Carolina Paiva'],
+  ['Sidney Procópio', 'Vera Lúcia Silva', 'Thays Procópio', 'Sophia Procópio', 'Eloá Santos', 'Pietro Procópio'],
+  ['Thiago Procópio'],
+  ['Davi Duarte'],
+  ['Maria Marinho', 'Victor Cruz'],
+  ['Lais Lopes'],
+  ['Maria Elisa Vasconcelos'],
+  ['Polyana Oliveira'],
+  ['Igor Anaxagoras', 'Douglas de Paula'],
+  ['Gustavo Giacchero', 'Paula Barroca'],
+  ['João Giacchero'],
+  ['Tulio Santerio', 'Maria Bernadete Santerio', 'Edson'],
+  ['Letícia Cabral', 'Raphael Ottoni'],
+  ['Bruna Sobreira'],
+  ['Clarice Sarcinelli', 'Rafael Freiria'],
+  ['João Trindade'],
+];
+
+const todosConvidados = familias.flat();
+
+function normalizarNome(nome) {
+  return nome.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function encontrarFamilia(nome) {
+  return familias.find(f => f.some(m => normalizarNome(m) === normalizarNome(nome)));
+}
+
+let convidadoSelecionado = null;
+let familiaAtual = [];
+let bebidasSelecionadas = {};
+
+// Busca de nome com sugestão
+window.buscarNome = function() {
+  if (prazoEncerrado()) { document.getElementById('prazo-encerrado-overlay').classList.add('aberto'); return; }
+  const val = document.getElementById('nome-input').value.trim();
+  const sugestoesEl = document.getElementById('nome-sugestoes');
+  document.getElementById('etapa-familia').style.display = 'none';
+  document.getElementById('etapa-bebidas').style.display = 'none';
+  document.getElementById('etapa-final').style.display = 'none';
+  convidadoSelecionado = null;
+
+  if (val.length < 2) { sugestoesEl.style.display = 'none'; return; }
+
+  const valNorm = normalizarNome(val);
+  const encontrados = todosConvidados.filter(c => normalizarNome(c).includes(valNorm));
+
+  if (encontrados.length === 0) { sugestoesEl.style.display = 'none'; return; }
+
+  // Match exato único
+  const exato = encontrados.find(c => normalizarNome(c) === valNorm);
+  if (exato && encontrados.length === 1) {
+    sugestoesEl.style.display = 'none';
+    selecionarConvidado(exato);
+    return;
+  }
+
+  // Mostrar sugestões
+  sugestoesEl.innerHTML = encontrados.map(c =>
+    `<div class="nome-sugestao-item" onclick="selecionarConvidado('${c.replace(/'/g, "\\'")}')">${c}</div>`
+  ).join('');
+  sugestoesEl.style.display = 'block';
+};
+
+window.selecionarConvidado = function(nome) {
+  convidadoSelecionado = nome;
+  document.getElementById('nome-input').value = nome;
+  document.getElementById('nome-sugestoes').style.display = 'none';
+  document.getElementById('erro-nome').style.display = 'none';
+
+  familiaAtual = encontrarFamilia(nome) || [nome];
+  bebidasSelecionadas = {};
+
+  const membrosEl = document.getElementById('familia-membros');
+
+  if (familiaAtual.length === 1) {
+    // Sozinho — pula checkboxes, vai direto para bebida
+    document.getElementById('etapa-familia').style.display = 'none';
+    renderBebidas([nome]);
+  } else {
+    // Família com múltiplos membros
+    membrosEl.innerHTML = familiaAtual.map(m => `
+      <div class="familia-membro">
+        <input type="checkbox" id="membro-${normalizarNome(m).replace(/\s/g,'_')}" value="${m}" ${m === nome ? 'checked' : ''} onchange="atualizarBebidas()">
+        <label class="familia-membro-nome" for="membro-${normalizarNome(m).replace(/\s/g,'_')}">${m}</label>
+      </div>
+    `).join('');
+    document.getElementById('etapa-familia').style.display = 'block';
+    atualizarBebidas();
+  }
+
+  document.getElementById('etapa-final').style.display = 'block';
+};
+
+window.atualizarBebidas = function() {
+  const marcados = familiaAtual.filter(m => {
+    const el = document.getElementById('membro-' + normalizarNome(m).replace(/\s/g,'_'));
+    return el && el.checked;
+  });
+  renderBebidas(marcados);
+};
+
+function renderBebidas(membros) {
+  const container = document.getElementById('bebidas-container');
+  if (membros.length === 0) {
+    container.innerHTML = '';
+    document.getElementById('etapa-bebidas').style.display = 'none';
+    return;
+  }
+  container.innerHTML = membros.map(m => {
+    const id = normalizarNome(m).replace(/\s/g,'_');
+    return `
+      <div class="membro-bebida-block">
+        <span class="membro-bebida-titulo">${m} — consome bebida alcoólica?</span>
+        <div class="bebida-group">
+          <div class="bebida-option" id="beb-sim-${id}" onclick="setBebida('${m}','sim')">Sim</div>
+          <div class="bebida-option" id="beb-nao-${id}" onclick="setBebida('${m}','nao')">Não</div>
+        </div>
+      </div>`;
+  }).join('');
+  document.getElementById('etapa-bebidas').style.display = 'block';
+
+  // Restaurar seleções anteriores
+  membros.forEach(m => {
+    if (bebidasSelecionadas[m]) setBebida(m, bebidasSelecionadas[m], true);
+  });
+}
+
+window.setBebida = function(nome, val, somenteVisual = false) {
+  if (!somenteVisual) bebidasSelecionadas[nome] = val;
+  const id = normalizarNome(nome).replace(/\s/g,'_');
+  const s = document.getElementById('beb-sim-' + id);
+  const n = document.getElementById('beb-nao-' + id);
+  if (s) s.classList.toggle('selected', val === 'sim');
+  if (n) n.classList.toggle('selected', val === 'nao');
+};
+
+window.submitRSVP = async function() {
+  if (prazoEncerrado()) { document.getElementById('prazo-encerrado-overlay').classList.add('aberto'); return; }
+  if (!convidadoSelecionado) {
+    document.getElementById('erro-nome').textContent = 'Por favor, selecione seu nome na lista.';
+    document.getElementById('erro-nome').style.display = 'block';
+    return;
+  }
+
+  const presentes = familiaAtual.length === 1
+    ? [convidadoSelecionado]
+    : familiaAtual.filter(m => {
+        const el = document.getElementById('membro-' + normalizarNome(m).replace(/\s/g,'_'));
+        return el && el.checked;
+      });
+
+  const ausentes = familiaAtual.filter(m => !presentes.includes(m));
+  const whatsapp = document.getElementById('whatsapp').value.trim() || '—';
+  const msg = document.getElementById('msg').value.trim() || '';
+  const agora = new Date().toISOString();
+
+  // Salva cada membro individualmente
+  for (const membro of familiaAtual) {
+    const chave = normalizarNome(membro).replace(/\s/g,'_');
+    const vai = presentes.includes(membro);
+    await set(ref(db, 'confirmacoes/' + chave), {
+      nome: membro,
+      status: vai ? 'sim' : 'nao',
+      bebida: vai ? (bebidasSelecionadas[membro] || '—') : '—',
+      whatsapp: membro === convidadoSelecionado ? whatsapp : '—',
+      mensagem: membro === convidadoSelecionado ? msg : '',
+      dataConfirmacao: agora,
+      confirmedBy: convidadoSelecionado
+    });
+  }
+
+  document.getElementById('rsvp-form').style.display = 'none';
+  const suc = document.getElementById('success-msg');
+  suc.style.display = 'block';
+  const primeiro = convidadoSelecionado.split(' ')[0];
+  if (presentes.includes(convidadoSelecionado)) {
+    document.getElementById('success-text').textContent = `Que alegria, ${primeiro}!`;
+    document.getElementById('success-sub').textContent = 'Sua presença está confirmada. Estamos muito felizes de saber que você estará lá neste dia!';
+  } else {
+    document.getElementById('success-text').textContent = `Sentiremos sua falta, ${primeiro}, mas entendemos.`;
+    document.getElementById('success-sub').textContent = 'Você fará falta nesse dia, mas ainda temos muitos brindes pela frente. Obrigada por nos avisar.';
+  }
+};
+
+// Presentes
+const presentes = [
+  { id: 'robo-aspirador', nome: 'Robô aspirador', preco: 3998, img: 'robo aspirador.webp', vaquinha: false },
+  { id: 'vaquinha-maggie', nome: 'Vaquinha Maggie', preco: 999, img: 'vaca maggie.webp', vaquinha: true },
+  { id: 'jogo-panelas', nome: 'Jogo de panelas', preco: 900, img: 'jogo de panelas.jpg', vaquinha: false },
+  { id: 'air-fryer', nome: 'Air fryer', preco: 900, img: 'air friyer.webp', vaquinha: false },
+  { id: 'jogo-cama-queen', nome: 'Jogo de cama queen size', preco: 800, img: 'jogo de cama.webp', vaquinha: false },
+  { id: 'dolce-gusto', nome: 'Dolce Gusto', preco: 800, img: 'dolce gusto.webp', vaquinha: false },
+  { id: 'escrivaninha', nome: 'Escrivaninha', preco: 700, img: 'escrivaninha.webp', vaquinha: false },
+  { id: 'alexa', nome: 'Alexa', preco: 700, img: 'alexa.jpg', vaquinha: false },
+  { id: 'cadeira-escritorio', nome: 'Cadeira de escritório', preco: 600, img: 'cadeira escritorio.jpg', vaquinha: false },
+  { id: 'estante-livros', nome: 'Estante de livros', preco: 550, img: 'estante de livros.jpg', vaquinha: false },
+  { id: 'vaquinha-otis', nome: 'Vaquinha Otis', preco: 499, img: 'vaca otis.jpg', vaquinha: true },
+  { id: 'batedeira', nome: 'Batedeira planetária', preco: 500, img: 'batedeira.webp', vaquinha: false },
+  { id: 'jogo-banho', nome: 'Jogo de Banho Buddemeyer', preco: 500, img: 'jogo de toalha.webp', vaquinha: false },
+  { id: 'faqueiro', nome: 'Faqueiro', preco: 400, img: 'faqueiro certo.jpg', vaquinha: false },
+  { id: 'moedor-cafe', nome: 'Moedor de café', preco: 380, img: 'moedor de café.jpg', vaquinha: false },
+  { id: 'sapateira', nome: 'Sapateira', preco: 300, img: 'sapateira.webp', vaquinha: false },
+  { id: 'conjunto-tacas-vinho', nome: 'Conjunto de taças de vinho', preco: 300, img: 'taças de vinho.webp', vaquinha: false },
+  { id: 'conjunto-tacas-espumante', nome: 'Conjunto de taças de espumante', preco: 300, img: 'taça espumante.webp', vaquinha: false },
+  { id: 'maquina-seladora', nome: 'Máquina seladora', preco: 300, img: 'seladora.jpg', vaquinha: false },
+  { id: 'vaquinha-ferdinando', nome: 'Vaquinha Ferdinando', preco: 299, img: 'Ferdinando.webp', vaquinha: true },
+  { id: 'escada', nome: 'Escada', preco: 260, img: 'escada.webp', vaquinha: false },
+  { id: 'espelho', nome: 'Espelho', preco: 200, img: 'espelho.jpg', vaquinha: false },
+  { id: 'maquina-waffle', nome: 'Máquina elétrica de waffle', preco: 200, img: 'máquina de waffle.webp', vaquinha: false },
+  { id: 'abajur-chao', nome: 'Abajur de chão', preco: 200, img: 'abajur de chao.jpg', vaquinha: false },
+  { id: 'espremedor', nome: 'Espremedor de frutas elétrico', preco: 200, img: 'espremedor.webp', vaquinha: false },
+  { id: 'tabua-passar', nome: 'Tábua de passar roupa', preco: 200, img: 'tábua.webp', vaquinha: false },
+  { id: 'almofadas', nome: 'Conjunto de almofadas', preco: 180, img: 'almofadas.jpg', vaquinha: false },
+  { id: 'ventilador', nome: 'Ventilador', preco: 180, img: 'ventilador.webp', vaquinha: false },
+  { id: 'cafeteira-hario', nome: 'Kit Cafeteira Hario V60', preco: 170, img: 'v60.jpeg', vaquinha: false },
+  { id: 'abajur-cabeceira', nome: 'Abajur de cabeceira', preco: 170, img: 'abajur de mesa.webp', vaquinha: false },
+  { id: 'processador', nome: 'Processador de alimentos', preco: 170, img: 'processador de alimentos.jpg', vaquinha: false },
+  { id: 'vaquinha-clarabella', nome: 'Vaquinha Clarabella', preco: 149, img: 'vaca clarabella.jpg', vaquinha: true },
+  { id: 'carrinho-organizador', nome: 'Carrinho organizador', preco: 150, img: 'carrinho organizador.webp', vaquinha: false },
+  { id: 'furadeira', nome: 'Furadeira', preco: 150, img: 'furadeira.jpg', vaquinha: false },
+  { id: 'kit-bar', nome: 'Kit bar', preco: 150, img: 'kit bar.webp', vaquinha: false },
+  { id: 'roupao', nome: 'Roupão', preco: 150, img: 'roupão.jpg', vaquinha: false },
+  { id: 'umedificador', nome: 'Umidificador', preco: 150, img: 'umedificador.webp', vaquinha: false },
+  { id: 'potes-vidro', nome: 'Conjunto de potes de vidro', preco: 150, img: 'potes.jpg', vaquinha: false },
+  { id: 'mixer-multiuso', nome: 'Mixer multiuso', preco: 120, img: 'mixer multiuso.jpg', vaquinha: false },
+  { id: 'caixa-ferramentas', nome: 'Caixa de ferramentas', preco: 120, img: 'ferramentas.jpg', vaquinha: false },
+  { id: 'extensao', nome: 'Extensão', preco: 100, img: 'extensão.jpg', vaquinha: false },
+  { id: 'kit-jardinagem', nome: 'Kit jardinagem', preco: 100, img: 'kit jardinagem.jpg', vaquinha: false },
+  { id: 'mop', nome: 'Mop', preco: 100, img: 'mop.jpg', vaquinha: false },
+  { id: 'puff', nome: 'Puff', preco: 100, img: 'puff.jpg', vaquinha: false },
+  { id: 'vaquinha-vaca', nome: 'Vaquinha Vaca', preco: 99, img: 'vaca.jpg', vaquinha: true },
+  { id: 'bowls', nome: 'Conjunto de bowls', preco: 90, img: 'bowls.jpg', vaquinha: false },
+  { id: 'descanso-panela', nome: 'Descanso de panela', preco: 80, img: 'descanso de panela.webp', vaquinha: false },
+  { id: 'pano-prato', nome: 'Panos de prato', preco: 70, img: 'pano de prato.webp', vaquinha: false },
+  { id: 'vaquinha-grace', nome: 'Vaquinha Grace', preco: 49, img: 'Grace_cow.webp', vaquinha: true },
+  { id: 'bandeja-cafe', nome: 'Bandeja de café da manhã', preco: 50, img: 'bandeja de cafe.jpg', vaquinha: false },
+];
+
+const LIMITE = 15;
+let presenteAtual = null;
+
+function formatarPreco(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+function formatarData(ts) {
+  if (!ts) return '—';
+  const d = new Date(ts);
+  return d.toLocaleDateString('pt-BR') + ' às ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+}
+
+async function renderPresentes() {
+  const grid = document.getElementById('gifts-grid');
+  grid.innerHTML = '';
+  const snap = await get(ref(db, 'presentes'));
+  const dados = snap.val() || {};
+  presentes.forEach((p, index) => {
+    const comprado = dados[p.id] && !p.vaquinha;
+    const nomeComprador = dados[p.id]?.nome || '';
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'position: relative; height: 220px;';
+    if (index >= LIMITE) wrapper.classList.add('gift-extra');
+    if (comprado) {
+      wrapper.innerHTML = `<div class="gift-card gift-card-flip virado" id="gcard-${p.id}" style="height:100%;"><div class="gift-card-inner" style="height:100%;"><div class="gift-card-front" style="height:100%;"><div class="gift-img-wrap" style="height:120px;">${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : ''}<div class="gift-overlay" style="display:flex;"><span class="gift-overlay-text">Presente escolhido</span></div></div><div class="gift-body"><div class="gift-name" style="text-decoration:line-through;color:var(--text-light);">${p.nome}</div><div class="gift-price" style="color:var(--text-light);">${formatarPreco(p.preco)}</div></div></div><div class="gift-card-back"><div class="gift-card-back-title">Muito obrigada!</div><div class="gift-card-back-nome">${nomeComprador}</div><div class="gift-card-back-msg">Sua generosidade nos enche de alegria. Que presente lindo!</div><div class="gift-card-back-heart">♡</div></div></div></div>`;
+    } else {
+      wrapper.innerHTML = `<div class="gift-card gift-card-flip" id="gcard-${p.id}" style="height:100%;"><div class="gift-card-inner" style="height:100%;"><div class="gift-card-front" style="height:100%;"><div class="gift-img-wrap" style="height:120px;">${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : ''}<div class="gift-overlay"><span class="gift-overlay-text">Presente escolhido</span></div></div><div class="gift-body"><div class="gift-name">${p.nome}</div><div class="gift-price">${formatarPreco(p.preco)}</div><div class="gift-btn"><button class="btn-comprar" onclick="abrirModal('${p.id}')">Presentear</button></div></div></div><div class="gift-card-back"><div class="gift-card-back-title">Muito obrigada!</div><div class="gift-card-back-nome"></div><div class="gift-card-back-msg">Sua generosidade nos enche de alegria. Que presente lindo!</div><div class="gift-card-back-heart">♡</div></div></div></div>`;
+    }
+    grid.appendChild(wrapper);
+  });
+  document.querySelectorAll('.gift-extra').forEach(el => el.style.display = 'none');
+  if (presentes.length > LIMITE) document.getElementById('btn-ver-mais').style.display = 'block';
+  verificarPagamentoRetorno();
+}
+
+function verificarPagamentoRetorno() {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get('pagamento');
+  const presenteId = params.get('presente');
+  const nomeComprador = params.get('nome');
+  if (status === 'sucesso' && presenteId && nomeComprador) {
+    const presente = presentes.find(p => p.id === presenteId);
+    if (presente && !presente.vaquinha) {
+      set(ref(db, `presentes/${presenteId}`), { pago: true, nome: decodeURIComponent(nomeComprador) });
+      setTimeout(() => virarCard(presenteId, decodeURIComponent(nomeComprador)), 800);
+    }
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+}
+
+function virarCard(id, nome) {
+  const card = document.getElementById(`gcard-${id}`);
+  if (card) { const b = card.querySelector('.gift-card-back-nome'); if (b) b.textContent = nome; card.classList.add('virado'); }
+}
+
+window.abrirModal = function(id) {
+  presenteAtual = presentes.find(p => p.id === id);
+  if (!presenteAtual) return;
+  document.getElementById('modal-presente-nome').textContent = `${presenteAtual.nome} · ${formatarPreco(presenteAtual.preco)}`;
+  document.getElementById('modal-nome-input').value = '';
+  document.getElementById('modal-erro').style.display = 'none';
+  document.getElementById('modal-overlay').classList.add('aberto');
+  setTimeout(() => document.getElementById('modal-nome-input').focus(), 100);
+};
+
+window.fecharModal = function() { document.getElementById('modal-overlay').classList.remove('aberto'); presenteAtual = null; };
+
+window.confirmarPagamento = async function() {
+  const nome = document.getElementById('modal-nome-input').value.trim();
+  if (!nome) { document.getElementById('modal-erro').style.display = 'block'; return; }
+  const btn = document.getElementById('modal-btn-pagar');
+  btn.disabled = true; btn.textContent = 'Aguarde...';
+  try {
+    const resp = await fetch('/.netlify/functions/criar-pagamento', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ presenteId: presenteAtual.id, presenteNome: presenteAtual.nome, preco: presenteAtual.preco, nomeComprador: nome }) });
+    const data = await resp.json();
+    if (data.url) { window.location.href = data.url; }
+    else { btn.disabled = false; btn.textContent = 'Ir para o pagamento'; alert('Erro ao processar. Tente novamente.'); }
+  } catch { btn.disabled = false; btn.textContent = 'Ir para o pagamento'; alert('Erro de conexão. Tente novamente.'); }
+};
+
+window.verMais = function() { document.querySelectorAll('.gift-extra').forEach(el => el.style.display = ''); document.getElementById('btn-ver-mais').style.display = 'none'; };
+
+renderPresentes();
+
+window.toggleMenu = function() { document.getElementById('hamburger').classList.toggle('aberto'); document.getElementById('nav-mobile').classList.toggle('aberto'); };
+window.fecharMenu = function() { document.getElementById('hamburger').classList.remove('aberto'); document.getElementById('nav-mobile').classList.remove('aberto'); };
+
+function updateCountdown() {
+  const target = new Date('2027-10-10T16:00:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) { document.getElementById('countdown').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:2rem;color:#7a1e2e">Hoje é o grande dia!</p>'; return; }
+  document.getElementById('cd-dias').textContent = Math.floor(diff / 86400000);
+  document.getElementById('cd-horas').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+  document.getElementById('cd-min').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+const SENHA = 'delethami2027';
+window.abrirPainel = function() { document.getElementById('painel-overlay').classList.add('aberto'); document.getElementById('painel-senha-input').focus(); };
+window.fecharPainel = function() { document.getElementById('painel-overlay').classList.remove('aberto'); document.getElementById('painel-senha-input').value = ''; document.getElementById('painel-erro').style.display = 'none'; document.getElementById('painel-content').classList.remove('visivel'); };
+window.verificarSenha = function() {
+  if (document.getElementById('painel-senha-input').value === SENHA) { document.getElementById('painel-erro').style.display = 'none'; document.getElementById('painel-content').classList.add('visivel'); carregarPainel(); }
+  else { document.getElementById('painel-erro').style.display = 'block'; }
+};
+
+function carregarPainel() {
+  onValue(ref(db, 'confirmacoes'), (snapshot) => {
+    const dados = snapshot.val() || {};
+    let sim = 0, nao = 0, pendente = 0;
+    const lista = document.getElementById('convidado-lista');
+    lista.innerHTML = '';
+    todosConvidados.forEach(c => {
+      const chave = normalizarNome(c).replace(/\s/g,'_');
+      const d = dados[chave];
+      if (d && d.status === 'sim') sim++;
+      else if (d && d.status === 'nao') nao++;
+      else pendente++;
+      const item = document.createElement('div');
+      item.className = 'convidado-item';
+      const icone = d ? (d.status === 'sim' ? '✔️' : '❌') : '<span class="convidado-pendente">pendente</span>';
+      const tel = d?.whatsapp && d.whatsapp !== '—' ? `<span class="convidado-whats">${d.whatsapp}</span>` : `<span class="convidado-whats">—</span>`;
+      const bebida = d?.bebida && d.bebida !== '—' ? `<div class="convidado-info">🍷 ${d.bebida}</div>` : '';
+      const dataConf = d?.dataConfirmacao ? `<div class="convidado-info">📅 ${formatarData(d.dataConfirmacao)}</div>` : '';
+      const by = d?.confirmedBy && d.confirmedBy !== c ? `<div class="convidado-info">confirmado por: ${d.confirmedBy}</div>` : '';
+      item.innerHTML = `<div><span class="convidado-nome">${c}</span>${bebida}${dataConf}${by}</div>${tel}<span class="convidado-status">${icone}</span>`;
+      lista.appendChild(item);
+    });
+    document.getElementById('stat-sim').textContent = sim;
+    document.getElementById('stat-nao').textContent = nao;
+    document.getElementById('stat-pendente').textContent = pendente;
+  });
+}
+</script>
+</body>
+</html>
