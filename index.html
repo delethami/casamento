@@ -64,13 +64,11 @@
   .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--wine); margin-bottom: 1rem; display: block; font-weight: 400; }
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; color: var(--wine); margin-bottom: 2.5rem; line-height: 1.2; }
   .section-divider { width: 40px; height: 1px; background: var(--wine-light); margin: 0 0 2.5rem; }
-
   .timeline { position: relative; padding-left: 2rem; border-left: 1px solid var(--wine-light); }
   .timeline-item { margin-bottom: 2.5rem; position: relative; }
   .timeline-item::before { content: ''; position: absolute; left: -2.37rem; top: 0.35rem; width: 8px; height: 8px; border-radius: 50%; background: var(--wine); border: 2px solid var(--ivory); outline: 1px solid var(--wine-light); }
   .timeline-year { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.4rem; font-weight: 400; }
   .timeline-text { font-size: 1rem; line-height: 1.8; color: var(--text-mid); }
-
   .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
   .event-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 4px; padding: 1.5rem; text-align: center; }
   .event-icon { font-size: 1.1rem; color: var(--wine-light); margin-bottom: 0.6rem; display: block; }
@@ -85,7 +83,6 @@
   .gift-img-wrap { width: 100%; height: 120px; background: var(--cream); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
   .gift-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 0.3rem; transition: opacity 0.3s; }
   .gift-card:hover:not(.gift-chosen) .gift-img-wrap img { opacity: 0.85; }
-  .gift-img-placeholder { font-size: 2rem; color: var(--wine-light); }
   .gift-overlay { position: absolute; inset: 0; background: rgba(44,20,16,0.55); display: none; align-items: center; justify-content: center; }
   .gift-overlay-text { color: white; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; text-align: center; padding: 0.5rem; }
   .gift-body { padding: 0.7rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
@@ -136,7 +133,6 @@
   .manual-card-titulo { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.8rem; }
   .manual-card-texto { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--text-mid); line-height: 1.6; text-align: justify; }
 
-  /* RSVP */
   .rsvp-form { max-width: 520px; }
   .form-group { margin-bottom: 1.5rem; }
   .form-label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 0.5rem; font-weight: 400; }
@@ -214,9 +210,7 @@
     <li><a href="#manual">Manual do convidado</a></li>
     <li><a href="#evento">O evento</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="nav-mobile" id="nav-mobile">
@@ -270,29 +264,21 @@
   <h2 class="section-title">Confirme sua presença</h2>
   <div class="section-divider"></div>
   <div class="rsvp-form" id="rsvp-form">
-
-    <!-- Etapa 1: nome -->
     <div class="form-group" id="etapa-nome">
       <label class="form-label">Seu nome</label>
       <input type="text" class="form-input" id="nome-input" placeholder="Digite seu nome" oninput="buscarNome()">
       <p class="error-msg" id="erro-nome"></p>
       <div class="nome-sugestoes" id="nome-sugestoes"></div>
     </div>
-
-    <!-- Etapa 2: família -->
     <div id="etapa-familia" style="display:none;">
       <div class="familia-box">
         <span class="familia-box-titulo">Quem vai comparecer?</span>
         <div id="familia-membros"></div>
       </div>
     </div>
-
-    <!-- Etapa 3: bebidas -->
     <div id="etapa-bebidas" style="display:none;">
       <div id="bebidas-container"></div>
     </div>
-
-    <!-- Etapa 4: whatsapp e mensagem -->
     <div id="etapa-final" style="display:none;">
       <div class="form-group">
         <label class="form-label">Seu WhatsApp para contato</label>
@@ -304,7 +290,6 @@
       </div>
       <button class="btn-submit" onclick="submitRSVP()">Confirmar presença</button>
     </div>
-
   </div>
   <div class="success-msg" id="success-msg">
     <p id="success-text">Que alegria!</p>
@@ -374,23 +359,9 @@
   <h2 class="section-title">O evento</h2>
   <div class="section-divider"></div>
   <div class="event-grid">
-    <div class="event-card">
-      <span class="event-icon"><i class="ti ti-calendar"></i></span>
-      <span class="event-card-label">Data</span>
-      <span class="event-card-value">10 de outubro de 2027</span>
-    </div>
-    <div class="event-card">
-      <span class="event-icon"><i class="ti ti-clock"></i></span>
-      <span class="event-card-label">Cerimônia</span>
-      <span class="event-card-value">16h00</span>
-      <p class="event-card-note">Nossa cerimônia será rápida e pontual. Por gentileza, não se atrase.</p>
-    </div>
-    <div class="event-card">
-      <span class="event-icon"><i class="ti ti-map-pin"></i></span>
-      <span class="event-card-label">Local</span>
-      <span class="event-card-value">Fleming Recepções</span>
-      <p class="event-card-note">Av. Fleming, 1.481 · Pampulha<br>Belo Horizonte, MG</p>
-    </div>
+    <div class="event-card"><span class="event-icon"><i class="ti ti-calendar"></i></span><span class="event-card-label">Data</span><span class="event-card-value">10 de outubro de 2027</span></div>
+    <div class="event-card"><span class="event-icon"><i class="ti ti-clock"></i></span><span class="event-card-label">Cerimônia</span><span class="event-card-value">16h00</span><p class="event-card-note">Nossa cerimônia será rápida e pontual. Por gentileza, não se atrase.</p></div>
+    <div class="event-card"><span class="event-icon"><i class="ti ti-map-pin"></i></span><span class="event-card-label">Local</span><span class="event-card-value">Fleming Recepções</span><p class="event-card-note">Av. Fleming, 1.481 · Pampulha<br>Belo Horizonte, MG</p></div>
   </div>
 </section>
 
@@ -399,7 +370,6 @@
   <p class="footer-date">10 · 10 · 2027 &nbsp;·&nbsp; Belo Horizonte</p>
 </footer>
 
-<!-- Modal presentear -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box">
     <button class="modal-fechar" onclick="fecharModal()">✕</button>
@@ -412,7 +382,6 @@
   </div>
 </div>
 
-<!-- Modal prazo encerrado -->
 <div class="prazo-encerrado-overlay" id="prazo-encerrado-overlay">
   <div class="prazo-encerrado-box">
     <h2 class="prazo-encerrado-titulo">Prazo encerrado</h2>
@@ -462,7 +431,6 @@ const db = getDatabase(app);
 const PRAZO_LIMITE = new Date('2027-09-02T00:00:00');
 function prazoEncerrado() { return new Date() >= PRAZO_LIMITE; }
 
-// Núcleos familiares
 const familias = [
   ['Thalita Procópio', 'Tulio Marques', 'Matheus Procópio', 'Sophia Marinho', 'Aurora Procópio'],
   ['Suely Rejane Procópio'],
@@ -493,173 +461,7 @@ const familias = [
 
 const todosConvidados = familias.flat();
 
-function normalizarNome(nome) {
-  return nome.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
-
-function encontrarFamilia(nome) {
-  return familias.find(f => f.some(m => normalizarNome(m) === normalizarNome(nome)));
-}
-
-let convidadoSelecionado = null;
-let familiaAtual = [];
-let bebidasSelecionadas = {};
-
-// Busca de nome com sugestão
-window.buscarNome = function() {
-  if (prazoEncerrado()) { document.getElementById('prazo-encerrado-overlay').classList.add('aberto'); return; }
-  const val = document.getElementById('nome-input').value.trim();
-  const sugestoesEl = document.getElementById('nome-sugestoes');
-  document.getElementById('etapa-familia').style.display = 'none';
-  document.getElementById('etapa-bebidas').style.display = 'none';
-  document.getElementById('etapa-final').style.display = 'none';
-  convidadoSelecionado = null;
-
-  if (val.length < 2) { sugestoesEl.style.display = 'none'; return; }
-
-  const valNorm = normalizarNome(val);
-  const encontrados = todosConvidados.filter(c => normalizarNome(c).includes(valNorm));
-
-  if (encontrados.length === 0) { sugestoesEl.style.display = 'none'; return; }
-
-  // Match exato único
-  const exato = encontrados.find(c => normalizarNome(c) === valNorm);
-  if (exato && encontrados.length === 1) {
-    sugestoesEl.style.display = 'none';
-    selecionarConvidado(exato);
-    return;
-  }
-
-  // Mostrar sugestões
-  sugestoesEl.innerHTML = encontrados.map(c =>
-    `<div class="nome-sugestao-item" onclick="selecionarConvidado('${c.replace(/'/g, "\\'")}')">${c}</div>`
-  ).join('');
-  sugestoesEl.style.display = 'block';
-};
-
-window.selecionarConvidado = function(nome) {
-  convidadoSelecionado = nome;
-  document.getElementById('nome-input').value = nome;
-  document.getElementById('nome-sugestoes').style.display = 'none';
-  document.getElementById('erro-nome').style.display = 'none';
-
-  familiaAtual = encontrarFamilia(nome) || [nome];
-  bebidasSelecionadas = {};
-
-  const membrosEl = document.getElementById('familia-membros');
-
-  if (familiaAtual.length === 1) {
-    // Sozinho — pula checkboxes, vai direto para bebida
-    document.getElementById('etapa-familia').style.display = 'none';
-    renderBebidas([nome]);
-  } else {
-    // Família com múltiplos membros
-    membrosEl.innerHTML = familiaAtual.map(m => `
-      <div class="familia-membro">
-        <input type="checkbox" id="membro-${normalizarNome(m).replace(/\s/g,'_')}" value="${m}" ${m === nome ? 'checked' : ''} onchange="atualizarBebidas()">
-        <label class="familia-membro-nome" for="membro-${normalizarNome(m).replace(/\s/g,'_')}">${m}</label>
-      </div>
-    `).join('');
-    document.getElementById('etapa-familia').style.display = 'block';
-    atualizarBebidas();
-  }
-
-  document.getElementById('etapa-final').style.display = 'block';
-};
-
-window.atualizarBebidas = function() {
-  const marcados = familiaAtual.filter(m => {
-    const el = document.getElementById('membro-' + normalizarNome(m).replace(/\s/g,'_'));
-    return el && el.checked;
-  });
-  renderBebidas(marcados);
-};
-
-function renderBebidas(membros) {
-  const container = document.getElementById('bebidas-container');
-  if (membros.length === 0) {
-    container.innerHTML = '';
-    document.getElementById('etapa-bebidas').style.display = 'none';
-    return;
-  }
-  container.innerHTML = membros.map(m => {
-    const id = normalizarNome(m).replace(/\s/g,'_');
-    return `
-      <div class="membro-bebida-block">
-        <span class="membro-bebida-titulo">${m} — consome bebida alcoólica?</span>
-        <div class="bebida-group">
-          <div class="bebida-option" id="beb-sim-${id}" onclick="setBebida('${m}','sim')">Sim</div>
-          <div class="bebida-option" id="beb-nao-${id}" onclick="setBebida('${m}','nao')">Não</div>
-        </div>
-      </div>`;
-  }).join('');
-  document.getElementById('etapa-bebidas').style.display = 'block';
-
-  // Restaurar seleções anteriores
-  membros.forEach(m => {
-    if (bebidasSelecionadas[m]) setBebida(m, bebidasSelecionadas[m], true);
-  });
-}
-
-window.setBebida = function(nome, val, somenteVisual = false) {
-  if (!somenteVisual) bebidasSelecionadas[nome] = val;
-  const id = normalizarNome(nome).replace(/\s/g,'_');
-  const s = document.getElementById('beb-sim-' + id);
-  const n = document.getElementById('beb-nao-' + id);
-  if (s) s.classList.toggle('selected', val === 'sim');
-  if (n) n.classList.toggle('selected', val === 'nao');
-};
-
-window.submitRSVP = async function() {
-  if (prazoEncerrado()) { document.getElementById('prazo-encerrado-overlay').classList.add('aberto'); return; }
-  if (!convidadoSelecionado) {
-    document.getElementById('erro-nome').textContent = 'Por favor, selecione seu nome na lista.';
-    document.getElementById('erro-nome').style.display = 'block';
-    return;
-  }
-
-  const presentes = familiaAtual.length === 1
-    ? [convidadoSelecionado]
-    : familiaAtual.filter(m => {
-        const el = document.getElementById('membro-' + normalizarNome(m).replace(/\s/g,'_'));
-        return el && el.checked;
-      });
-
-  const ausentes = familiaAtual.filter(m => !presentes.includes(m));
-  const whatsapp = document.getElementById('whatsapp').value.trim() || '—';
-  const msg = document.getElementById('msg').value.trim() || '';
-  const agora = new Date().toISOString();
-
-  // Salva cada membro individualmente
-  for (const membro of familiaAtual) {
-    const chave = normalizarNome(membro).replace(/\s/g,'_');
-    const vai = presentes.includes(membro);
-    await set(ref(db, 'confirmacoes/' + chave), {
-      nome: membro,
-      status: vai ? 'sim' : 'nao',
-      bebida: vai ? (bebidasSelecionadas[membro] || '—') : '—',
-      whatsapp: membro === convidadoSelecionado ? whatsapp : '—',
-      mensagem: membro === convidadoSelecionado ? msg : '',
-      dataConfirmacao: agora,
-      confirmedBy: convidadoSelecionado
-    });
-  }
-
-  document.getElementById('rsvp-form').style.display = 'none';
-  const suc = document.getElementById('success-msg');
-  suc.style.display = 'block';
-  const primeiro = convidadoSelecionado.split(' ')[0];
-  if (presentes.includes(convidadoSelecionado)) {
-    document.getElementById('success-text').textContent = `Que alegria, ${primeiro}!`;
-    document.getElementById('success-sub').textContent = 'Sua presença está confirmada. Estamos muito felizes de saber que você estará lá neste dia!';
-  } else {
-    document.getElementById('success-text').textContent = `Sentiremos sua falta, ${primeiro}, mas entendemos.`;
-    document.getElementById('success-sub').textContent = 'Você fará falta nesse dia, mas ainda temos muitos brindes pela frente. Obrigada por nos avisar.';
-  }
-};
-
-// Presentes
-const presentes = [
+const listaPresentes = [
   { id: 'robo-aspirador', nome: 'Robô aspirador', preco: 3998, img: 'robo aspirador.webp', vaquinha: false },
   { id: 'vaquinha-maggie', nome: 'Vaquinha Maggie', preco: 999, img: 'vaca maggie.webp', vaquinha: true },
   { id: 'jogo-panelas', nome: 'Jogo de panelas', preco: 900, img: 'jogo de panelas.jpg', vaquinha: false },
@@ -721,15 +523,126 @@ function formatarData(ts) {
   const d = new Date(ts);
   return d.toLocaleDateString('pt-BR') + ' às ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 }
+function normalizarNome(nome) { return nome.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+function encontrarFamilia(nome) { return familias.find(f => f.some(m => normalizarNome(m) === normalizarNome(nome))); }
+
+let convidadoSelecionado = null;
+let familiaAtual = [];
+let bebidasSelecionadas = {};
+
+window.buscarNome = function() {
+  if (prazoEncerrado()) { document.getElementById('prazo-encerrado-overlay').classList.add('aberto'); return; }
+  const val = document.getElementById('nome-input').value.trim();
+  const sugestoesEl = document.getElementById('nome-sugestoes');
+  document.getElementById('etapa-familia').style.display = 'none';
+  document.getElementById('etapa-bebidas').style.display = 'none';
+  document.getElementById('etapa-final').style.display = 'none';
+  convidadoSelecionado = null;
+  if (val.length < 2) { sugestoesEl.style.display = 'none'; return; }
+  const valNorm = normalizarNome(val);
+  const encontrados = todosConvidados.filter(c => normalizarNome(c).includes(valNorm));
+  if (encontrados.length === 0) { sugestoesEl.style.display = 'none'; return; }
+  const exato = encontrados.find(c => normalizarNome(c) === valNorm);
+  if (exato && encontrados.length === 1) { sugestoesEl.style.display = 'none'; selecionarConvidado(exato); return; }
+  sugestoesEl.innerHTML = encontrados.map(c => `<div class="nome-sugestao-item" onclick="selecionarConvidado('${c.replace(/'/g, "\\'")}')">${c}</div>`).join('');
+  sugestoesEl.style.display = 'block';
+};
+
+window.selecionarConvidado = function(nome) {
+  convidadoSelecionado = nome;
+  document.getElementById('nome-input').value = nome;
+  document.getElementById('nome-sugestoes').style.display = 'none';
+  document.getElementById('erro-nome').style.display = 'none';
+  familiaAtual = encontrarFamilia(nome) || [nome];
+  bebidasSelecionadas = {};
+  if (familiaAtual.length === 1) {
+    document.getElementById('etapa-familia').style.display = 'none';
+    renderBebidas([nome]);
+  } else {
+    const membrosEl = document.getElementById('familia-membros');
+    membrosEl.innerHTML = familiaAtual.map(m => `
+      <div class="familia-membro">
+        <input type="checkbox" id="membro-${normalizarNome(m).replace(/\s/g,'_')}" value="${m}" ${m === nome ? 'checked' : ''} onchange="atualizarBebidas()">
+        <label class="familia-membro-nome" for="membro-${normalizarNome(m).replace(/\s/g,'_')}">${m}</label>
+      </div>`).join('');
+    document.getElementById('etapa-familia').style.display = 'block';
+    atualizarBebidas();
+  }
+  document.getElementById('etapa-final').style.display = 'block';
+};
+
+window.atualizarBebidas = function() {
+  const marcados = familiaAtual.filter(m => {
+    const el = document.getElementById('membro-' + normalizarNome(m).replace(/\s/g,'_'));
+    return el && el.checked;
+  });
+  renderBebidas(marcados);
+};
+
+function renderBebidas(membros) {
+  const container = document.getElementById('bebidas-container');
+  if (membros.length === 0) { container.innerHTML = ''; document.getElementById('etapa-bebidas').style.display = 'none'; return; }
+  container.innerHTML = membros.map(m => {
+    const id = normalizarNome(m).replace(/\s/g,'_');
+    return `<div class="membro-bebida-block">
+      <span class="membro-bebida-titulo">${m} — consome bebida alcoólica?</span>
+      <div class="bebida-group">
+        <div class="bebida-option" id="beb-sim-${id}" onclick="setBebida('${m.replace(/'/g,"\\'")}','sim')">Sim</div>
+        <div class="bebida-option" id="beb-nao-${id}" onclick="setBebida('${m.replace(/'/g,"\\'")}','nao')">Não</div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('etapa-bebidas').style.display = 'block';
+  membros.forEach(m => { if (bebidasSelecionadas[m]) setBebida(m, bebidasSelecionadas[m], true); });
+}
+
+window.setBebida = function(nome, val, somenteVisual = false) {
+  if (!somenteVisual) bebidasSelecionadas[nome] = val;
+  const id = normalizarNome(nome).replace(/\s/g,'_');
+  const s = document.getElementById('beb-sim-' + id);
+  const n = document.getElementById('beb-nao-' + id);
+  if (s) s.classList.toggle('selected', val === 'sim');
+  if (n) n.classList.toggle('selected', val === 'nao');
+};
+
+window.submitRSVP = async function() {
+  if (prazoEncerrado()) { document.getElementById('prazo-encerrado-overlay').classList.add('aberto'); return; }
+  if (!convidadoSelecionado) { document.getElementById('erro-nome').textContent = 'Por favor, selecione seu nome na lista.'; document.getElementById('erro-nome').style.display = 'block'; return; }
+  const confirmados = familiaAtual.length === 1 ? [convidadoSelecionado] : familiaAtual.filter(m => { const el = document.getElementById('membro-' + normalizarNome(m).replace(/\s/g,'_')); return el && el.checked; });
+  const whatsapp = document.getElementById('whatsapp').value.trim() || '—';
+  const msg = document.getElementById('msg').value.trim() || '';
+  const agora = new Date().toISOString();
+  for (const membro of familiaAtual) {
+    const chave = normalizarNome(membro).replace(/\s/g,'_');
+    const vai = confirmados.includes(membro);
+    await set(ref(db, 'confirmacoes/' + chave), {
+      nome: membro, status: vai ? 'sim' : 'nao',
+      bebida: vai ? (bebidasSelecionadas[membro] || '—') : '—',
+      whatsapp: membro === convidadoSelecionado ? whatsapp : '—',
+      mensagem: membro === convidadoSelecionado ? msg : '',
+      dataConfirmacao: agora, confirmedBy: convidadoSelecionado
+    });
+  }
+  document.getElementById('rsvp-form').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+  const primeiro = convidadoSelecionado.split(' ')[0];
+  if (confirmados.includes(convidadoSelecionado)) {
+    document.getElementById('success-text').textContent = `Que alegria, ${primeiro}!`;
+    document.getElementById('success-sub').textContent = 'Sua presença está confirmada. Estamos muito felizes de saber que você estará lá neste dia!';
+  } else {
+    document.getElementById('success-text').textContent = `Sentiremos sua falta, ${primeiro}, mas entendemos.`;
+    document.getElementById('success-sub').textContent = 'Você fará falta nesse dia, mas ainda temos muitos brindes pela frente. Obrigada por nos avisar.';
+  }
+};
 
 async function renderPresentes() {
   const grid = document.getElementById('gifts-grid');
   grid.innerHTML = '';
   const snap = await get(ref(db, 'presentes'));
-  const dados = snap.val() || {};
-  presentes.forEach((p, index) => {
-    const comprado = dados[p.id] && !p.vaquinha;
-    const nomeComprador = dados[p.id]?.nome || '';
+  const dadosPresentes = snap.val() || {};
+  listaPresentes.forEach((p, index) => {
+    const comprado = dadosPresentes[p.id] && !p.vaquinha;
+    const nomeComprador = dadosPresentes[p.id]?.nome || '';
     const wrapper = document.createElement('div');
     wrapper.style.cssText = 'position: relative; height: 220px;';
     if (index >= LIMITE) wrapper.classList.add('gift-extra');
@@ -741,7 +654,7 @@ async function renderPresentes() {
     grid.appendChild(wrapper);
   });
   document.querySelectorAll('.gift-extra').forEach(el => el.style.display = 'none');
-  if (presentes.length > LIMITE) document.getElementById('btn-ver-mais').style.display = 'block';
+  if (listaPresentes.length > LIMITE) document.getElementById('btn-ver-mais').style.display = 'block';
   verificarPagamentoRetorno();
 }
 
@@ -751,8 +664,8 @@ function verificarPagamentoRetorno() {
   const presenteId = params.get('presente');
   const nomeComprador = params.get('nome');
   if (status === 'sucesso' && presenteId && nomeComprador) {
-    const presente = presentes.find(p => p.id === presenteId);
-    if (presente && !presente.vaquinha) {
+    const p = listaPresentes.find(x => x.id === presenteId);
+    if (p && !p.vaquinha) {
       set(ref(db, `presentes/${presenteId}`), { pago: true, nome: decodeURIComponent(nomeComprador) });
       setTimeout(() => virarCard(presenteId, decodeURIComponent(nomeComprador)), 800);
     }
@@ -766,7 +679,7 @@ function virarCard(id, nome) {
 }
 
 window.abrirModal = function(id) {
-  presenteAtual = presentes.find(p => p.id === id);
+  presenteAtual = listaPresentes.find(p => p.id === id);
   if (!presenteAtual) return;
   document.getElementById('modal-presente-nome').textContent = `${presenteAtual.nome} · ${formatarPreco(presenteAtual.preco)}`;
   document.getElementById('modal-nome-input').value = '';
@@ -799,8 +712,7 @@ window.fecharMenu = function() { document.getElementById('hamburger').classList.
 
 function updateCountdown() {
   const target = new Date('2027-10-10T16:00:00');
-  const now = new Date();
-  const diff = target - now;
+  const diff = target - new Date();
   if (diff <= 0) { document.getElementById('countdown').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:2rem;color:#7a1e2e">Hoje é o grande dia!</p>'; return; }
   document.getElementById('cd-dias').textContent = Math.floor(diff / 86400000);
   document.getElementById('cd-horas').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
