@@ -136,20 +136,28 @@
   .manual-card-titulo { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.8rem; }
   .manual-card-texto { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--text-mid); line-height: 1.6; text-align: justify; }
 
+  /* RSVP */
   .rsvp-form { max-width: 520px; }
   .form-group { margin-bottom: 1.5rem; }
   .form-label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 0.5rem; font-weight: 400; }
   .form-input, .form-select, .form-textarea { width: 100%; background: var(--ivory); border: 1px solid var(--stone); border-radius: 2px; padding: 0.75rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text-dark); outline: none; transition: border-color 0.2s; -webkit-appearance: none; }
   .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--wine); }
   .form-textarea { resize: vertical; min-height: 90px; }
-  .radio-group { display: flex; gap: 1rem; }
-  .radio-option { flex: 1; border: 1px solid var(--stone); border-radius: 2px; padding: 0.75rem 1rem; cursor: pointer; text-align: center; font-size: 0.85rem; color: var(--text-mid); transition: all 0.2s; background: var(--ivory); }
-  .radio-option.selected { background: var(--wine-pale); border-color: var(--wine); color: var(--wine); }
+  .nome-sugestoes { border: 1px solid var(--stone); border-radius: 2px; background: var(--ivory); margin-top: 0.5rem; overflow: hidden; display: none; }
+  .nome-sugestao-item { padding: 0.75rem 1rem; cursor: pointer; font-size: 0.9rem; color: var(--text-dark); border-bottom: 1px solid var(--stone); transition: background 0.15s; }
+  .nome-sugestao-item:last-child { border-bottom: none; }
+  .nome-sugestao-item:hover { background: var(--wine-pale); color: var(--wine); }
+  .familia-box { background: var(--cream); border: 1px solid var(--stone); border-radius: 4px; padding: 1.2rem; margin-bottom: 1.5rem; }
+  .familia-box-titulo { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 1rem; font-weight: 400; display: block; }
+  .familia-membro { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid var(--stone); }
+  .familia-membro:last-child { border-bottom: none; }
+  .familia-membro input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--wine); cursor: pointer; flex-shrink: 0; }
+  .familia-membro-nome { font-size: 0.9rem; color: var(--text-dark); flex: 1; }
   .bebida-group { display: flex; gap: 1rem; margin-top: 0.5rem; }
   .bebida-option { flex: 1; border: 1px solid var(--stone); border-radius: 2px; padding: 0.6rem 1rem; cursor: pointer; text-align: center; font-size: 0.85rem; color: var(--text-mid); transition: all 0.2s; background: var(--ivory); }
   .bebida-option.selected { background: var(--wine-pale); border-color: var(--wine); color: var(--wine); }
-  .acomp-block { background: var(--cream); border: 1px solid var(--stone); border-radius: 4px; padding: 1rem 1.2rem; margin-bottom: 1rem; }
-  .acomp-titulo { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.8rem; font-weight: 400; }
+  .membro-bebida-block { background: var(--ivory); border: 1px solid var(--stone); border-radius: 4px; padding: 1rem 1.2rem; margin-bottom: 0.8rem; }
+  .membro-bebida-titulo { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.6rem; font-weight: 400; display: block; }
   .btn-submit { background: var(--wine); color: white; border: none; padding: 0.9rem 2.5rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; width: 100%; margin-top: 0.5rem; }
   .btn-submit:hover { background: #6a1828; }
   .success-msg { display: none; text-align: center; padding: 2.5rem; border: 1px solid var(--wine-light); border-radius: 4px; background: var(--wine-pale); }
@@ -223,11 +231,7 @@
   <img src="noivas.jpeg" class="hero-bg-noivas" alt="">
   <div class="hero-inner">
     <p class="hero-eyebrow">Chegou a nossa vez</p>
-    <h1 class="hero-names">
-      Del
-      <em class="hero-amp">&</em>
-      Thami
-    </h1>
+    <h1 class="hero-names">Del<em class="hero-amp">&</em>Thami</h1>
     <div class="hero-divider"></div>
     <p class="hero-date">10 · 10 · 2027</p>
     <p class="hero-location">Fleming Recepções &nbsp;·&nbsp; Belo Horizonte</p>
@@ -245,22 +249,10 @@
   <h2 class="section-title">Nossa história</h2>
   <div class="section-divider"></div>
   <div class="timeline">
-    <div class="timeline-item">
-      <p class="timeline-year">O primeiro encontro</p>
-      <p class="timeline-text">Aqui vai a história de como Del e Thami se conheceram — esse espaço é todo de vocês para contar com as próprias palavras o começo de tudo.</p>
-    </div>
-    <div class="timeline-item">
-      <p class="timeline-year">Quando tudo mudou</p>
-      <p class="timeline-text">Um momento especial que marcou a relação de vocês — uma viagem, uma conversa, uma descoberta. Algo que as aproximou de verdade.</p>
-    </div>
-    <div class="timeline-item">
-      <p class="timeline-year">O pedido</p>
-      <p class="timeline-text">A história do pedido de casamento — com todos os detalhes que vocês quiserem compartilhar. Foi aqui que o "sim" mudou tudo.</p>
-    </div>
-    <div class="timeline-item">
-      <p class="timeline-year">10 · 10 · 2027</p>
-      <p class="timeline-text">E agora, celebramos. Com as pessoas que amamos, na data mais especial das nossas vidas.</p>
-    </div>
+    <div class="timeline-item"><p class="timeline-year">O primeiro encontro</p><p class="timeline-text">Aqui vai a história de como Del e Thami se conheceram — esse espaço é todo de vocês para contar com as próprias palavras o começo de tudo.</p></div>
+    <div class="timeline-item"><p class="timeline-year">Quando tudo mudou</p><p class="timeline-text">Um momento especial que marcou a relação de vocês — uma viagem, uma conversa, uma descoberta. Algo que as aproximou de verdade.</p></div>
+    <div class="timeline-item"><p class="timeline-year">O pedido</p><p class="timeline-text">A história do pedido de casamento — com todos os detalhes que vocês quiserem compartilhar. Foi aqui que o "sim" mudou tudo.</p></div>
+    <div class="timeline-item"><p class="timeline-year">10 · 10 · 2027</p><p class="timeline-text">E agora, celebramos. Com as pessoas que amamos, na data mais especial das nossas vidas.</p></div>
   </div>
 </section>
 
@@ -278,46 +270,41 @@
   <h2 class="section-title">Confirme sua presença</h2>
   <div class="section-divider"></div>
   <div class="rsvp-form" id="rsvp-form">
-    <div class="form-group">
-      <label class="form-label">Seu nome completo (pelo menos nome e sobrenome)</label>
-      <input type="text" class="form-input" id="nome" placeholder="Ex: Maria Silva">
+
+    <!-- Etapa 1: nome -->
+    <div class="form-group" id="etapa-nome">
+      <label class="form-label">Seu nome</label>
+      <input type="text" class="form-input" id="nome-input" placeholder="Digite seu nome" oninput="buscarNome()">
       <p class="error-msg" id="erro-nome"></p>
+      <div class="nome-sugestoes" id="nome-sugestoes"></div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Contato (WhatsApp)</label>
-      <input type="tel" class="form-input" id="whatsapp" placeholder="Ex: (31) 99999-9999">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Você vai comparecer?</label>
-      <div class="radio-group">
-        <div class="radio-option" id="opt-sim" onclick="selectPresenca('sim')">Com certeza! 🎉</div>
-        <div class="radio-option" id="opt-nao" onclick="selectPresenca('nao')">Infelizmente não poderei</div>
+
+    <!-- Etapa 2: família -->
+    <div id="etapa-familia" style="display:none;">
+      <div class="familia-box">
+        <span class="familia-box-titulo">Quem vai comparecer?</span>
+        <div id="familia-membros"></div>
       </div>
     </div>
-    <div id="campos-presenca" style="display:none;">
+
+    <!-- Etapa 3: bebidas -->
+    <div id="etapa-bebidas" style="display:none;">
+      <div id="bebidas-container"></div>
+    </div>
+
+    <!-- Etapa 4: whatsapp e mensagem -->
+    <div id="etapa-final" style="display:none;">
       <div class="form-group">
-        <label class="form-label">Consome bebida alcoólica?</label>
-        <div class="bebida-group">
-          <div class="bebida-option" id="bebida-sim" onclick="selectBebida('sim')">Sim</div>
-          <div class="bebida-option" id="bebida-nao" onclick="selectBebida('nao')">Não</div>
-        </div>
+        <label class="form-label">Seu WhatsApp para contato</label>
+        <input type="tel" class="form-input" id="whatsapp" placeholder="Ex: (31) 99999-9999">
       </div>
       <div class="form-group">
-        <label class="form-label">Número de acompanhantes (além de você)</label>
-        <select class="form-select" id="acomp" onchange="gerarCamposAcomp()">
-          <option value="0">Apenas eu</option>
-          <option value="1">+ 1 pessoa</option>
-          <option value="2">+ 2 pessoas</option>
-          <option value="3">+ 3 pessoas</option>
-        </select>
+        <label class="form-label">Alguma mensagem para as noivas? (opcional)</label>
+        <textarea class="form-textarea" id="msg" placeholder="Escreva o que quiser ♡"></textarea>
       </div>
-      <div id="acomp-campos"></div>
+      <button class="btn-submit" onclick="submitRSVP()">Confirmar presença</button>
     </div>
-    <div class="form-group">
-      <label class="form-label">Alguma mensagem para as noivas? (opcional)</label>
-      <textarea class="form-textarea" id="msg" placeholder="Escreva o que quiser ♡"></textarea>
-    </div>
-    <button class="btn-submit" onclick="submitRSVP()">Confirmar presença</button>
+
   </div>
   <div class="success-msg" id="success-msg">
     <p id="success-text">Que alegria!</p>
@@ -332,70 +319,51 @@
       <h2 class="section-title">Manual do convidado</h2>
       <div class="section-divider"></div>
       <div class="manual-grid">
-
-        <!-- 1º Presença -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"/><path d="M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2"/><path d="M9 14l2 2l4 -4"/></svg></div>
           <p class="manual-card-titulo">Presença</p>
           <p class="manual-card-texto">Fizemos um planejamento para uma quantidade determinada de convidados. Por isso, sua resposta é importante! Mesmo que seja para informar que não estará presente.</p>
         </div>
-
-        <!-- 2º Penetras -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l2 -3l2 3m-2 -3v-1.5m2.627 -1.376l.373 -.124m-6 0l2.231 .744"/><path d="M20.042 16.045a9 9 0 0 0 -12.087 -12.087m-2.318 1.677a9 9 0 1 0 12.725 12.73"/><path d="M12 8a.5 .5 0 1 0 -.5 -.5"/><path d="M3 3l18 18"/></svg></div>
           <p class="manual-card-titulo">Penetras</p>
           <p class="manual-card-texto">Convidado não convida. Por favor, não peça convites e não insista! Isto é deselegante. O convite indica o nome da pessoa convidada, é pessoal e intransferível.</p>
         </div>
-
-        <!-- 3º Evite -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3"/></svg></div>
-          <p class="manual-card-titulo">Evite</p>
+          <p class="manual-card-titulo">Proibido</p>
           <p class="manual-card-texto">É uma gafe usar branco ou cores muito claras. Esqueça também roupas na cor vermelho escuro (bordô, marsala, vinho e etc). Esta é a principal cor do nosso casamento. Imagine ser confundido com a decoração!</p>
         </div>
-
-        <!-- 4º Traje -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 6a2 2 0 1 0 -4 0c0 1.667 .67 3 2 4h-.008l7.971 4.428a2 2 0 0 1 1.029 1.749v.823a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-.823a2 2 0 0 1 1.029 -1.749l7.971 -4.428"/></svg></div>
           <p class="manual-card-titulo">Traje</p>
           <p class="manual-card-texto">Para descobrir o estilo do casamento, basta uma olhadinha no convite e uma pesquisada sobre o local. Isso irá te dar uma ideia de como será o evento. Portanto, se prepare! Nesta ocasião, aquela sua calça jeans não é a pedida certa. Lembre-se: por mais descolado que seja, ainda é um casamento.</p>
         </div>
-
-        <!-- 5º Pontualidade -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.942 13.021a9 9 0 1 0 -9.407 7.967"/><path d="M12 7v5l3 3"/><path d="M15 19l2 2l4 -4"/></svg></div>
           <p class="manual-card-titulo">Pontualidade</p>
           <p class="manual-card-texto">A cerimônia é a parte mais importante do casamento. Seja pontual e se acomode com antecedência. Chegar após iniciada a cerimônia desvia a atenção de quem já está presente. Seja sensível e não apareça apenas para a festa.</p>
         </div>
-
-        <!-- 6º Celular -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8"/><path d="M22 22l-5 -5"/><path d="M17 22l5 -5"/><path d="M11 4h2"/><path d="M12 17v.01"/></svg></div>
           <p class="manual-card-titulo">Celular</p>
           <p class="manual-card-texto">Preferencialmente, durante a cerimônia, desligue o seu celular. Convidado não é fotógrafo. Escolhemos duas profissionais incríveis para realizar este serviço. Evite tentar fazer o trabalho delas. Você pode acabar atrapalhando.</p>
         </div>
-
-        <!-- 7º Decoração -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.875 9.882a3 3 0 0 0 4.247 4.238m.581 -3.423a3.012 3.012 0 0 0 -1.418 -1.409"/><path d="M9 5a3 3 0 0 1 6 0c0 .562 -.259 1.442 -.776 2.64l-.724 1.36l1.76 -1.893c.499 -.6 .922 -1 1.27 -1.205a2.968 2.968 0 0 1 4.07 1.099a3.011 3.011 0 0 1 -1.09 4.098c-.374 .217 -.99 .396 -1.846 .535l-1.779 .244m.292 .282l1.223 .166c1 .145 1.698 .337 2.11 .576a3.011 3.011 0 0 1 1.226 3.832m-2.277 1.733a2.968 2.968 0 0 1 -1.929 -.369c-.348 -.202 -.771 -.604 -1.27 -1.205l-1.76 -1.893l.724 1.36c.516 1.199 .776 2.079 .776 2.64a3 3 0 0 1 -6 0c0 -.562 .259 -1.442 .776 -2.64l.724 -1.36l-1.76 1.893c-.499 .601 -.922 1 -1.27 1.205a2.968 2.968 0 0 1 -4.07 -1.098a3.011 3.011 0 0 1 1.09 -4.098c.374 -.218 .99 -.396 1.846 -.536l2.664 -.366l-2.4 -.325c-1 -.145 -1.698 -.337 -2.11 -.576a3.011 3.011 0 0 1 -1.09 -4.099a2.968 2.968 0 0 1 2.134 -1.467"/><path d="M3 3l18 18"/></svg></div>
           <p class="manual-card-titulo">Decoração</p>
           <p class="manual-card-texto">Não leve a decoração para casa. Existem itens que foram locados e precisam ser devolvidos. Na saída, você receberá o que pode levar de lembrança.</p>
         </div>
-
-        <!-- 8º Noivas -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h2"/><path d="M5 4v2"/><path d="M11.5 4l-.5 2"/><path d="M18 5h2"/><path d="M19 4v2"/><path d="M15 9l-1 1"/><path d="M18 13l2 -.5"/><path d="M18 19h2"/><path d="M19 18v2"/><path d="M14 16.518l-6.518 -6.518l-4.39 9.58a1 1 0 0 0 1.329 1.329l9.579 -4.39"/></svg></div>
           <p class="manual-card-titulo">Noivas</p>
           <p class="manual-card-texto">Se divirta muito e deixe a gente se divertir também! Esse momento passa muito rápido para só posarmos para fotos.</p>
         </div>
-
-        <!-- 9º Comentários -->
         <div class="manual-card">
           <div class="manual-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c4a89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.02 19.52c-2.34 .736 -5 .606 -7.32 -.52l-4.7 1l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c1.96 1.671 2.898 3.963 2.755 6.227"/><path d="M19 16v3"/><path d="M19 22v.01"/></svg></div>
           <p class="manual-card-titulo">Comentários</p>
           <p class="manual-card-texto">Guarde os comentários negativos para você. Antes de pontuar qualquer coisa que não gostou, lembre-se que nós colocamos 2 anos de muito esforço, trabalho e intenção para recebê-lo da melhor forma.</p>
         </div>
-
       </div>
     </section>
   </div>
@@ -407,18 +375,18 @@
   <div class="section-divider"></div>
   <div class="event-grid">
     <div class="event-card">
-      <span class="event-icon"><i class="ti ti-calendar" aria-hidden="true"></i></span>
+      <span class="event-icon"><i class="ti ti-calendar"></i></span>
       <span class="event-card-label">Data</span>
       <span class="event-card-value">10 de outubro de 2027</span>
     </div>
     <div class="event-card">
-      <span class="event-icon"><i class="ti ti-clock" aria-hidden="true"></i></span>
+      <span class="event-icon"><i class="ti ti-clock"></i></span>
       <span class="event-card-label">Cerimônia</span>
       <span class="event-card-value">16h00</span>
       <p class="event-card-note">Nossa cerimônia será rápida e pontual. Por gentileza, não se atrase.</p>
     </div>
     <div class="event-card">
-      <span class="event-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></span>
+      <span class="event-icon"><i class="ti ti-map-pin"></i></span>
       <span class="event-card-label">Local</span>
       <span class="event-card-value">Fleming Recepções</span>
       <p class="event-card-note">Av. Fleming, 1.481 · Pampulha<br>Belo Horizonte, MG</p>
@@ -457,419 +425,3 @@
 <div class="painel-overlay" id="painel-overlay">
   <div class="painel-box">
     <button class="painel-fechar" onclick="fecharPainel()">✕</button>
-    <h2 class="painel-titulo">Painel das noivas</h2>
-    <div class="painel-senha">
-      <input type="password" id="painel-senha-input" placeholder="Digite a senha" onkeydown="if(event.key==='Enter')verificarSenha()">
-      <button onclick="verificarSenha()">Entrar</button>
-    </div>
-    <p id="painel-erro" style="color:#a32d2d;font-size:0.85rem;display:none;margin-bottom:1rem;">Senha incorreta.</p>
-    <div class="painel-content" id="painel-content">
-      <div class="painel-stats">
-        <div class="stat-card"><span class="stat-num" id="stat-sim">0</span><span class="stat-label">Confirmados ✔️</span></div>
-        <div class="stat-card"><span class="stat-num" id="stat-nao">0</span><span class="stat-label">Ausentes ❌</span></div>
-        <div class="stat-card"><span class="stat-num" id="stat-pendente">0</span><span class="stat-label">Pendentes ⏳</span></div>
-      </div>
-      <div class="convidado-lista" id="convidado-lista"></div>
-    </div>
-  </div>
-</div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD5ttVxUex1he0_Y5pVQ8NLmt776pJwzp0",
-  authDomain: "casamento-del-e-thami.firebaseapp.com",
-  databaseURL: "https://casamento-del-e-thami-default-rtdb.firebaseio.com",
-  projectId: "casamento-del-e-thami",
-  storageBucket: "casamento-del-e-thami.firebasestorage.app",
-  messagingSenderId: "1047642059250",
-  appId: "1:1047642059250:web:6e4e8cd5008b81f22c7b6b"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const PRAZO_LIMITE = new Date('2027-09-02T00:00:00');
-
-function prazоEncerrado() {
-  return new Date() >= PRAZO_LIMITE;
-}
-
-const convidados = [
-  'Thalita Procópio', 'Tulio Marques', 'Matheus Procópio', 'Sophia Marinho',
-  'Aurora Procópio', 'Suely Rejane Procópio', 'Lauro Torres', 'Nayara Procópio',
-  'Marcus Paulo Saúde', 'Rayssa Procópio', 'Cassio Schneider', 'Celina Torres',
-  'Gustavo Torres', 'Maria Carolina Torres', 'Carolina Arantes', 'Guilherme Moretti',
-  'Gal Arantes', 'Joaquim Arantes', 'Fernanda Daniele Procópio', 'Walmir Magalhães',
-  'Marina Procópio', 'Roberta Gomes', 'Elton Greve', 'Daniel Duarte',
-  'Ana Carolina Paiva', 'Vera Silva', 'Sidney Procópio', 'Thays Procópio',
-  'Sophia Procópio', 'Eloá Santos', 'Pietro Procópio', 'Thiago Procópio',
-  'Davi Duarte', 'Maria Marinho', 'Victor Cruz', 'Lais Lopes',
-  'Maria Elisa Vasconcelos', 'Polyana Oliveira', 'Douglas de Paula', 'Igor Anaxagoras',
-  'Gustavo Giacchero', 'Paula Barroca', 'João Giacchero', 'Tulio Santerio',
-  'Raphael Ottoni', 'Letícia Cabral', 'Bruna Sobreira', 'Clarice Sarcinelli',
-  'Rafael Freiria', 'João Trindade'
-];
-
-const presentes = [
-  { id: 'robo-aspirador', nome: 'Robô aspirador', preco: 3998, img: 'robo aspirador.webp', vaquinha: false },
-  { id: 'vaquinha-maggie', nome: 'Vaquinha Maggie', preco: 999, img: 'vaca maggie.webp', vaquinha: true },
-  { id: 'jogo-panelas', nome: 'Jogo de panelas', preco: 900, img: 'jogo de panelas.jpg', vaquinha: false },
-  { id: 'air-fryer', nome: 'Air fryer', preco: 900, img: 'air friyer.webp', vaquinha: false },
-  { id: 'jogo-cama-queen', nome: 'Jogo de cama queen size', preco: 800, img: 'jogo de cama.webp', vaquinha: false },
-  { id: 'dolce-gusto', nome: 'Dolce Gusto', preco: 800, img: 'dolce gusto.webp', vaquinha: false },
-  { id: 'escrivaninha', nome: 'Escrivaninha', preco: 700, img: 'escrivaninha.webp', vaquinha: false },
-  { id: 'alexa', nome: 'Alexa', preco: 700, img: 'alexa.jpg', vaquinha: false },
-  { id: 'cadeira-escritorio', nome: 'Cadeira de escritório', preco: 600, img: 'cadeira escritorio.jpg', vaquinha: false },
-  { id: 'estante-livros', nome: 'Estante de livros', preco: 550, img: 'estante de livros.jpg', vaquinha: false },
-  { id: 'vaquinha-otis', nome: 'Vaquinha Otis', preco: 499, img: 'vaca otis.jpg', vaquinha: true },
-  { id: 'batedeira', nome: 'Batedeira planetária', preco: 500, img: 'batedeira.webp', vaquinha: false },
-  { id: 'jogo-banho', nome: 'Jogo de Banho Buddemeyer', preco: 500, img: 'jogo de toalha.webp', vaquinha: false },
-  { id: 'faqueiro', nome: 'Faqueiro', preco: 400, img: 'faqueiro certo.jpg', vaquinha: false },
-  { id: 'moedor-cafe', nome: 'Moedor de café', preco: 380, img: 'moedor de café.jpg', vaquinha: false },
-  { id: 'sapateira', nome: 'Sapateira', preco: 300, img: 'sapateira.webp', vaquinha: false },
-  { id: 'conjunto-tacas-vinho', nome: 'Conjunto de taças de vinho', preco: 300, img: 'taças de vinho.webp', vaquinha: false },
-  { id: 'conjunto-tacas-espumante', nome: 'Conjunto de taças de espumante', preco: 300, img: 'taça espumante.webp', vaquinha: false },
-  { id: 'maquina-seladora', nome: 'Máquina seladora', preco: 300, img: 'seladora.jpg', vaquinha: false },
-  { id: 'vaquinha-ferdinando', nome: 'Vaquinha Ferdinando', preco: 299, img: 'Ferdinando.webp', vaquinha: true },
-  { id: 'escada', nome: 'Escada', preco: 260, img: 'escada.webp', vaquinha: false },
-  { id: 'espelho', nome: 'Espelho', preco: 200, img: 'espelho.jpg', vaquinha: false },
-  { id: 'maquina-waffle', nome: 'Máquina elétrica de waffle', preco: 200, img: 'máquina de waffle.webp', vaquinha: false },
-  { id: 'abajur-chao', nome: 'Abajur de chão', preco: 200, img: 'abajur de chao.jpg', vaquinha: false },
-  { id: 'espremedor', nome: 'Espremedor de frutas elétrico', preco: 200, img: 'espremedor.webp', vaquinha: false },
-  { id: 'tabua-passar', nome: 'Tábua de passar roupa', preco: 200, img: 'tábua.webp', vaquinha: false },
-  { id: 'almofadas', nome: 'Conjunto de almofadas', preco: 180, img: 'almofadas.jpg', vaquinha: false },
-  { id: 'ventilador', nome: 'Ventilador', preco: 180, img: 'ventilador.webp', vaquinha: false },
-  { id: 'cafeteira-hario', nome: 'Kit Cafeteira Hario V60', preco: 170, img: 'v60.jpeg', vaquinha: false },
-  { id: 'abajur-cabeceira', nome: 'Abajur de cabeceira', preco: 170, img: 'abajur de mesa.webp', vaquinha: false },
-  { id: 'processador', nome: 'Processador de alimentos', preco: 170, img: 'processador de alimentos.jpg', vaquinha: false },
-  { id: 'vaquinha-clarabella', nome: 'Vaquinha Clarabella', preco: 149, img: 'vaca clarabella.jpg', vaquinha: true },
-  { id: 'carrinho-organizador', nome: 'Carrinho organizador', preco: 150, img: 'carrinho organizador.webp', vaquinha: false },
-  { id: 'furadeira', nome: 'Furadeira', preco: 150, img: 'furadeira.jpg', vaquinha: false },
-  { id: 'kit-bar', nome: 'Kit bar', preco: 150, img: 'kit bar.webp', vaquinha: false },
-  { id: 'roupao', nome: 'Roupão', preco: 150, img: 'roupão.jpg', vaquinha: false },
-  { id: 'umedificador', nome: 'Umidificador', preco: 150, img: 'umedificador.webp', vaquinha: false },
-  { id: 'potes-vidro', nome: 'Conjunto de potes de vidro', preco: 150, img: 'potes.jpg', vaquinha: false },
-  { id: 'mixer-multiuso', nome: 'Mixer multiuso', preco: 120, img: 'mixer multiuso.jpg', vaquinha: false },
-  { id: 'caixa-ferramentas', nome: 'Caixa de ferramentas', preco: 120, img: 'ferramentas.jpg', vaquinha: false },
-  { id: 'extensao', nome: 'Extensão', preco: 100, img: 'extensão.jpg', vaquinha: false },
-  { id: 'kit-jardinagem', nome: 'Kit jardinagem', preco: 100, img: 'kit jardinagem.jpg', vaquinha: false },
-  { id: 'mop', nome: 'Mop', preco: 100, img: 'mop.jpg', vaquinha: false },
-  { id: 'puff', nome: 'Puff', preco: 100, img: 'puff.jpg', vaquinha: false },
-  { id: 'vaquinha-vaca', nome: 'Vaquinha Vaca', preco: 99, img: 'vaca.jpg', vaquinha: true },
-  { id: 'bowls', nome: 'Conjunto de bowls', preco: 90, img: 'bowls.jpg', vaquinha: false },
-  { id: 'descanso-panela', nome: 'Descanso de panela', preco: 80, img: 'descanso de panela.webp', vaquinha: false },
-  { id: 'pano-prato', nome: 'Panos de prato', preco: 70, img: 'pano de prato.webp', vaquinha: false },
-  { id: 'vaquinha-grace', nome: 'Vaquinha Grace', preco: 49, img: 'Grace_cow.webp', vaquinha: true },
-  { id: 'bandeja-cafe', nome: 'Bandeja de café da manhã', preco: 50, img: 'bandeja de cafe.jpg', vaquinha: false },
-];
-
-const LIMITE = 15;
-let presenteAtual = null;
-let bebidaTitular = null;
-
-function formatarPreco(v) {
-  return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-function formatarData(ts) {
-  if (!ts) return '—';
-  const d = new Date(ts);
-  return d.toLocaleDateString('pt-BR') + ' às ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-}
-
-async function renderPresentes() {
-  const grid = document.getElementById('gifts-grid');
-  grid.innerHTML = '';
-  const snap = await get(ref(db, 'presentes'));
-  const dados = snap.val() || {};
-
-  presentes.forEach((p, index) => {
-    const comprado = dados[p.id] && !p.vaquinha;
-    const nomeComprador = dados[p.id]?.nome || '';
-    const wrapper = document.createElement('div');
-    wrapper.style.cssText = 'position: relative; height: 220px;';
-    if (index >= LIMITE) wrapper.classList.add('gift-extra');
-
-    if (comprado) {
-      wrapper.innerHTML = `
-        <div class="gift-card gift-card-flip virado" id="gcard-${p.id}" style="height:100%;">
-          <div class="gift-card-inner" style="height:100%;">
-            <div class="gift-card-front" style="height:100%;">
-              <div class="gift-img-wrap" style="height:120px;">
-                ${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : `<i class="ti ti-gift gift-img-placeholder"></i>`}
-                <div class="gift-overlay" style="display:flex;"><span class="gift-overlay-text">Presente escolhido</span></div>
-              </div>
-              <div class="gift-body">
-                <div class="gift-name" style="text-decoration:line-through;color:var(--text-light);">${p.nome}</div>
-                <div class="gift-price" style="color:var(--text-light);">${formatarPreco(p.preco)}</div>
-              </div>
-            </div>
-            <div class="gift-card-back">
-              <div class="gift-card-back-title">Muito obrigada!</div>
-              <div class="gift-card-back-nome">${nomeComprador}</div>
-              <div class="gift-card-back-msg">Sua generosidade nos enche de alegria. Que presente lindo!</div>
-              <div class="gift-card-back-heart">♡</div>
-            </div>
-          </div>
-        </div>`;
-    } else {
-      wrapper.innerHTML = `
-        <div class="gift-card gift-card-flip" id="gcard-${p.id}" style="height:100%;">
-          <div class="gift-card-inner" style="height:100%;">
-            <div class="gift-card-front" style="height:100%;">
-              <div class="gift-img-wrap" style="height:120px;">
-                ${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : `<i class="ti ti-gift gift-img-placeholder"></i>`}
-                <div class="gift-overlay"><span class="gift-overlay-text">Presente escolhido</span></div>
-              </div>
-              <div class="gift-body">
-                <div class="gift-name">${p.nome}</div>
-                <div class="gift-price">${formatarPreco(p.preco)}</div>
-                <div class="gift-btn">
-                  <button class="btn-comprar" onclick="abrirModal('${p.id}')">Presentear</button>
-                </div>
-              </div>
-            </div>
-            <div class="gift-card-back">
-              <div class="gift-card-back-title">Muito obrigada!</div>
-              <div class="gift-card-back-nome"></div>
-              <div class="gift-card-back-msg">Sua generosidade nos enche de alegria. Que presente lindo!</div>
-              <div class="gift-card-back-heart">♡</div>
-            </div>
-          </div>
-        </div>`;
-    }
-    grid.appendChild(wrapper);
-  });
-
-  document.querySelectorAll('.gift-extra').forEach(el => el.style.display = 'none');
-  if (presentes.length > LIMITE) document.getElementById('btn-ver-mais').style.display = 'block';
-  verificarPagamentoRetorno();
-}
-
-function verificarPagamentoRetorno() {
-  const params = new URLSearchParams(window.location.search);
-  const status = params.get('pagamento');
-  const presenteId = params.get('presente');
-  const nomeComprador = params.get('nome');
-  if (status === 'sucesso' && presenteId && nomeComprador) {
-    const presente = presentes.find(p => p.id === presenteId);
-    if (presente && !presente.vaquinha) {
-      set(ref(db, `presentes/${presenteId}`), { pago: true, nome: decodeURIComponent(nomeComprador) });
-      setTimeout(() => virarCard(presenteId, decodeURIComponent(nomeComprador)), 800);
-    }
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }
-}
-
-function virarCard(id, nome) {
-  const card = document.getElementById(`gcard-${id}`);
-  if (card) {
-    const backNome = card.querySelector('.gift-card-back-nome');
-    if (backNome) backNome.textContent = nome;
-    card.classList.add('virado');
-  }
-}
-
-window.abrirModal = function(id) {
-  presenteAtual = presentes.find(p => p.id === id);
-  if (!presenteAtual) return;
-  document.getElementById('modal-presente-nome').textContent = `${presenteAtual.nome} · ${formatarPreco(presenteAtual.preco)}`;
-  document.getElementById('modal-nome-input').value = '';
-  document.getElementById('modal-erro').style.display = 'none';
-  document.getElementById('modal-overlay').classList.add('aberto');
-  setTimeout(() => document.getElementById('modal-nome-input').focus(), 100);
-};
-
-window.fecharModal = function() {
-  document.getElementById('modal-overlay').classList.remove('aberto');
-  presenteAtual = null;
-};
-
-window.confirmarPagamento = async function() {
-  const nome = document.getElementById('modal-nome-input').value.trim();
-  if (!nome) { document.getElementById('modal-erro').style.display = 'block'; return; }
-  const btn = document.getElementById('modal-btn-pagar');
-  btn.disabled = true;
-  btn.textContent = 'Aguarde...';
-  try {
-    const resp = await fetch('/.netlify/functions/criar-pagamento', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ presenteId: presenteAtual.id, presenteNome: presenteAtual.nome, preco: presenteAtual.preco, nomeComprador: nome })
-    });
-    const data = await resp.json();
-    if (data.url) { window.location.href = data.url; }
-    else { btn.disabled = false; btn.textContent = 'Ir para o pagamento'; alert('Erro ao processar. Tente novamente.'); }
-  } catch { btn.disabled = false; btn.textContent = 'Ir para o pagamento'; alert('Erro de conexão. Tente novamente.'); }
-};
-
-window.verMais = function() {
-  document.querySelectorAll('.gift-extra').forEach(el => el.style.display = '');
-  document.getElementById('btn-ver-mais').style.display = 'none';
-};
-
-renderPresentes();
-
-window.toggleMenu = function() { document.getElementById('hamburger').classList.toggle('aberto'); document.getElementById('nav-mobile').classList.toggle('aberto'); };
-window.fecharMenu = function() { document.getElementById('hamburger').classList.remove('aberto'); document.getElementById('nav-mobile').classList.remove('aberto'); };
-
-function updateCountdown() {
-  const target = new Date('2027-10-10T16:00:00');
-  const now = new Date();
-  const diff = target - now;
-  if (diff <= 0) { document.getElementById('countdown').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:2rem;color:#7a1e2e">Hoje é o grande dia!</p>'; return; }
-  const dias = Math.floor(diff / 86400000);
-  const horas = Math.floor((diff % 86400000) / 3600000);
-  const min = Math.floor((diff % 3600000) / 60000);
-  document.getElementById('cd-dias').textContent = dias;
-  document.getElementById('cd-horas').textContent = String(horas).padStart(2,'0');
-  document.getElementById('cd-min').textContent = String(min).padStart(2,'0');
-}
-updateCountdown();
-setInterval(updateCountdown, 60000);
-
-let presenca = null;
-window.selectPresenca = function(v) {
-  if (prazоEncerrado()) { document.getElementById('prazo-encerrado-overlay').classList.add('aberto'); return; }
-  presenca = v;
-  document.getElementById('opt-sim').classList.toggle('selected', v === 'sim');
-  document.getElementById('opt-nao').classList.toggle('selected', v === 'nao');
-  document.getElementById('campos-presenca').style.display = v === 'sim' ? 'block' : 'none';
-  if (v === 'sim') gerarCamposAcomp();
-  else { document.getElementById('acomp-campos').innerHTML = ''; bebidaTitular = null; }
-};
-
-window.selectBebida = function(v) {
-  bebidaTitular = v;
-  document.getElementById('bebida-sim').classList.toggle('selected', v === 'sim');
-  document.getElementById('bebida-nao').classList.toggle('selected', v === 'nao');
-};
-
-window.gerarCamposAcomp = function() {
-  const n = parseInt(document.getElementById('acomp').value);
-  const container = document.getElementById('acomp-campos');
-  container.innerHTML = '';
-  for (let i = 1; i <= n; i++) {
-    const bloco = document.createElement('div');
-    bloco.className = 'acomp-block';
-    bloco.innerHTML = `
-      <p class="acomp-titulo">Acompanhante ${i}</p>
-      <div class="form-group">
-        <label class="form-label">Nome completo</label>
-        <input type="text" class="form-input" id="acomp-nome-${i}" placeholder="Ex: João Silva">
-        <p class="error-msg" id="erro-acomp-${i}"></p>
-      </div>
-      <div class="form-group" style="margin-bottom:0">
-        <label class="form-label">Consome bebida alcoólica?</label>
-        <div class="bebida-group">
-          <div class="bebida-option" id="acomp-bebida-sim-${i}" onclick="selectBebidaAcomp(${i}, 'sim')">Sim</div>
-          <div class="bebida-option" id="acomp-bebida-nao-${i}" onclick="selectBebidaAcomp(${i}, 'nao')">Não</div>
-        </div>
-      </div>`;
-    container.appendChild(bloco);
-  }
-};
-
-window.selectBebidaAcomp = function(i, v) {
-  document.getElementById(`acomp-bebida-sim-${i}`).classList.toggle('selected', v === 'sim');
-  document.getElementById(`acomp-bebida-nao-${i}`).classList.toggle('selected', v === 'nao');
-};
-
-function normalizarNome(nome) {
-  return nome.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
-
-window.submitRSVP = async function() {
-  if (prazоEncerrado()) { document.getElementById('prazo-encerrado-overlay').classList.add('aberto'); return; }
-  const nomeDigitado = document.getElementById('nome').value.trim();
-  const whatsapp = document.getElementById('whatsapp').value.trim();
-  const erroEl = document.getElementById('erro-nome');
-  erroEl.style.display = 'none';
-  if (!nomeDigitado) { erroEl.textContent = 'Por favor, informe seu nome.'; erroEl.style.display = 'block'; return; }
-  const partes = nomeDigitado.trim().split(/\s+/);
-  if (partes.length < 2) { erroEl.textContent = 'Por favor, informe pelo menos o nome e um sobrenome.'; erroEl.style.display = 'block'; return; }
-  if (!presenca) { erroEl.textContent = 'Por favor, selecione sua confirmação.'; erroEl.style.display = 'block'; return; }
-  const nomeNormalizado = normalizarNome(nomeDigitado);
-  const convidadoEncontrado = convidados.find(c => normalizarNome(c) === nomeNormalizado);
-  if (!convidadoEncontrado) { erroEl.textContent = 'Seu nome não foi encontrado na lista. Verifique a grafia ou entre em contato com as noivas.'; erroEl.style.display = 'block'; return; }
-  const n = parseInt(document.getElementById('acomp')?.value) || 0;
-  const acompanhantes = [];
-  for (let i = 1; i <= n; i++) {
-    const nomeAcomp = document.getElementById(`acomp-nome-${i}`)?.value.trim() || '';
-    const erroAcomp = document.getElementById(`erro-acomp-${i}`);
-    erroAcomp.style.display = 'none';
-    if (!nomeAcomp) { erroAcomp.textContent = 'Por favor, informe o nome do acompanhante.'; erroAcomp.style.display = 'block'; return; }
-    const partesAcomp = nomeAcomp.split(/\s+/);
-    if (partesAcomp.length < 2) { erroAcomp.textContent = 'Informe pelo menos nome e sobrenome.'; erroAcomp.style.display = 'block'; return; }
-    const acompEncontrado = convidados.find(c => normalizarNome(c) === normalizarNome(nomeAcomp));
-    if (!acompEncontrado) { erroAcomp.textContent = 'Este nome não foi encontrado na lista. Verifique a grafia ou entre em contato com as noivas.'; erroAcomp.style.display = 'block'; return; }
-    const bebidaAcomp = document.getElementById(`acomp-bebida-sim-${i}`)?.classList.contains('selected') ? 'sim' : document.getElementById(`acomp-bebida-nao-${i}`)?.classList.contains('selected') ? 'nao' : '—';
-    acompanhantes.push({ nome: acompEncontrado, bebida: bebidaAcomp });
-  }
-  const chave = normalizarNome(convidadoEncontrado).replace(/\s+/g, '_');
-  await set(ref(db, 'confirmacoes/' + chave), {
-    nome: convidadoEncontrado,
-    status: presenca,
-    whatsapp: whatsapp || '—',
-    bebida: bebidaTitular || '—',
-    acompanhantes: acompanhantes,
-    mensagem: document.getElementById('msg').value || '',
-    dataConfirmacao: new Date().toISOString()
-  });
-  document.getElementById('rsvp-form').style.display = 'none';
-  const suc = document.getElementById('success-msg');
-  suc.style.display = 'block';
-  const primeiro = convidadoEncontrado.split(' ')[0];
-  if (presenca === 'sim') {
-    document.getElementById('success-text').textContent = `Que alegria, ${primeiro}!`;
-    document.getElementById('success-sub').textContent = 'Sua presença está confirmada. Estamos muito felizes de saber que você estará lá neste dia!';
-  } else {
-    document.getElementById('success-text').textContent = `Sentiremos sua falta, ${primeiro}, mas entendemos.`;
-    document.getElementById('success-sub').textContent = 'Você fará falta nesse dia, mas ainda temos muitos brindes pela frente. Obrigada por nos avisar.';
-  }
-};
-
-const SENHA = 'delethami2027';
-window.abrirPainel = function() { document.getElementById('painel-overlay').classList.add('aberto'); document.getElementById('painel-senha-input').focus(); };
-window.fecharPainel = function() { document.getElementById('painel-overlay').classList.remove('aberto'); document.getElementById('painel-senha-input').value = ''; document.getElementById('painel-erro').style.display = 'none'; document.getElementById('painel-content').classList.remove('visivel'); };
-window.verificarSenha = function() {
-  const senha = document.getElementById('painel-senha-input').value;
-  if (senha === SENHA) { document.getElementById('painel-erro').style.display = 'none'; document.getElementById('painel-content').classList.add('visivel'); carregarPainel(); }
-  else { document.getElementById('painel-erro').style.display = 'block'; }
-};
-
-function carregarPainel() {
-  onValue(ref(db, 'confirmacoes'), (snapshot) => {
-    const dados = snapshot.val() || {};
-    let sim = 0, nao = 0, pendente = 0;
-    const lista = document.getElementById('convidado-lista');
-    lista.innerHTML = '';
-    convidados.forEach(c => {
-      const chave = normalizarNome(c).replace(/\s+/g, '_');
-      const d = dados[chave];
-      if (d && d.status === 'sim') sim++;
-      else if (d && d.status === 'nao') nao++;
-      else pendente++;
-      const item = document.createElement('div');
-      item.className = 'convidado-item';
-      const icone = d ? (d.status === 'sim' ? '✔️' : '❌') : '<span class="convidado-pendente">pendente</span>';
-      const tel = d && d.whatsapp && d.whatsapp !== '—' ? `<span class="convidado-whats">${d.whatsapp}</span>` : `<span class="convidado-whats">—</span>`;
-      const bebida = d && d.bebida && d.bebida !== '—' ? `<div class="convidado-info">🍷 bebida: ${d.bebida}</div>` : '';
-      const dataConf = d && d.dataConfirmacao ? `<div class="convidado-info">📅 ${formatarData(d.dataConfirmacao)}</div>` : '';
-      const acomps = d && d.acompanhantes && d.acompanhantes.length > 0
-        ? `<div class="convidado-info">${d.acompanhantes.map(a => typeof a === 'object' ? `${a.nome} (bebida: ${a.bebida || '—'})` : a).join(', ')}</div>`
-        : '';
-      item.innerHTML = `<div><span class="convidado-nome">${c}</span>${bebida}${dataConf}${acomps}</div>${tel}<span class="convidado-status">${icone}</span>`;
-      lista.appendChild(item);
-    });
-    document.getElementById('stat-sim').textContent = sim;
-    document.getElementById('stat-nao').textContent = nao;
-    document.getElementById('stat-pendente').textContent = pendente;
-  });
-}
-</script>
-</body>
-</html>
