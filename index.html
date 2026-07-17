@@ -243,10 +243,26 @@
   <h2 class="section-title">Nossa história</h2>
   <div class="section-divider"></div>
   <div class="timeline">
-    <div class="timeline-item"><p class="timeline-year">O primeiro encontro</p><p class="timeline-text">Aqui vai a história de como Del e Thami se conheceram — esse espaço é todo de vocês para contar com as próprias palavras o começo de tudo.</p></div>
-    <div class="timeline-item"><p class="timeline-year">Quando tudo mudou</p><p class="timeline-text">Um momento especial que marcou a relação de vocês — uma viagem, uma conversa, uma descoberta. Algo que as aproximou de verdade.</p></div>
-    <div class="timeline-item"><p class="timeline-year">O pedido</p><p class="timeline-text">A história do pedido de casamento — com todos os detalhes que vocês quiserem compartilhar. Foi aqui que o "sim" mudou tudo.</p></div>
-    <div class="timeline-item"><p class="timeline-year">10 · 10 · 2027</p><p class="timeline-text">E agora, celebramos. Com as pessoas que amamos, na data mais especial das nossas vidas.</p></div>
+    <div class="timeline-item">
+      <p class="timeline-year">2023</p>
+      <p class="timeline-text">Início do nosso nós.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-year">2024</p>
+      <p class="timeline-text">Ainda duas casas, duas rotinas e duas saudades.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-year">2025</p>
+      <p class="timeline-text">"Bora morar juntas? Bora!"<br>Ficamos noivas (Salvador/BA).</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-year">2026</p>
+      <p class="timeline-text">Trabalho - casamento. Trabalho, trabalho e trabalho - casamento.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-year">2027</p>
+      <p class="timeline-text">Vamos casar e continuar essa história!</p>
+    </div>
   </div>
 </section>
 
@@ -360,7 +376,7 @@
   <div class="section-divider"></div>
   <div class="event-grid">
     <div class="event-card"><span class="event-icon"><i class="ti ti-calendar"></i></span><span class="event-card-label">Data</span><span class="event-card-value">10 de outubro de 2027</span></div>
-    <div class="event-card"><span class="event-icon"><i class="ti ti-clock"></i></span><span class="event-card-label">Cerimônia</span><span class="event-card-value">16h00</span><p class="event-card-note">Nossa cerimônia será rápida e pontual. Por gentileza, não se atrase.</p></div>
+    <div class="event-card"><span class="event-icon"><i class="ti ti-clock"></i></span><span class="event-card-label">Cerimônia</span><span class="event-card-value">15h00</span><p class="event-card-note">Nossa cerimônia será rápida e pontual. Por gentileza, não se atrase.</p></div>
     <div class="event-card"><span class="event-icon"><i class="ti ti-map-pin"></i></span><span class="event-card-label">Local</span><span class="event-card-value">Fleming Recepções</span><p class="event-card-note">Av. Fleming, 1.481 · Pampulha<br>Belo Horizonte, MG</p></div>
   </div>
 </section>
@@ -432,12 +448,12 @@ const PRAZO_LIMITE = new Date('2027-09-02T00:00:00');
 function prazoEncerrado() { return new Date() >= PRAZO_LIMITE; }
 
 const familias = [
-  ['Thalita Procópio', 'Tulio Marques', 'Matheus Procópio', 'Sophia Marinho', 'Aurora Procópio'],
+  ['Thalita Procópio', 'Tulio Marques', 'Matheus Procópio', 'Aurora Procópio'],
   ['Suely Rejane Procópio'],
   ['Lauro Torres'],
   ['Nayara Procópio', 'Marcus Paulo Saúde'],
   ['Rayssa Procópio', 'Cassio Schneider'],
-  ['Celina Torres', 'Gustavo Torres', 'Maria Carolina Torres'],
+  ['Celina Torres', 'Gustavo Torres', 'Karú Torres'],
   ['Carolina Arantes', 'Guilherme Moretti', 'Joaquim Arantes', 'Gal Arantes'],
   ['Fernanda Daniele Procópio', 'Walmir Magalhães', 'Marina Procópio'],
   ['Elton Greve', 'Roberta Gomes'],
@@ -456,7 +472,18 @@ const familias = [
   ['Letícia Cabral', 'Raphael Ottoni'],
   ['Bruna Sobreira'],
   ['Clarice Sarcinelli', 'Rafael Freiria'],
-  ['João Trindade'],
+  ['João Trindade', 'Jade'],
+  ['Sérgio Procópio', 'Regina'],
+  ['Ademir Torres', 'Ana Torres', 'André Torres'],
+  ['Ricardo Torres', 'Carmem Torres'],
+  ['Flávio Pereira'],
+  ['Lucélia Ferreira'],
+  ['Zed Martins', 'Guilherme Théo'],
+  ['Izabella Freitas', 'Guilherme'],
+  ['Ana Carolina Batista', 'Thiago Lopes'],
+  ['Julia Faleiros', 'Felipe Bartolomeu'],
+  ['Carolina Elias', 'Pedro Stussi'],
+  ['Cacau', 'Felícia'],
 ];
 
 const todosConvidados = familias.flat();
@@ -711,7 +738,7 @@ window.toggleMenu = function() { document.getElementById('hamburger').classList.
 window.fecharMenu = function() { document.getElementById('hamburger').classList.remove('aberto'); document.getElementById('nav-mobile').classList.remove('aberto'); };
 
 function updateCountdown() {
-  const target = new Date('2027-10-10T16:00:00');
+  const target = new Date('2027-10-10T15:00:00');
   const diff = target - new Date();
   if (diff <= 0) { document.getElementById('countdown').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:2rem;color:#7a1e2e">Hoje é o grande dia!</p>'; return; }
   document.getElementById('cd-dias').textContent = Math.floor(diff / 86400000);
