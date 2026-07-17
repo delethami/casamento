@@ -67,7 +67,7 @@
   .timeline { position: relative; padding-left: 2rem; border-left: 1px solid var(--wine-light); }
   .timeline-item { margin-bottom: 2.5rem; position: relative; }
   .timeline-item::before { content: ''; position: absolute; left: -2.37rem; top: 0.35rem; width: 8px; height: 8px; border-radius: 50%; background: var(--wine); border: 2px solid var(--ivory); outline: 1px solid var(--wine-light); }
-  .timeline-year { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.4rem; font-weight: 400; }
+  .timeline-year { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin-bottom: 0.4rem; }
   .timeline-text { font-size: 1rem; line-height: 1.8; color: var(--text-mid); }
   .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
   .event-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 4px; padding: 1.5rem; text-align: center; }
@@ -537,8 +537,8 @@ const listaPresentes = [
   { id: 'bowls', nome: 'Conjunto de bowls', preco: 90, img: 'bowls.jpg', vaquinha: false },
   { id: 'descanso-panela', nome: 'Descanso de panela', preco: 80, img: 'descanso de panela.webp', vaquinha: false },
   { id: 'pano-prato', nome: 'Panos de prato', preco: 70, img: 'pano de prato.webp', vaquinha: false },
-  { id: 'vaquinha-grace', nome: 'Vaquinha Grace', preco: 49, img: 'Grace_cow.webp', vaquinha: true },
   { id: 'bandeja-cafe', nome: 'Bandeja de café da manhã', preco: 50, img: 'bandeja de cafe.jpg', vaquinha: false },
+  { id: 'vaquinha-grace', nome: 'Vaquinha Grace', preco: 49, img: 'Grace_cow.webp', vaquinha: true },
 ];
 
 const LIMITE = 15;
