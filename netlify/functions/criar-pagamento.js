@@ -21,6 +21,7 @@ exports.handler = async function(event) {
       pending: `https://casamentodelethami.netlify.app/?pagamento=pendente`
     },
     auto_return: 'approved',
+    notification_url: `https://casamentodelethami.netlify.app/.netlify/functions/notificacao-pagamento?presente=${presenteId}&nome=${encodeURIComponent(nomeComprador)}`,
     statement_descriptor: 'Del e Thami'
   });
 
