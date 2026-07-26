@@ -109,16 +109,17 @@
   .btn-ver-mais { background: none; border: 1.5px solid var(--wine); color: var(--wine); padding: 0.7rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; margin-top: 1.5rem; display: block; }
   .btn-ver-mais:hover { background: var(--wine); color: white; }
 
+  /* MODAL PRESENTE — letra maior e mais escura */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 400; align-items: center; justify-content: center; }
   .modal-overlay.aberto { display: flex; }
   .modal-box { background: var(--ivory); border-radius: 8px; padding: 2rem; width: 90%; max-width: 420px; position: relative; }
-  .modal-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--wine); margin-bottom: 0.8rem; }
-  .modal-subtitulo { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 1.5rem; line-height: 1.7; font-family: 'Cormorant Garamond', serif; }
-  .modal-presente { font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--wine-light); margin-bottom: 1.5rem; }
-  .modal-erro { color: #a32d2d; font-size: 0.8rem; margin-bottom: 0.8rem; display: none; }
-  .modal-input { width: 100%; background: var(--ivory); border: 1px solid var(--stone); border-radius: 2px; padding: 0.75rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text-dark); outline: none; transition: border-color 0.2s; margin-bottom: 1rem; }
+  .modal-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 400; color: var(--wine); margin-bottom: 1rem; }
+  .modal-subtitulo { font-family: 'Jost', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-dark); margin-bottom: 1.5rem; line-height: 1.7; }
+  .modal-presente { font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--wine); margin-bottom: 1.5rem; }
+  .modal-erro { color: #a32d2d; font-size: 0.85rem; margin-bottom: 0.8rem; display: none; }
+  .modal-input { width: 100%; background: var(--ivory); border: 1px solid var(--stone); border-radius: 2px; padding: 0.85rem 1rem; font-family: 'Jost', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-dark); outline: none; transition: border-color 0.2s; margin-bottom: 1rem; }
   .modal-input:focus { border-color: var(--wine); }
-  .modal-btn { width: 100%; background: var(--wine); color: white; border: none; padding: 0.9rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
+  .modal-btn { width: 100%; background: var(--wine); color: white; border: none; padding: 0.9rem; font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
   .modal-btn:hover { background: #6a1828; }
   .modal-btn:disabled { background: var(--stone); cursor: not-allowed; }
   .modal-fechar { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
@@ -172,7 +173,7 @@
   .painel-btn:hover { opacity: 1; }
   .painel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; align-items: center; justify-content: center; }
   .painel-overlay.aberto { display: flex; }
-  .painel-box { background: var(--ivory); border-radius: 8px; padding: 2rem; width: 90%; max-width: 700px; max-height: 85vh; overflow-y: auto; position: relative; }
+  .painel-box { background: var(--ivory); border-radius: 8px; padding: 2rem; width: 90%; max-width: 750px; max-height: 85vh; overflow-y: auto; position: relative; }
   .painel-titulo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--wine); margin-bottom: 1.5rem; }
   .painel-fechar { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
   .painel-senha { display: flex; gap: 0.8rem; margin-bottom: 1.5rem; }
@@ -185,7 +186,8 @@
   .stat-card { background: var(--cream); border: 1px solid var(--stone); border-radius: 4px; padding: 1rem; text-align: center; }
   .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--wine); display: block; }
   .stat-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); margin-top: 0.3rem; display: block; }
-  .convidado-lista { border: 1px solid var(--stone); border-radius: 4px; overflow: hidden; }
+  .painel-secao-titulo { font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); margin: 2rem 0 1rem; border-bottom: 1px solid var(--stone); padding-bottom: 0.5rem; }
+  .convidado-lista { border: 1px solid var(--stone); border-radius: 4px; overflow: hidden; margin-bottom: 1rem; }
   .convidado-item { display: grid; grid-template-columns: 1fr auto auto; align-items: start; gap: 1rem; padding: 0.8rem 1rem; border-bottom: 1px solid var(--stone); font-size: 0.9rem; }
   .convidado-item:last-child { border-bottom: none; }
   .convidado-item:nth-child(even) { background: var(--cream); }
@@ -194,6 +196,13 @@
   .convidado-whats { font-size: 0.8rem; color: var(--text-light); }
   .convidado-status { font-size: 1rem; }
   .convidado-pendente { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.1em; }
+  .presente-item { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; padding: 0.8rem 1rem; border-bottom: 1px solid var(--stone); font-size: 0.9rem; }
+  .presente-item:last-child { border-bottom: none; }
+  .presente-item:nth-child(even) { background: var(--cream); }
+  .presente-nome-presente { color: var(--text-dark); font-weight: 400; }
+  .presente-quem-deu { font-size: 0.75rem; color: var(--text-light); margin-top: 0.2rem; }
+  .presente-valor { font-size: 0.8rem; color: var(--wine); font-weight: 500; white-space: nowrap; }
+  .painel-vazio { font-size: 0.85rem; color: var(--text-light); font-style: italic; padding: 1rem; text-align: center; border: 1px solid var(--stone); border-radius: 4px; }
   footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--stone); background: var(--cream); }
   .footer-names { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
   .footer-date { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
@@ -422,7 +431,10 @@
         <div class="stat-card"><span class="stat-num" id="stat-nao">0</span><span class="stat-label">Ausentes ❌</span></div>
         <div class="stat-card"><span class="stat-num" id="stat-pendente">0</span><span class="stat-label">Pendentes ⏳</span></div>
       </div>
+      <p class="painel-secao-titulo">Confirmações de presença</p>
       <div class="convidado-lista" id="convidado-lista"></div>
+      <p class="painel-secao-titulo">Presentes recebidos</p>
+      <div id="presentes-lista"></div>
     </div>
   </div>
 </div>
@@ -757,6 +769,7 @@ window.verificarSenha = function() {
 };
 
 function carregarPainel() {
+  // Confirmações de presença
   onValue(ref(db, 'confirmacoes'), (snapshot) => {
     const dados = snapshot.val() || {};
     let sim = 0, nao = 0, pendente = 0;
@@ -781,6 +794,34 @@ function carregarPainel() {
     document.getElementById('stat-sim').textContent = sim;
     document.getElementById('stat-nao').textContent = nao;
     document.getElementById('stat-pendente').textContent = pendente;
+  });
+
+  // Presentes recebidos
+  onValue(ref(db, 'presentes'), (snapshot) => {
+    const dados = snapshot.val() || {};
+    const container = document.getElementById('presentes-lista');
+    const presentesPagos = listaPresentes.filter(p => dados[p.id] && dados[p.id].pago);
+
+    if (presentesPagos.length === 0) {
+      container.innerHTML = '<p class="painel-vazio">Nenhum presente recebido ainda.</p>';
+      return;
+    }
+
+    const lista = document.createElement('div');
+    lista.className = 'convidado-lista';
+    presentesPagos.forEach(p => {
+      const item = document.createElement('div');
+      item.className = 'presente-item';
+      item.innerHTML = `
+        <div>
+          <div class="presente-nome-presente">${p.nome}</div>
+          <div class="presente-quem-deu">🎁 ${dados[p.id].nome || '—'}</div>
+        </div>
+        <div class="presente-valor">${formatarPreco(p.preco)}</div>`;
+      lista.appendChild(item);
+    });
+    container.innerHTML = '';
+    container.appendChild(lista);
   });
 }
 </script>
