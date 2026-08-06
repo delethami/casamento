@@ -77,52 +77,39 @@
   .event-card-note { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); line-height: 1.6; margin-top: 0.6rem; font-weight: 400; }
 
   .gifts-intro { font-family: 'Jost', sans-serif; font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 560px; text-align: justify; }
-  .gifts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
-  .gift-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; cursor: pointer; position: relative; }
-  .gift-card:hover:not(.gift-chosen) { border-color: var(--wine-light); transform: translateY(-4px); }
-  .gift-img-wrap { width: 100%; height: 120px; background: var(--cream); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-  .gift-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 0.3rem; transition: opacity 0.3s; }
-  .gift-card:hover:not(.gift-chosen) .gift-img-wrap img { opacity: 0.85; }
-  .gift-overlay { position: absolute; inset: 0; background: rgba(44,20,16,0.55); display: none; align-items: center; justify-content: center; }
-  .gift-overlay-text { color: white; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; text-align: center; padding: 0.5rem; }
-  .gift-body { padding: 0.7rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
-  .gift-name { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 400; color: var(--text-dark); line-height: 1.3; }
+  .gifts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.2rem; }
+  .gift-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; }
+  .gift-card:hover { border-color: var(--wine-light); transform: translateY(-4px); }
+  .gift-img-wrap { width: 100%; height: 130px; background: var(--cream); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .gift-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 0.5rem; }
+  .gift-body { padding: 0.8rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+  .gift-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--text-dark); line-height: 1.3; }
   .gift-price { font-size: 0.8rem; color: var(--wine); font-weight: 500; }
   .gift-btn { margin-top: auto; padding-top: 0.6rem; }
-  .btn-comprar { width: 100%; background: var(--wine); color: white; border: none; padding: 0.55rem; font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: background 0.2s, transform 0.1s; }
-  .btn-comprar:hover { background: #6a1828; transform: scale(0.98); }
-  .gift-chosen .gift-name { text-decoration: line-through; color: var(--text-light); }
-  .gift-chosen .gift-img-wrap { filter: grayscale(60%) brightness(0.7); }
-  .gift-chosen .gift-overlay { display: flex; }
-  .gift-chosen .btn-comprar { display: none; }
-  .gift-chosen .gift-price { color: var(--text-light); }
-  .gift-chosen:hover { transform: none !important; border-color: var(--stone) !important; cursor: default; }
-  .gift-card-flip { perspective: 1000px; }
-  .gift-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
-  .gift-card-flip.virado .gift-card-inner { transform: rotateY(180deg); }
-  .gift-card-front, .gift-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
-  .gift-card-back { background: var(--wine); transform: rotateY(180deg); align-items: center; justify-content: center; padding: 1rem; text-align: center; }
-  .gift-card-back-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: white; margin-bottom: 0.5rem; }
-  .gift-card-back-nome { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; color: var(--wine-pale); letter-spacing: 0.1em; margin-bottom: 0.8rem; }
-  .gift-card-back-msg { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 300; color: var(--wine-light); line-height: 1.5; font-style: italic; }
-  .gift-card-back-heart { font-size: 1.5rem; margin-top: 0.8rem; color: var(--wine-light); }
-  .btn-ver-mais { background: none; border: 1.5px solid var(--wine); color: var(--wine); padding: 0.7rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; margin-top: 1.5rem; display: block; }
-  .btn-ver-mais:hover { background: var(--wine); color: white; }
+  .btn-comprar { width: 100%; background: var(--wine); color: white; border: none; padding: 0.55rem; font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: background 0.2s; }
+  .btn-comprar:hover { background: #6a1828; }
 
-  /* MODAL PRESENTE — letra maior e mais escura */
+  /* Modal vaquinha */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 400; align-items: center; justify-content: center; }
   .modal-overlay.aberto { display: flex; }
-  .modal-box { background: var(--ivory); border-radius: 8px; padding: 2rem; width: 90%; max-width: 420px; position: relative; }
-  .modal-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 400; color: var(--wine); margin-bottom: 1rem; }
-  .modal-subtitulo { font-family: 'Jost', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-dark); margin-bottom: 1.5rem; line-height: 1.7; }
-  .modal-presente { font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--wine); margin-bottom: 1.5rem; }
-  .modal-erro { color: #a32d2d; font-size: 0.85rem; margin-bottom: 0.8rem; display: none; }
-  .modal-input { width: 100%; background: var(--ivory); border: 1px solid var(--stone); border-radius: 2px; padding: 0.85rem 1rem; font-family: 'Jost', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-dark); outline: none; transition: border-color 0.2s; margin-bottom: 1rem; }
-  .modal-input:focus { border-color: var(--wine); }
-  .modal-btn { width: 100%; background: var(--wine); color: white; border: none; padding: 0.9rem; font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
-  .modal-btn:hover { background: #6a1828; }
-  .modal-btn:disabled { background: var(--stone); cursor: not-allowed; }
+  .modal-box { background: var(--ivory); border-radius: 8px; padding: 2rem; width: 90%; max-width: 420px; position: relative; text-align: center; }
   .modal-fechar { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
+  .modal-vaquinha-img { width: 120px; height: 120px; object-fit: contain; margin: 0 auto 1rem; display: block; }
+  .modal-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--wine); margin-bottom: 0.3rem; }
+  .modal-preco { font-family: 'Jost', sans-serif; font-size: 1rem; font-weight: 500; color: var(--wine); margin-bottom: 1.5rem; }
+  .modal-pix-label { font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.5rem; display: block; }
+  .modal-pix-chave { font-family: 'Jost', sans-serif; font-size: 1rem; font-weight: 500; color: var(--text-dark); background: var(--cream); border: 1px solid var(--stone); border-radius: 4px; padding: 0.8rem 1rem; margin-bottom: 0.5rem; display: block; word-break: break-all; }
+  .modal-pix-copiar { background: none; border: 1.5px solid var(--wine); color: var(--wine); padding: 0.5rem 1.2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; margin-bottom: 1.5rem; }
+  .modal-pix-copiar:hover { background: var(--wine); color: white; }
+  .modal-instrucao { font-family: 'Jost', sans-serif; font-size: 0.85rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 1.5rem; }
+  .modal-btn-contribui { width: 100%; background: var(--wine); color: white; border: none; padding: 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: background 0.2s; }
+  .modal-btn-contribui:hover { background: #6a1828; }
+
+  /* Agradecimento */
+  .modal-agradecimento { display: none; text-align: center; }
+  .modal-agradecimento-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--wine); margin-bottom: 0.8rem; }
+  .modal-agradecimento-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text-mid); line-height: 1.7; }
+  .modal-agradecimento-heart { font-size: 2rem; margin-top: 1rem; display: block; }
 
   .manual-section-wrap { position: relative; overflow: hidden; background: var(--cream); }
   .manual-inner { position: relative; z-index: 1; }
@@ -137,8 +124,8 @@
   .rsvp-form { max-width: 520px; }
   .form-group { margin-bottom: 1.5rem; }
   .form-label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 0.5rem; font-weight: 400; }
-  .form-input, .form-select, .form-textarea { width: 100%; background: var(--ivory); border: 1px solid var(--stone); border-radius: 2px; padding: 0.75rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text-dark); outline: none; transition: border-color 0.2s; -webkit-appearance: none; }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--wine); }
+  .form-input, .form-textarea { width: 100%; background: var(--ivory); border: 1px solid var(--stone); border-radius: 2px; padding: 0.75rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text-dark); outline: none; transition: border-color 0.2s; }
+  .form-input:focus, .form-textarea:focus { border-color: var(--wine); }
   .form-textarea { resize: vertical; min-height: 90px; }
   .nome-sugestoes { border: 1px solid var(--stone); border-radius: 2px; background: var(--ivory); margin-top: 0.5rem; overflow: hidden; display: none; }
   .nome-sugestao-item { padding: 0.75rem 1rem; cursor: pointer; font-size: 0.9rem; color: var(--text-dark); border-bottom: 1px solid var(--stone); transition: background 0.15s; }
@@ -161,14 +148,12 @@
   .success-msg p { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
   .success-msg span { font-size: 0.85rem; color: var(--text-mid); letter-spacing: 0.05em; }
   .error-msg { color: #a32d2d; font-size: 0.85rem; margin-top: 0.5rem; display: none; }
-
   .prazo-encerrado-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 500; align-items: center; justify-content: center; }
   .prazo-encerrado-overlay.aberto { display: flex; }
   .prazo-encerrado-box { background: var(--ivory); border-radius: 8px; padding: 2.5rem; width: 90%; max-width: 420px; text-align: center; }
   .prazo-encerrado-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--wine); margin-bottom: 1rem; }
   .prazo-encerrado-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--text-mid); line-height: 1.7; }
   .prazo-encerrado-texto strong { color: var(--wine); }
-
   .painel-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--wine); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 200; opacity: 0.4; transition: opacity 0.2s; }
   .painel-btn:hover { opacity: 1; }
   .painel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; align-items: center; justify-content: center; }
@@ -196,12 +181,6 @@
   .convidado-whats { font-size: 0.8rem; color: var(--text-light); }
   .convidado-status { font-size: 1rem; }
   .convidado-pendente { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.1em; }
-  .presente-item { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; padding: 0.8rem 1rem; border-bottom: 1px solid var(--stone); font-size: 0.9rem; }
-  .presente-item:last-child { border-bottom: none; }
-  .presente-item:nth-child(even) { background: var(--cream); }
-  .presente-nome-presente { color: var(--text-dark); font-weight: 400; }
-  .presente-quem-deu { font-size: 0.75rem; color: var(--text-light); margin-top: 0.2rem; }
-  .presente-valor { font-size: 0.8rem; color: var(--wine); font-weight: 500; white-space: nowrap; }
   .painel-vazio { font-size: 0.85rem; color: var(--text-light); font-style: italic; padding: 1rem; text-align: center; border: 1px solid var(--stone); border-radius: 4px; }
   footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--stone); background: var(--cream); }
   .footer-names { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--wine); margin-bottom: 0.5rem; }
@@ -277,11 +256,10 @@
 
 <section id="presentes" style="background: var(--cream);">
   <span class="section-label">Para nos presentear</span>
-  <h2 class="section-title">Lista de presentes</h2>
+  <h2 class="section-title">Nossas vaquinhas</h2>
   <div class="section-divider"></div>
-  <p class="gifts-intro">O mais especial deste dia vai ser comemorar com você, mas não podemos negar que adoraríamos receber algumas dessas lembranças. Caso queira nos presentear, escolha o que quiser, ou contribua com as nossas vaquinhas.</p>
+  <p class="gifts-intro">Pensamos muito na melhor forma para deixar todo mundo a vontade, caso queira nos presentear e achamos um jeito muito legal e democrático, que é disponibilizar nossas vaquinhas para quem quiser escolher uma cota. Vamos adorar qualquer uma delas.</p>
   <div class="gifts-grid" id="gifts-grid"></div>
-  <button class="btn-ver-mais" id="btn-ver-mais" onclick="verMais()" style="display:none;">Ver mais presentes</button>
 </section>
 
 <section id="confirmacao" style="background: var(--ivory);">
@@ -395,15 +373,26 @@
   <p class="footer-date">10 · 10 · 2027 &nbsp;·&nbsp; Belo Horizonte</p>
 </footer>
 
+<!-- Modal vaquinha -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box">
     <button class="modal-fechar" onclick="fecharModal()">✕</button>
-    <h2 class="modal-titulo">Uhull!!</h2>
-    <p class="modal-subtitulo">Conta para a gente seu nome. As meninas vão adorar saber quem escolheu este presente para elas.</p>
-    <p class="modal-presente" id="modal-presente-nome"></p>
-    <p class="modal-erro" id="modal-erro">Por favor, informe seu nome.</p>
-    <input type="text" class="modal-input" id="modal-nome-input" placeholder="Nome" onkeydown="if(event.key==='Enter')confirmarPagamento()">
-    <button class="modal-btn" id="modal-btn-pagar" onclick="confirmarPagamento()">Ir para o pagamento</button>
+    <div id="modal-conteudo">
+      <img id="modal-vaquinha-img" class="modal-vaquinha-img" src="" alt="">
+      <h2 class="modal-titulo" id="modal-titulo"></h2>
+      <p class="modal-preco" id="modal-preco"></p>
+      <span class="modal-pix-label">Chave Pix</span>
+      <span class="modal-pix-chave">thamirisptorres@noh.pix</span>
+      <button class="modal-pix-copiar" onclick="copiarPix()">Copiar chave</button>
+      <p class="modal-instrucao">Faça o pagamento pelo seu banco usando a chave Pix acima e depois clique no botão abaixo.</p>
+      <button class="modal-btn-contribui" onclick="mostrarAgradecimento()">Contribuí! 🐄</button>
+    </div>
+    <div class="modal-agradecimento" id="modal-agradecimento">
+      <span class="modal-agradecimento-heart">🤍</span>
+      <h2 class="modal-agradecimento-titulo">Muito obrigada!</h2>
+      <p class="modal-agradecimento-texto">Sua generosidade nos enche de alegria e de amor. Você faz parte deste dia de um jeito muito especial.</p>
+      <span class="modal-agradecimento-heart">🐄</span>
+    </div>
   </div>
 </div>
 
@@ -433,8 +422,6 @@
       </div>
       <p class="painel-secao-titulo">Confirmações de presença</p>
       <div class="convidado-lista" id="convidado-lista"></div>
-      <p class="painel-secao-titulo">Presentes recebidos</p>
-      <div id="presentes-lista"></div>
     </div>
   </div>
 </div>
@@ -500,61 +487,23 @@ const familias = [
 
 const todosConvidados = familias.flat();
 
-const listaPresentes = [
-  { id: 'robo-aspirador', nome: 'Robô aspirador', preco: 3998, img: 'robo aspirador.webp', vaquinha: false },
-  { id: 'vaquinha-maggie', nome: 'Vaquinha Maggie', preco: 999, img: 'vaca maggie.webp', vaquinha: true },
-  { id: 'jogo-panelas', nome: 'Jogo de panelas', preco: 900, img: 'jogo de panelas.jpg', vaquinha: false },
-  { id: 'air-fryer', nome: 'Air fryer', preco: 900, img: 'air friyer.webp', vaquinha: false },
-  { id: 'jogo-cama-queen', nome: 'Jogo de cama queen size', preco: 800, img: 'jogo de cama.webp', vaquinha: false },
-  { id: 'dolce-gusto', nome: 'Dolce Gusto', preco: 800, img: 'dolce gusto.webp', vaquinha: false },
-  { id: 'escrivaninha', nome: 'Escrivaninha', preco: 700, img: 'escrivaninha.webp', vaquinha: false },
-  { id: 'alexa', nome: 'Alexa', preco: 700, img: 'alexa.jpg', vaquinha: false },
-  { id: 'cadeira-escritorio', nome: 'Cadeira de escritório', preco: 600, img: 'cadeira escritorio.jpg', vaquinha: false },
-  { id: 'estante-livros', nome: 'Estante de livros', preco: 550, img: 'estante de livros.jpg', vaquinha: false },
-  { id: 'vaquinha-otis', nome: 'Vaquinha Otis', preco: 499, img: 'vaca otis.jpg', vaquinha: true },
-  { id: 'batedeira', nome: 'Batedeira planetária', preco: 500, img: 'batedeira.webp', vaquinha: false },
-  { id: 'jogo-banho', nome: 'Jogo de Banho Buddemeyer', preco: 500, img: 'jogo de toalha.webp', vaquinha: false },
-  { id: 'faqueiro', nome: 'Faqueiro', preco: 400, img: 'faqueiro certo.jpg', vaquinha: false },
-  { id: 'moedor-cafe', nome: 'Moedor de café', preco: 380, img: 'moedor de café.jpg', vaquinha: false },
-  { id: 'sapateira', nome: 'Sapateira', preco: 300, img: 'sapateira.webp', vaquinha: false },
-  { id: 'conjunto-tacas-vinho', nome: 'Conjunto de taças de vinho', preco: 300, img: 'taças de vinho.webp', vaquinha: false },
-  { id: 'conjunto-tacas-espumante', nome: 'Conjunto de taças de espumante', preco: 300, img: 'taça espumante.webp', vaquinha: false },
-  { id: 'maquina-seladora', nome: 'Máquina seladora', preco: 300, img: 'seladora.jpg', vaquinha: false },
-  { id: 'vaquinha-ferdinando', nome: 'Vaquinha Ferdinando', preco: 299, img: 'Ferdinando.webp', vaquinha: true },
-  { id: 'escada', nome: 'Escada', preco: 260, img: 'escada.webp', vaquinha: false },
-  { id: 'espelho', nome: 'Espelho', preco: 200, img: 'espelho.jpg', vaquinha: false },
-  { id: 'maquina-waffle', nome: 'Máquina elétrica de waffle', preco: 200, img: 'máquina de waffle.webp', vaquinha: false },
-  { id: 'abajur-chao', nome: 'Abajur de chão', preco: 200, img: 'abajur de chao.jpg', vaquinha: false },
-  { id: 'espremedor', nome: 'Espremedor de frutas elétrico', preco: 200, img: 'espremedor.webp', vaquinha: false },
-  { id: 'tabua-passar', nome: 'Tábua de passar roupa', preco: 200, img: 'tábua.webp', vaquinha: false },
-  { id: 'almofadas', nome: 'Conjunto de almofadas', preco: 180, img: 'almofadas.jpg', vaquinha: false },
-  { id: 'ventilador', nome: 'Ventilador', preco: 180, img: 'ventilador.webp', vaquinha: false },
-  { id: 'cafeteira-hario', nome: 'Kit Cafeteira Hario V60', preco: 170, img: 'v60.jpeg', vaquinha: false },
-  { id: 'abajur-cabeceira', nome: 'Abajur de cabeceira', preco: 170, img: 'abajur de mesa.webp', vaquinha: false },
-  { id: 'processador', nome: 'Processador de alimentos', preco: 170, img: 'processador de alimentos.jpg', vaquinha: false },
-  { id: 'vaquinha-clarabella', nome: 'Vaquinha Clarabella', preco: 149, img: 'vaca clarabella.jpg', vaquinha: true },
-  { id: 'carrinho-organizador', nome: 'Carrinho organizador', preco: 150, img: 'carrinho organizador.webp', vaquinha: false },
-  { id: 'furadeira', nome: 'Furadeira', preco: 150, img: 'furadeira.jpg', vaquinha: false },
-  { id: 'kit-bar', nome: 'Kit bar', preco: 150, img: 'kit bar.webp', vaquinha: false },
-  { id: 'roupao', nome: 'Roupão', preco: 150, img: 'roupão.jpg', vaquinha: false },
-  { id: 'umedificador', nome: 'Umidificador', preco: 150, img: 'umedificador.webp', vaquinha: false },
-  { id: 'potes-vidro', nome: 'Conjunto de potes de vidro', preco: 150, img: 'potes.jpg', vaquinha: false },
-  { id: 'mixer-multiuso', nome: 'Mixer multiuso', preco: 120, img: 'mixer multiuso.jpg', vaquinha: false },
-  { id: 'caixa-ferramentas', nome: 'Caixa de ferramentas', preco: 120, img: 'ferramentas.jpg', vaquinha: false },
-  { id: 'extensao', nome: 'Extensão', preco: 100, img: 'extensão.jpg', vaquinha: false },
-  { id: 'kit-jardinagem', nome: 'Kit jardinagem', preco: 100, img: 'kit jardinagem.jpg', vaquinha: false },
-  { id: 'mop', nome: 'Mop', preco: 100, img: 'mop.jpg', vaquinha: false },
-  { id: 'puff', nome: 'Puff', preco: 100, img: 'puff.jpg', vaquinha: false },
-  { id: 'vaquinha-vaca', nome: 'Vaquinha Vaca', preco: 99, img: 'vaca.jpg', vaquinha: true },
-  { id: 'bowls', nome: 'Conjunto de bowls', preco: 90, img: 'bowls.jpg', vaquinha: false },
-  { id: 'descanso-panela', nome: 'Descanso de panela', preco: 80, img: 'descanso de panela.webp', vaquinha: false },
-  { id: 'pano-prato', nome: 'Panos de prato', preco: 70, img: 'pano de prato.webp', vaquinha: false },
-  { id: 'bandeja-cafe', nome: 'Bandeja de café da manhã', preco: 50, img: 'bandeja de cafe.jpg', vaquinha: false },
-  { id: 'vaquinha-grace', nome: 'Vaquinha Grace', preco: 49, img: 'Grace_cow.webp', vaquinha: true },
+const vaquinhas = [
+  { id: 'maggie', nome: 'Maggie', preco: 99, img: 'vaca_maggie.webp' },
+  { id: 'mimosa', nome: 'Mimosa sem espumante', preco: 149, img: 'mimosa.jpg' },
+  { id: 'milka', nome: 'Milka', preco: 199, img: 'milka_3.jfif' },
+  { id: 'ferdinando', nome: 'Ferdinando', preco: 249, img: 'Ferdinando.webp' },
+  { id: 'gracie', nome: 'Gracie', preco: 299, img: 'Grace_cow.webp' },
+  { id: 'toddynho', nome: 'Toddynho', preco: 349, img: 'WhatsApp_Image_2026-08-06_at_20_31_50.jpeg' },
+  { id: 'otis', nome: 'Otis', preco: 399, img: 'vaca_otis.jpg' },
+  { id: 'daysi', nome: 'Daysi', preco: 449, img: 'daysi.webp' },
+  { id: 'miltank', nome: 'Miltank', preco: 499, img: 'miltank.jfif' },
+  { id: 'vaca-velha', nome: 'Vaca Velha', preco: 599, img: 'vaca_velha.webp' },
+  { id: 'fichinha', nome: 'Fichinha', preco: 699, img: 'ChatGPT_Image_6_de_ago__de_2026__11_22_28.png' },
+  { id: 'betty', nome: 'Betty', preco: 799, img: 'betty.jpg' },
+  { id: 'boi-bandido', nome: 'Boi Bandido', preco: 899, img: 'boi.png' },
+  { id: 'lollo', nome: 'Lollo', preco: 999, img: 'lollo.png' },
+  { id: 'vaca-sem-frango', nome: 'Vaca sem o Frango', preco: 1010.27, img: 'vaca.jpg' },
 ];
-
-const LIMITE = 15;
-let presenteAtual = null;
 
 function formatarPreco(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
 function formatarData(ts) {
@@ -565,6 +514,62 @@ function formatarData(ts) {
 function normalizarNome(nome) { return nome.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 function encontrarFamilia(nome) { return familias.find(f => f.some(m => normalizarNome(m) === normalizarNome(nome))); }
 
+// Render vaquinhas
+function renderVaquinhas() {
+  const grid = document.getElementById('gifts-grid');
+  grid.innerHTML = '';
+  vaquinhas.forEach(v => {
+    const card = document.createElement('div');
+    card.className = 'gift-card';
+    card.innerHTML = `
+      <div class="gift-img-wrap">
+        <img src="${v.img}" alt="${v.nome}" loading="lazy">
+      </div>
+      <div class="gift-body">
+        <div class="gift-name">${v.nome}</div>
+        <div class="gift-price">${formatarPreco(v.preco)}</div>
+        <div class="gift-btn">
+          <button class="btn-comprar" onclick="abrirModal('${v.id}')">Contribuir</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+let vaquinhaAtual = null;
+
+window.abrirModal = function(id) {
+  vaquinhaAtual = vaquinhas.find(v => v.id === id);
+  if (!vaquinhaAtual) return;
+  document.getElementById('modal-vaquinha-img').src = vaquinhaAtual.img;
+  document.getElementById('modal-titulo').textContent = vaquinhaAtual.nome;
+  document.getElementById('modal-preco').textContent = formatarPreco(vaquinhaAtual.preco);
+  document.getElementById('modal-conteudo').style.display = 'block';
+  document.getElementById('modal-agradecimento').style.display = 'none';
+  document.getElementById('modal-overlay').classList.add('aberto');
+};
+
+window.fecharModal = function() {
+  document.getElementById('modal-overlay').classList.remove('aberto');
+  vaquinhaAtual = null;
+};
+
+window.copiarPix = function() {
+  navigator.clipboard.writeText('thamirisptorres@noh.pix').then(() => {
+    const btn = document.querySelector('.modal-pix-copiar');
+    btn.textContent = 'Copiado! ✓';
+    setTimeout(() => btn.textContent = 'Copiar chave', 2000);
+  });
+};
+
+window.mostrarAgradecimento = function() {
+  document.getElementById('modal-conteudo').style.display = 'none';
+  document.getElementById('modal-agradecimento').style.display = 'block';
+};
+
+renderVaquinhas();
+
+// RSVP
 let convidadoSelecionado = null;
 let familiaAtual = [];
 let bebidasSelecionadas = {};
@@ -674,78 +679,6 @@ window.submitRSVP = async function() {
   }
 };
 
-async function renderPresentes() {
-  const grid = document.getElementById('gifts-grid');
-  grid.innerHTML = '';
-  const snap = await get(ref(db, 'presentes'));
-  const dadosPresentes = snap.val() || {};
-  listaPresentes.forEach((p, index) => {
-    const comprado = dadosPresentes[p.id] && !p.vaquinha;
-    const nomeComprador = dadosPresentes[p.id]?.nome || '';
-    const wrapper = document.createElement('div');
-    wrapper.style.cssText = 'position: relative; height: 220px;';
-    if (index >= LIMITE) wrapper.classList.add('gift-extra');
-    if (comprado) {
-      wrapper.innerHTML = `<div class="gift-card gift-card-flip virado" id="gcard-${p.id}" style="height:100%;"><div class="gift-card-inner" style="height:100%;"><div class="gift-card-front" style="height:100%;"><div class="gift-img-wrap" style="height:120px;">${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : ''}<div class="gift-overlay" style="display:flex;"><span class="gift-overlay-text">Presente escolhido</span></div></div><div class="gift-body"><div class="gift-name" style="text-decoration:line-through;color:var(--text-light);">${p.nome}</div><div class="gift-price" style="color:var(--text-light);">${formatarPreco(p.preco)}</div></div></div><div class="gift-card-back"><div class="gift-card-back-title">Muito obrigada!</div><div class="gift-card-back-nome">${nomeComprador}</div><div class="gift-card-back-msg">Sua generosidade nos enche de alegria. Que presente lindo!</div><div class="gift-card-back-heart">♡</div></div></div></div>`;
-    } else {
-      wrapper.innerHTML = `<div class="gift-card gift-card-flip" id="gcard-${p.id}" style="height:100%;"><div class="gift-card-inner" style="height:100%;"><div class="gift-card-front" style="height:100%;"><div class="gift-img-wrap" style="height:120px;">${p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy">` : ''}<div class="gift-overlay"><span class="gift-overlay-text">Presente escolhido</span></div></div><div class="gift-body"><div class="gift-name">${p.nome}</div><div class="gift-price">${formatarPreco(p.preco)}</div><div class="gift-btn"><button class="btn-comprar" onclick="abrirModal('${p.id}')">Presentear</button></div></div></div><div class="gift-card-back"><div class="gift-card-back-title">Muito obrigada!</div><div class="gift-card-back-nome"></div><div class="gift-card-back-msg">Sua generosidade nos enche de alegria. Que presente lindo!</div><div class="gift-card-back-heart">♡</div></div></div></div>`;
-    }
-    grid.appendChild(wrapper);
-  });
-  document.querySelectorAll('.gift-extra').forEach(el => el.style.display = 'none');
-  if (listaPresentes.length > LIMITE) document.getElementById('btn-ver-mais').style.display = 'block';
-  verificarPagamentoRetorno();
-}
-
-function verificarPagamentoRetorno() {
-  const params = new URLSearchParams(window.location.search);
-  const status = params.get('pagamento');
-  const presenteId = params.get('presente');
-  const nomeComprador = params.get('nome');
-  if (status === 'sucesso' && presenteId && nomeComprador) {
-    const p = listaPresentes.find(x => x.id === presenteId);
-    if (p && !p.vaquinha) {
-      set(ref(db, `presentes/${presenteId}`), { pago: true, nome: decodeURIComponent(nomeComprador) });
-      setTimeout(() => virarCard(presenteId, decodeURIComponent(nomeComprador)), 800);
-    }
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }
-}
-
-function virarCard(id, nome) {
-  const card = document.getElementById(`gcard-${id}`);
-  if (card) { const b = card.querySelector('.gift-card-back-nome'); if (b) b.textContent = nome; card.classList.add('virado'); }
-}
-
-window.abrirModal = function(id) {
-  presenteAtual = listaPresentes.find(p => p.id === id);
-  if (!presenteAtual) return;
-  document.getElementById('modal-presente-nome').textContent = `${presenteAtual.nome} · ${formatarPreco(presenteAtual.preco)}`;
-  document.getElementById('modal-nome-input').value = '';
-  document.getElementById('modal-erro').style.display = 'none';
-  document.getElementById('modal-overlay').classList.add('aberto');
-  setTimeout(() => document.getElementById('modal-nome-input').focus(), 100);
-};
-
-window.fecharModal = function() { document.getElementById('modal-overlay').classList.remove('aberto'); presenteAtual = null; };
-
-window.confirmarPagamento = async function() {
-  const nome = document.getElementById('modal-nome-input').value.trim();
-  if (!nome) { document.getElementById('modal-erro').style.display = 'block'; return; }
-  const btn = document.getElementById('modal-btn-pagar');
-  btn.disabled = true; btn.textContent = 'Aguarde...';
-  try {
-    const resp = await fetch('/.netlify/functions/criar-pagamento', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ presenteId: presenteAtual.id, presenteNome: presenteAtual.nome, preco: presenteAtual.preco, nomeComprador: nome }) });
-    const data = await resp.json();
-    if (data.url) { window.location.href = data.url; }
-    else { btn.disabled = false; btn.textContent = 'Ir para o pagamento'; alert('Erro ao processar. Tente novamente.'); }
-  } catch { btn.disabled = false; btn.textContent = 'Ir para o pagamento'; alert('Erro de conexão. Tente novamente.'); }
-};
-
-window.verMais = function() { document.querySelectorAll('.gift-extra').forEach(el => el.style.display = ''); document.getElementById('btn-ver-mais').style.display = 'none'; };
-
-renderPresentes();
-
 window.toggleMenu = function() { document.getElementById('hamburger').classList.toggle('aberto'); document.getElementById('nav-mobile').classList.toggle('aberto'); };
 window.fecharMenu = function() { document.getElementById('hamburger').classList.remove('aberto'); document.getElementById('nav-mobile').classList.remove('aberto'); };
 
@@ -769,7 +702,6 @@ window.verificarSenha = function() {
 };
 
 function carregarPainel() {
-  // Confirmações de presença
   onValue(ref(db, 'confirmacoes'), (snapshot) => {
     const dados = snapshot.val() || {};
     let sim = 0, nao = 0, pendente = 0;
@@ -794,34 +726,6 @@ function carregarPainel() {
     document.getElementById('stat-sim').textContent = sim;
     document.getElementById('stat-nao').textContent = nao;
     document.getElementById('stat-pendente').textContent = pendente;
-  });
-
-  // Presentes recebidos
-  onValue(ref(db, 'presentes'), (snapshot) => {
-    const dados = snapshot.val() || {};
-    const container = document.getElementById('presentes-lista');
-    const presentesPagos = listaPresentes.filter(p => dados[p.id] && dados[p.id].pago);
-
-    if (presentesPagos.length === 0) {
-      container.innerHTML = '<p class="painel-vazio">Nenhum presente recebido ainda.</p>';
-      return;
-    }
-
-    const lista = document.createElement('div');
-    lista.className = 'convidado-lista';
-    presentesPagos.forEach(p => {
-      const item = document.createElement('div');
-      item.className = 'presente-item';
-      item.innerHTML = `
-        <div>
-          <div class="presente-nome-presente">${p.nome}</div>
-          <div class="presente-quem-deu">🎁 ${dados[p.id].nome || '—'}</div>
-        </div>
-        <div class="presente-valor">${formatarPreco(p.preco)}</div>`;
-      lista.appendChild(item);
-    });
-    container.innerHTML = '';
-    container.appendChild(lista);
   });
 }
 </script>
