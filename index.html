@@ -77,19 +77,20 @@
   .event-card-note { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); line-height: 1.6; margin-top: 0.6rem; font-weight: 400; }
 
   .gifts-intro { font-family: 'Jost', sans-serif; font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--text-mid); margin-bottom: 2.5rem; max-width: 560px; text-align: justify; }
-  .gifts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.2rem; }
+  .gifts-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+  @media (max-width: 900px) { .gifts-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .gifts-grid { grid-template-columns: repeat(2, 1fr); } }
   .gift-card { background: var(--ivory); border: 1px solid var(--stone); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; }
   .gift-card:hover { border-color: var(--wine-light); transform: translateY(-4px); }
-  .gift-img-wrap { width: 100%; height: 130px; background: var(--cream); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .gift-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 0.5rem; }
-  .gift-body { padding: 0.8rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
-  .gift-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--text-dark); line-height: 1.3; }
+  .gift-img-wrap { width: 100%; height: 120px; background: var(--cream); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .gift-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 0.3rem; }
+  .gift-body { padding: 0.7rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+  .gift-name { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 400; color: var(--text-dark); line-height: 1.3; }
   .gift-price { font-size: 0.8rem; color: var(--wine); font-weight: 500; }
   .gift-btn { margin-top: auto; padding-top: 0.6rem; }
   .btn-comprar { width: 100%; background: var(--wine); color: white; border: none; padding: 0.55rem; font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: background 0.2s; }
   .btn-comprar:hover { background: #6a1828; }
 
-  /* Modal vaquinha */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 400; align-items: center; justify-content: center; }
   .modal-overlay.aberto { display: flex; }
   .modal-box { background: var(--ivory); border-radius: 8px; padding: 2rem; width: 90%; max-width: 420px; position: relative; text-align: center; }
@@ -104,8 +105,6 @@
   .modal-instrucao { font-family: 'Jost', sans-serif; font-size: 0.85rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 1.5rem; }
   .modal-btn-contribui { width: 100%; background: var(--wine); color: white; border: none; padding: 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: background 0.2s; }
   .modal-btn-contribui:hover { background: #6a1828; }
-
-  /* Agradecimento */
   .modal-agradecimento { display: none; text-align: center; }
   .modal-agradecimento-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--wine); margin-bottom: 0.8rem; }
   .modal-agradecimento-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text-mid); line-height: 1.7; }
@@ -373,7 +372,6 @@
   <p class="footer-date">10 · 10 · 2027 &nbsp;·&nbsp; Belo Horizonte</p>
 </footer>
 
-<!-- Modal vaquinha -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box">
     <button class="modal-fechar" onclick="fecharModal()">✕</button>
@@ -428,7 +426,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD5ttVxUex1he0_Y5pVQ8NLmt776pJwzp0",
@@ -488,17 +486,17 @@ const familias = [
 const todosConvidados = familias.flat();
 
 const vaquinhas = [
-  { id: 'maggie', nome: 'Maggie', preco: 99, img: 'vaca_maggie.webp' },
+  { id: 'maggie', nome: 'Maggie', preco: 99, img: 'vaca maggie.webp' },
   { id: 'mimosa', nome: 'Mimosa sem espumante', preco: 149, img: 'mimosa.jpg' },
-  { id: 'milka', nome: 'Milka', preco: 199, img: 'milka_3.jfif' },
+  { id: 'milka', nome: 'Milka', preco: 199, img: 'milka 3.jfif' },
   { id: 'ferdinando', nome: 'Ferdinando', preco: 249, img: 'Ferdinando.webp' },
   { id: 'gracie', nome: 'Gracie', preco: 299, img: 'Grace_cow.webp' },
-  { id: 'toddynho', nome: 'Toddynho', preco: 349, img: 'WhatsApp_Image_2026-08-06_at_20_31_50.jpeg' },
-  { id: 'otis', nome: 'Otis', preco: 399, img: 'vaca_otis.jpg' },
+  { id: 'toddynho', nome: 'Toddynho', preco: 349, img: 'WhatsApp Image 2026-08-06 at 20.31.50.jpeg' },
+  { id: 'otis', nome: 'Otis', preco: 399, img: 'vaca otis.jpg' },
   { id: 'daysi', nome: 'Daysi', preco: 449, img: 'daysi.webp' },
   { id: 'miltank', nome: 'Miltank', preco: 499, img: 'miltank.jfif' },
-  { id: 'vaca-velha', nome: 'Vaca Velha', preco: 599, img: 'vaca_velha.webp' },
-  { id: 'fichinha', nome: 'Fichinha', preco: 699, img: 'ChatGPT_Image_6_de_ago__de_2026__11_22_28.png' },
+  { id: 'vaca-velha', nome: 'Vaca Velha', preco: 599, img: 'vaca velha.webp' },
+  { id: 'fichinha', nome: 'Fichinha', preco: 699, img: 'ChatGPT Image 6 de ago. de 2026, 11_22_28.png' },
   { id: 'betty', nome: 'Betty', preco: 799, img: 'betty.jpg' },
   { id: 'boi-bandido', nome: 'Boi Bandido', preco: 899, img: 'boi.png' },
   { id: 'lollo', nome: 'Lollo', preco: 999, img: 'lollo.png' },
@@ -514,7 +512,6 @@ function formatarData(ts) {
 function normalizarNome(nome) { return nome.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 function encontrarFamilia(nome) { return familias.find(f => f.some(m => normalizarNome(m) === normalizarNome(nome))); }
 
-// Render vaquinhas
 function renderVaquinhas() {
   const grid = document.getElementById('gifts-grid');
   grid.innerHTML = '';
@@ -569,7 +566,6 @@ window.mostrarAgradecimento = function() {
 
 renderVaquinhas();
 
-// RSVP
 let convidadoSelecionado = null;
 let familiaAtual = [];
 let bebidasSelecionadas = {};
